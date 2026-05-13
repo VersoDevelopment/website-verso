@@ -64,7 +64,7 @@
     .section-title { font-family: var(--font-h); font-size: clamp(1.9rem,3.8vw,2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 12px; }
     .section-sub { color: var(--muted); font-size: .95rem; max-width: 500px; line-height: 1.75; margin-bottom: 52px; }
 
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; font-family: var(--font-b); font-size: .9rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all .22s; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; text-align: center; gap: 8px; padding: 12px 24px; border-radius: 10px; font-family: var(--font-b); font-size: .9rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all .22s; }
     .btn-primary { background: var(--grad); color: #FFFFFF; box-shadow: 0 0 28px var(--glow); }
     .btn-primary:hover { box-shadow: 0 0 52px rgba(160,32,240,.45); transform: translateY(-2px); }
     .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
@@ -651,14 +651,16 @@ document.querySelectorAll('.price-card').forEach(card=>{
   });
 });
 
-// ── CARD TILT ────────────────────────────────────────────────────────────
-document.querySelectorAll('.port-card,.price-card,.step').forEach(c=>{
-  c.addEventListener('mousemove',e=>{
-    const r=c.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/(r.width/2),dy=(e.clientY-r.top-r.height/2)/(r.height/2);
-    c.style.transform=`perspective(700px) rotateY(${dx*5}deg) rotateX(${-dy*5}deg) translateY(-4px)`;
+// ── CARD TILT (desktop/hover only) ───────────────────────────────────────
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.querySelectorAll('.port-card,.price-card,.step').forEach(c=>{
+    c.addEventListener('mousemove',e=>{
+      const r=c.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/(r.width/2),dy=(e.clientY-r.top-r.height/2)/(r.height/2);
+      c.style.transform=`perspective(700px) rotateY(${dx*5}deg) rotateX(${-dy*5}deg) translateY(-4px)`;
+    });
+    c.addEventListener('mouseleave',()=>{c.style.transform='';});
   });
-  c.addEventListener('mouseleave',()=>{c.style.transform='';});
-});
+}
 
 // ── SMOOTH ANCHORS ────────────────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
