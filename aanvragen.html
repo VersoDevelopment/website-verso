@@ -426,8 +426,13 @@ async function submitForm(form) {
       body: data,
       headers: { 'Accept': 'application/json' }
     });
-    return res.ok;
-  } catch (e) { return false; }
+    if (!res.ok) {
+      const json = await res.json().catch(() => null);
+      const msg = json?.error || json?.errors?.[0]?.message || `Fout ${res.status}`;
+      return { ok: false, msg };
+    }
+    return { ok: true };
+  } catch (e) { return { ok: false, msg: 'Geen verbinding' }; }
 }
 
 document.getElementById('briefForm').addEventListener('submit', async e => {
@@ -435,15 +440,15 @@ document.getElementById('briefForm').addEventListener('submit', async e => {
   const btn = e.target.querySelector('[type="submit"]');
   btn.disabled = true;
   btn.textContent = 'Versturen…';
-  const ok = await submitForm(e.target);
-  if (ok) {
+  const result = await submitForm(e.target);
+  if (result.ok) {
     document.getElementById('briefForm').style.display = 'none';
     document.getElementById('bsteps').style.display = 'none';
     document.getElementById('briefSuccess').style.display = 'block';
   } else {
     btn.disabled = false;
     btn.textContent = 'Aanvraag versturen →';
-    showToast('Er ging iets mis. Probeer het opnieuw.');
+    showToast('Fout: ' + result.msg);
   }
 });
 
