@@ -80,7 +80,7 @@
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo img { height: 160px; width: auto; }
     .nav-links { display: flex; align-items: center; gap: 4px; }
-    .nav-link { padding: 7px 13px; border-radius: 8px; font-size: .84rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: all .2s; }
+    .nav-link { padding: 7px 13px; border-radius: 8px; font-size: .84rem; font-weight: 500; color: rgba(255,255,255,.78); text-decoration: none; transition: all .2s; }
     .nav-link:hover, .nav-link.active { color: var(--text); background: rgba(255,255,255,.06); }
     .nav-cta { padding: 9px 20px; }
     @media (max-width: 720px) { .nav-links .nav-link:not(.nav-cta) { display: none; } }
@@ -88,13 +88,13 @@
     /* FORM SECTION */
     #aanvragen { background: var(--bg1); }
     .brief-layout { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: start; }
-    @media(max-width:860px){ .brief-layout { grid-template-columns: 1fr; } }
+    @media(max-width:860px){ .brief-layout { grid-template-columns: 1fr; } .brief-info { position: static; } }
 
     .brief-info { position: sticky; top: 100px; }
     .brief-info p { font-size: .88rem; color: var(--muted); line-height: 1.8; margin-bottom: 28px; }
     .brief-perks { display: flex; flex-direction: column; gap: 14px; }
     .brief-perk { display: flex; align-items: flex-start; gap: 12px; font-size: .86rem; color: var(--muted); line-height: 1.5; }
-    .brief-perk-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .brief-perk-icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; color: var(--secondary); }
 
     .brief-steps { display: flex; align-items: center; gap: 0; margin-bottom: 32px; }
     .bs { display: flex; align-items: center; gap: 8px; font-size: .78rem; font-weight: 500; color: var(--muted); cursor: pointer; }
@@ -144,7 +144,7 @@
     .brief-nav-note { font-size: .78rem; color: var(--muted2); flex: 1; }
 
     .brief-success { display: none; text-align: center; padding: 48px 24px; }
-    .brief-success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .brief-success-icon { width: 52px; height: 52px; margin: 0 auto 16px; display: block; color: var(--aqua); }
     .brief-success h3 { font-family: var(--font-h); font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
     .brief-success p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
 
@@ -186,7 +186,7 @@
     <div class="reveal" style="text-align:center; margin-bottom:56px">
       <div class="label-tag">Aanvragen</div>
       <h2 class="section-title">Vertel me over <span class="grad-text">jouw project</span></h2>
-      <p class="section-sub" style="margin:0 auto">Hoe meer detail je geeft, hoe scherper mijn voorstel. Ik neem binnen 24 uur contact op.</p>
+      <p class="section-sub" style="margin:0 auto">Hoe meer detail je geeft, hoe scherper mijn voorstel.</p>
     </div>
     <div class="brief-layout reveal rd1">
 
@@ -194,10 +194,10 @@
       <div class="brief-info">
         <p>Vul het formulier zo volledig mogelijk in. Geen zorgen als je iets niet zeker weet — we bespreken de details samen.</p>
         <div class="brief-perks">
-          <div class="brief-perk"><span class="brief-perk-icon">⚡</span>Reactie binnen 24 uur</div>
-          <div class="brief-perk"><span class="brief-perk-icon">💬</span>Vrijblijvend kennismakingsgesprek</div>
-          <div class="brief-perk"><span class="brief-perk-icon">📋</span>Heldere offerte, geen verrassingen</div>
-          <div class="brief-perk"><span class="brief-perk-icon">🔒</span>Jouw idee blijft vertrouwelijk</div>
+          <div class="brief-perk"><svg class="brief-perk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Reactie binnen 24 uur</div>
+          <div class="brief-perk"><svg class="brief-perk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Vrijblijvend kennismakingsgesprek</div>
+          <div class="brief-perk"><svg class="brief-perk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Heldere offerte, geen verrassingen</div>
+          <div class="brief-perk"><svg class="brief-perk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Jouw idee blijft vertrouwelijk</div>
         </div>
       </div>
 
@@ -211,10 +211,7 @@
           <div class="bs" data-step="2"><div class="bs-num">3</div><span>Design</span></div>
         </div>
 
-        <form id="briefForm" data-netlify="true" name="aanvraag" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="aanvraag">
-          <input type="hidden" name="subject" value="Nieuwe projectaanvraag via Verso">
-          <p style="display:none"><input name="bot-field"></p>
+        <form id="briefForm">
 
           <!-- STAP 1: Gegevens -->
           <div class="brief-page active" id="bpage-0">
@@ -231,7 +228,7 @@
             </div>
             <div class="brief-card">
               <div class="brief-card-title">Project basics</div>
-              <div class="f-row" style="margin-bottom:14px">
+              <div class="f-row">
                 <div class="f-group">
                   <label class="f-label">Type project <span class="f-req">*</span></label>
                   <select name="type" class="f-ctrl" required>
@@ -242,28 +239,6 @@
                     <option>Website</option>
                     <option>Python script / tool</option>
                     <option>Anders / combinatie</option>
-                  </select>
-                </div>
-                <div class="f-group">
-                  <label class="f-label">Budget <span class="f-req">*</span></label>
-                  <select name="budget" class="f-ctrl" required>
-                    <option value="">— schatting —</option>
-                    <option>Minder dan €500</option>
-                    <option>€500 – €1.000</option>
-                    <option>€1.000 – €2.500</option>
-                    <option>Meer dan €2.500</option>
-                    <option>Nog niet zeker</option>
-                  </select>
-                </div>
-              </div>
-              <div class="f-row">
-                <div class="f-group">
-                  <label class="f-label">Urgentie / deadline</label>
-                  <select name="urgentie" class="f-ctrl">
-                    <option>Geen deadline</option>
-                    <option>Leuk als het snel klaar is</option>
-                    <option>Nodig binnen een maand</option>
-                    <option>Nodig binnen een week</option>
                   </select>
                 </div>
                 <div class="f-group">
@@ -383,7 +358,7 @@
 
         <!-- success -->
         <div class="brief-success" id="briefSuccess">
-          <div class="brief-success-icon">🚀</div>
+          <svg class="brief-success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           <h3>Aanvraag ontvangen!</h3>
           <p>Bedankt! Ik neem binnen 24 uur contact met je op. In de tussentijd kun je me altijd bereiken via WhatsApp.</p>
         </div>
@@ -441,23 +416,35 @@ function briefNext() {
 }
 function briefPrev() { if (briefStep > 0) { briefStep--; briefUpdateUI(); } }
 
-async function submitNetlify(form) {
+async function submitForm(form) {
   const data = new FormData(form);
   const stijl = [...form.querySelectorAll('input[name="stijl"]:checked')].map(c => c.value).join(', ');
   if (stijl) data.set('stijl', stijl);
   try {
-    await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() });
-    return true;
+    const res = await fetch('https://formspree.io/f/mdabvonb', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    return res.ok;
   } catch (e) { return false; }
 }
 
 document.getElementById('briefForm').addEventListener('submit', async e => {
   e.preventDefault();
-  const ok = await submitNetlify(e.target);
-  document.getElementById('briefForm').style.display = 'none';
-  document.getElementById('bsteps').style.display = 'none';
-  document.getElementById('briefSuccess').style.display = 'block';
-  if (!ok) showToast('Verzonden! (controleer je Netlify forms dashboard)');
+  const btn = e.target.querySelector('[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Versturen…';
+  const ok = await submitForm(e.target);
+  if (ok) {
+    document.getElementById('briefForm').style.display = 'none';
+    document.getElementById('bsteps').style.display = 'none';
+    document.getElementById('briefSuccess').style.display = 'block';
+  } else {
+    btn.disabled = false;
+    btn.textContent = 'Aanvraag versturen →';
+    showToast('Er ging iets mis. Probeer het opnieuw.');
+  }
 });
 
 function showToast(msg) {

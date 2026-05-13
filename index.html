@@ -82,7 +82,7 @@
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo img { height: 160px; width: auto; }
     .nav-links { display: flex; align-items: center; gap: 4px; }
-    .nav-link { padding: 7px 13px; border-radius: 8px; font-size: .95rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: all .2s; }
+    .nav-link { padding: 7px 13px; border-radius: 8px; font-size: .95rem; font-weight: 500; color: rgba(255,255,255,.78); text-decoration: none; transition: all .2s; }
     .nav-link:hover, .nav-link.active { color: var(--secondary); background: rgba(255,77,210,.08); }
     .nav-cta { padding: 9px 20px; }
     .nav-cta:hover, .nav-cta.active { color: #FFFFFF; background: var(--grad); }
@@ -100,7 +100,7 @@
 
     .hero-content { max-width: 760px; }
     .hero-logo { margin-bottom: 36px; }
-    .hero-logo img { height: 540px; width: auto; filter: drop-shadow(0 0 40px rgba(160,32,240,.5)); }
+    .hero-logo img { height: clamp(160px, 42vw, 400px); width: auto; filter: drop-shadow(0 0 40px rgba(160,32,240,.5)); }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: .78rem; font-weight: 500; color: var(--muted); background: var(--card); border: 1px solid var(--border); padding: 7px 16px; border-radius: 30px; margin-bottom: 30px; backdrop-filter: blur(8px); }
     .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; animation: blink 2s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
@@ -134,7 +134,7 @@
 
     .svc-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 26px; transition: border-color .3s, box-shadow .3s, transform .3s; }
     .svc-card:hover { border-color: rgba(160,32,240,.38); box-shadow: 0 8px 36px rgba(160,32,240,.09); transform: translateY(-3px); }
-    .svc-icon { font-size: 1.7rem; margin-bottom: 12px; display: block; }
+    .svc-icon { width: 26px; height: 26px; margin-bottom: 14px; display: block; color: var(--secondary); }
     .svc-title { font-family: var(--font-h); font-size: 1rem; font-weight: 600; margin-bottom: 7px; }
     .svc-desc { font-size: .86rem; color: var(--muted); line-height: 1.65; }
 
@@ -167,9 +167,9 @@
 
     /* ── PRICING ────────────────────────────────────── */
     #prijzen { background: var(--bg1); }
-    .price-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; max-width: 960px; margin: 0 auto; }
+    .price-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; max-width: 960px; margin: 0 auto; align-items: start; }
     @media(max-width:780px){ .price-grid { grid-template-columns: 1fr; max-width: 380px; } }
-    .price-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 30px 26px; transition: transform .3s, box-shadow .3s; }
+    .price-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 30px 26px; transition: transform .3s, box-shadow .3s; cursor: pointer; }
     .price-card:hover { transform: translateY(-4px); }
     .price-card.featured { background: linear-gradient(145deg, rgba(160,32,240,.1), rgba(255,77,210,.07)); border-color: rgba(160,32,240,.42); box-shadow: 0 0 55px rgba(160,32,240,.11); }
     .price-badge { display: inline-block; font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; background: var(--grad); color: #FFFFFF; padding: 4px 12px; border-radius: 20px; margin-bottom: 18px; }
@@ -177,12 +177,19 @@
     .price-amount { font-family: var(--font-h); font-size: 2.4rem; font-weight: 700; letter-spacing: -.03em; line-height: 1; margin-bottom: 3px; }
     .price-amount sup { font-size: 1rem; font-weight: 500; vertical-align: top; margin-top: 6px; display: inline-block; }
     .price-note { font-size: .78rem; color: var(--muted); margin-bottom: 22px; }
-    .price-features { list-style: none; margin-bottom: 26px; display: flex; flex-direction: column; gap: 10px; }
+    .price-features { list-style: none; margin-bottom: 0; display: flex; flex-direction: column; gap: 10px; }
     .price-features li { display: flex; align-items: flex-start; gap: 9px; font-size: .86rem; color: var(--muted); }
     .price-features li::before { content: '✓'; color: var(--aqua); font-weight: 700; flex-shrink: 0; }
     .price-features li.off::before { content: '–'; color: var(--muted2); }
     .price-features li.off { color: var(--muted2); }
-    .btn-price { width: 100%; justify-content: center; padding: 12px; }
+    .price-features li.hl { color: var(--muted); }
+    .price-monthly { font-size: .72rem; color: var(--muted2); text-align: center; margin-top: 10px; line-height: 1.5; }
+    .price-extra { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .42s cubic-bezier(.4,0,.2,1), opacity .35s; }
+    .price-card:hover .price-extra, .price-card.expanded .price-extra { max-height: 300px; opacity: 1; }
+    .price-extra .price-features { margin-top: 10px; }
+    .price-peek { text-align: center; padding: 7px 0 14px; font-size: .82rem; color: var(--muted2); letter-spacing: .2em; transition: opacity .25s; user-select: none; }
+    .price-card:hover .price-peek, .price-card.expanded .price-peek { opacity: 0; pointer-events: none; }
+    .btn-price { width: 100%; justify-content: center; padding: 12px; margin-top: 18px; cursor: pointer; }
 
     /* ── ABOUT ──────────────────────────────────────── */
     .over-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -345,22 +352,22 @@
     </div>
 
     <div id="panel-webapps" class="tab-panel active">
-      <div class="svc-card reveal rd1"><span class="svc-icon">⚡</span><div class="svc-title">Interactieve dashboards</div><div class="svc-desc">Real-time data, filters, grafieken. Intern portaal of klantfacing — overzichtelijk en snel.</div></div>
-      <div class="svc-card reveal rd2"><span class="svc-icon">🔄</span><div class="svc-title">Real-time applicaties</div><div class="svc-desc">WebSocket-gedreven apps waarbij meerdere gebruikers tegelijkertijd dezelfde live data zien.</div></div>
-      <div class="svc-card reveal rd3"><span class="svc-icon">🛠️</span><div class="svc-title">Tools & automatisering</div><div class="svc-desc">Formulieren, calculators, intake-systemen, generatoren — alles wat tijd bespaart in jouw workflow.</div></div>
-      <div class="svc-card reveal rd4"><span class="svc-icon">🔗</span><div class="svc-title">API-integraties</div><div class="svc-desc">Koppelingen met externe diensten: betalingen, agenda's, CRM's en meer.</div></div>
+      <div class="svc-card reveal rd1"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3 2-2 3 3"/></svg><div class="svc-title">Interactieve dashboards</div><div class="svc-desc">Real-time data, filters, grafieken. Intern portaal of klantfacing — overzichtelijk en snel.</div></div>
+      <div class="svc-card reveal rd2"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg><div class="svc-title">Real-time applicaties</div><div class="svc-desc">WebSocket-gedreven apps waarbij meerdere gebruikers tegelijkertijd dezelfde live data zien.</div></div>
+      <div class="svc-card reveal rd3"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><div class="svc-title">Tools & automatisering</div><div class="svc-desc">Formulieren, calculators, intake-systemen, generatoren — alles wat tijd bespaart in jouw workflow.</div></div>
+      <div class="svc-card reveal rd4"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><div class="svc-title">API-integraties</div><div class="svc-desc">Koppelingen met externe diensten: betalingen, agenda's, CRM's en meer.</div></div>
     </div>
     <div id="panel-websites" class="tab-panel">
-      <div class="svc-card reveal rd1"><span class="svc-icon">🎨</span><div class="svc-title">Bedrijfswebsites</div><div class="svc-desc">Jouw online visitekaartje. Modern, snel en geoptimaliseerd voor zoekmachines.</div></div>
-      <div class="svc-card reveal rd2"><span class="svc-icon">📄</span><div class="svc-title">Landingspagina's</div><div class="svc-desc">Conversiegerichte pagina's voor producten, events, campagnes of launches.</div></div>
-      <div class="svc-card reveal rd3"><span class="svc-icon">🖼️</span><div class="svc-title">Portfolio sites</div><div class="svc-desc">Laat zien wat je kan. Een eigen plek op het web die jouw werk centraal stelt.</div></div>
-      <div class="svc-card reveal rd4"><span class="svc-icon">✏️</span><div class="svc-title">Content-beheer</div><div class="svc-desc">Eenvoudig zelf aanpasbaar via CMS — geen developer nodig voor elke tekstwijziging.</div></div>
+      <div class="svc-card reveal rd1"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg><div class="svc-title">Bedrijfswebsites</div><div class="svc-desc">Jouw online visitekaartje. Modern, snel en geoptimaliseerd voor zoekmachines.</div></div>
+      <div class="svc-card reveal rd2"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><div class="svc-title">Landingspagina's</div><div class="svc-desc">Conversiegerichte pagina's voor producten, events, campagnes of launches.</div></div>
+      <div class="svc-card reveal rd3"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><div class="svc-title">Portfolio sites</div><div class="svc-desc">Laat zien wat je kan. Een eigen plek op het web die jouw werk centraal stelt.</div></div>
+      <div class="svc-card reveal rd4"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg><div class="svc-title">Content-beheer</div><div class="svc-desc">Eenvoudig zelf aanpasbaar via CMS — geen developer nodig voor elke tekstwijziging.</div></div>
     </div>
     <div id="panel-mobiel" class="tab-panel">
-      <div class="svc-card reveal rd1"><span class="svc-icon">📱</span><div class="svc-title">Mobiele web apps</div><div class="svc-desc">Apps via de browser op je telefoon — geen app store, altijd up-to-date.</div></div>
-      <div class="svc-card reveal rd2"><span class="svc-icon">💾</span><div class="svc-title">Offline-first PWA's</div><div class="svc-desc">Progressive Web Apps die ook zonder internet werken. Installeerbaar op het thuisscherm.</div></div>
-      <div class="svc-card reveal rd3"><span class="svc-icon">👆</span><div class="svc-title">Touch-geoptimaliseerd</div><div class="svc-desc">Swipes, grote knoppen, vloeiende animaties — gebouwd voor de telefoon, niet een krimpende desktopsite.</div></div>
-      <div class="svc-card reveal rd4"><span class="svc-icon">🔔</span><div class="svc-title">Push notificaties</div><div class="svc-desc">Houd gebruikers op de hoogte met tijdige meldingen rechtstreeks op hun scherm.</div></div>
+      <div class="svc-card reveal rd1"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><div class="svc-title">Mobiele web apps</div><div class="svc-desc">Apps via de browser op je telefoon — geen app store, altijd up-to-date.</div></div>
+      <div class="svc-card reveal rd2"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><div class="svc-title">Offline-first PWA's</div><div class="svc-desc">Progressive Web Apps die ook zonder internet werken. Installeerbaar op het thuisscherm.</div></div>
+      <div class="svc-card reveal rd3"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg><div class="svc-title">Touch-geoptimaliseerd</div><div class="svc-desc">Swipes, grote knoppen, vloeiende animaties — gebouwd voor de telefoon, niet een krimpende desktopsite.</div></div>
+      <div class="svc-card reveal rd4"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><div class="svc-title">Push notificaties</div><div class="svc-desc">Houd gebruikers op de hoogte met tijdige meldingen rechtstreeks op hun scherm.</div></div>
     </div>
   </div>
 </section>
@@ -391,7 +398,7 @@
     </div>
     <div class="port-grid">
       <div class="port-card reveal rd1">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#150828,#2a0e4a)">🩸</div>
+        <div class="port-thumb" style="background:linear-gradient(135deg,#150828,#2a0e4a)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
         <div class="port-body">
           <div class="port-tags"><span class="port-tag">Mobiele App</span><span class="port-tag">Gezondheid</span><span class="port-tag">PWA</span></div>
           <div class="port-title">Cyclus Tracker</div>
@@ -400,7 +407,7 @@
         </div>
       </div>
       <div class="port-card reveal rd2">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#050e1a,#0a1a40)">⚔️</div>
+        <div class="port-thumb" style="background:linear-gradient(135deg,#050e1a,#0a1a40)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="rgba(255,255,255,0.28)"/></svg></div>
         <div class="port-body">
           <div class="port-tags"><span class="port-tag">Web App</span><span class="port-tag">AI</span><span class="port-tag">Real-time</span><span class="port-tag private">Privé</span></div>
           <div class="port-title">LoL Party App</div>
@@ -409,7 +416,7 @@
         </div>
       </div>
       <div class="port-card reveal rd3">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#0d1226,#0e2040)">🏺</div>
+        <div class="port-thumb" style="background:linear-gradient(135deg,#0d1226,#0e2040)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7.39 4.26v8.48L12 19l-7.39-4.26V6.26L12 2z"/></svg></div>
         <div class="port-body">
           <div class="port-tags"><span class="port-tag">Website</span><span class="port-tag">E-commerce</span></div>
           <div class="port-title">Veramiek</div>
@@ -430,47 +437,80 @@
       <p class="section-sub" style="margin:0 auto 52px">Geen verborgen kosten. Wat je ziet is wat je krijgt.</p>
     </div>
     <div class="price-grid reveal rd1">
+
+      <!-- BASIC -->
       <div class="price-card">
         <div class="price-name">Basic</div>
-        <div class="price-amount"><sup>€</sup>149<span style="font-size:1.2rem;font-weight:500">,99</span></div>
-        <div class="price-note">Vanaf-prijs · eenmalig</div>
+        <div class="price-amount"><sup>€</sup>399<span style="font-size:1.2rem;font-weight:500">,99</span></div>
         <ul class="price-features">
-          <li>Eenvoudige website of tool</li>
           <li>Responsief design</li>
-          <li>1 revisie inbegrepen</li>
+          <li class="hl">1 revisie inbegrepen</li>
           <li class="off">Animaties & interactiviteit</li>
           <li class="off">AI-integratie</li>
         </ul>
+        <div class="price-extra">
+          <ul class="price-features">
+            <li class="off">Nazorg inbegrepen</li>
+            <li class="off">API-koppelingen</li>
+            <li class="off">Doorontwikkeling & onderhoud</li>
+            <li class="off">Dedicated aandacht</li>
+            <li class="off">SLA mogelijk</li>
+          </ul>
+        </div>
+        <div class="price-peek">···</div>
         <a href="aanvragen.html" class="btn btn-outline btn-price">Aanvragen</a>
+        <p class="price-monthly">+ maandelijkse kosten voor hosting, onderhoud & beveiliging</p>
       </div>
+
+      <!-- PLUS -->
       <div class="price-card featured">
         <div class="price-badge">Meest gekozen</div>
         <div class="price-name">Plus</div>
-        <div class="price-amount"><sup>€</sup>349<span style="font-size:1.2rem;font-weight:500">,99</span></div>
-        <div class="price-note">Vanaf-prijs · eenmalig</div>
+        <div class="price-amount"><sup>€</sup>799<span style="font-size:1.2rem;font-weight:500">,99</span></div>
         <ul class="price-features">
-          <li>Uitgebreide app of website</li>
+          <li>Responsief design</li>
+          <li class="hl">3 revisies inbegrepen</li>
           <li>Animaties & interactiviteit</li>
-          <li>AI-integratie mogelijk</li>
-          <li>2 revisies inbegrepen</li>
-          <li>Nazorg inbegrepen</li>
+          <li>AI-integratie</li>
         </ul>
+        <div class="price-extra">
+          <ul class="price-features">
+            <li>Nazorg inbegrepen</li>
+            <li class="off">API-koppelingen</li>
+            <li class="off">Doorontwikkeling & onderhoud</li>
+            <li class="off">Dedicated aandacht</li>
+            <li class="off">SLA mogelijk</li>
+          </ul>
+        </div>
+        <div class="price-peek">···</div>
         <a href="aanvragen.html" class="btn btn-primary btn-price">Aanvragen</a>
+        <p class="price-monthly">+ maandelijkse kosten voor hosting, onderhoud & beveiliging</p>
       </div>
+
+      <!-- ENTERPRISE -->
       <div class="price-card">
         <div class="price-name">Enterprise</div>
-        <div class="price-amount"><sup>€</sup>749<span style="font-size:1.2rem;font-weight:500">,99</span></div>
-        <div class="price-note">Vanaf-prijs · eenmalig</div>
+        <div class="price-amount"><sup>€</sup>1.199<span style="font-size:1.2rem;font-weight:500">,99</span></div>
         <ul class="price-features">
-          <li>Volledig maatwerk project</li>
-          <li>API-koppelingen</li>
-          <li>Doorontwikkeling & onderhoud</li>
-          <li>5 revisies inbegrepen</li>
-          <li>Dedicated aandacht</li>
-          <li>SLA mogelijk</li>
+          <li>Responsief design</li>
+          <li class="hl">5 revisies inbegrepen</li>
+          <li>Animaties & interactiviteit</li>
+          <li>AI-integratie</li>
         </ul>
+        <div class="price-extra">
+          <ul class="price-features">
+            <li>Nazorg inbegrepen</li>
+            <li>API-koppelingen</li>
+            <li>Doorontwikkeling & onderhoud</li>
+            <li>Dedicated aandacht</li>
+            <li>SLA mogelijk</li>
+          </ul>
+        </div>
+        <div class="price-peek">···</div>
         <a href="aanvragen.html" class="btn btn-outline btn-price">Aanvragen</a>
+        <p class="price-monthly">+ maandelijkse kosten voor hosting, onderhoud & beveiliging</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -502,7 +542,7 @@
     <div class="reveal">
       <div class="label-tag">Aanvragen</div>
       <h2 class="section-title">Vertel me over <span class="grad-text">jouw project</span></h2>
-      <p class="section-sub" style="margin:0 auto 38px">Hoe meer detail je geeft, hoe scherper mijn voorstel. Ik neem binnen 24 uur contact op.</p>
+      <p class="section-sub" style="margin:0 auto 38px">Hoe meer detail je geeft, hoe scherper mijn voorstel.</p>
       <a href="aanvragen.html" class="btn btn-primary" style="font-size:1rem;padding:14px 32px">Start aanvraag →</a>
     </div>
   </div>
@@ -514,9 +554,9 @@
     <div class="reveal" style="max-width:520px; margin:0 auto; text-align:center">
       <div class="label-tag">Contact</div>
       <h2 class="section-title">Snel <span class="grad-text">contact</span></h2>
-      <p class="contact-info">Heb je een korte vraag of wil je direct schakelen? Stuur een berichtje — ik reageer snel.</p>
+      <p class="contact-info">Heb je een korte vraag of wil je direct schakelen? Stuur een berichtje — ik reageer zo spoedig mogelijk.</p>
       <div class="contact-links">
-        <a href="mailto:info@versodevelopment.nl" class="clink"><span class="clink-icon">✉️</span>info@versodevelopment.nl</a>
+        <a href="mailto:info@versodevelopment.nl" class="clink"><span class="clink-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>info@versodevelopment.nl</a>
         <a href="https://wa.me/31620375814?text=Hoi%20Kenny%2C%20ik%20heb%20een%20vraag!" class="clink" target="_blank">
           <span class="clink-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#25D366" style="display:block"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
           +31 6 20 37 58 14
@@ -602,6 +642,14 @@ const cntObs=new IntersectionObserver(entries=>{
   });
 },{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el=>cntObs.observe(el));
+
+// ── PRICE EXPAND (touch/click) ───────────────────────────────────────────
+document.querySelectorAll('.price-card').forEach(card=>{
+  card.addEventListener('click',e=>{
+    if(e.target.closest('.btn-price'))return;
+    card.classList.toggle('expanded');
+  });
+});
 
 // ── CARD TILT ────────────────────────────────────────────────────────────
 document.querySelectorAll('.port-card,.price-card,.step').forEach(c=>{
