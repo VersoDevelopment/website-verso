@@ -411,6 +411,10 @@ function briefNext() {
   const required = page.querySelectorAll('[required]');
   for (const f of required) {
     if (!f.value.trim()) { f.focus(); f.style.borderColor = 'rgba(255,77,210,.6)'; setTimeout(() => f.style.borderColor = '', 2000); return; }
+    if (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim())) {
+      f.focus(); f.style.borderColor = 'rgba(255,77,210,.6)'; setTimeout(() => f.style.borderColor = '', 2000);
+      showToast('Vul een geldig e-mailadres in.'); return;
+    }
   }
   if (briefStep < 2) { briefStep++; briefUpdateUI(); window.scrollTo({ top: document.getElementById('aanvragen').offsetTop - 80, behavior: 'smooth' }); }
 }
