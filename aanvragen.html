@@ -88,10 +88,7 @@
     /* FORM SECTION */
     #aanvragen { background: var(--bg1); }
     .brief-layout { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: start; }
-    @media(max-width:860px){ .brief-layout { grid-template-columns: 1fr; } }
-
-    .brief-info { }
-    @media(min-width:861px){ .brief-info { position: sticky; top: 100px; } }
+    @media(max-width:860px){ .brief-layout { grid-template-columns: 1fr; } .brief-info { display: none; } }
     .brief-info p { font-size: .88rem; color: var(--muted); line-height: 1.8; margin-bottom: 28px; }
     .brief-perks { display: flex; flex-direction: column; gap: 14px; }
     .brief-perk { display: flex; align-items: flex-start; gap: 12px; font-size: .86rem; color: var(--muted); line-height: 1.5; }
