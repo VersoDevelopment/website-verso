@@ -428,7 +428,8 @@ async function submitForm(form) {
     });
     if (!res.ok) {
       const json = await res.json().catch(() => null);
-      const msg = json?.error || json?.errors?.[0]?.message || `Fout ${res.status}`;
+      const fieldErrors = json?.errors?.map(e => (e.field ? e.field + ': ' : '') + e.message).join(' | ');
+      const msg = fieldErrors || json?.error || `Fout ${res.status}`;
       return { ok: false, msg };
     }
     return { ok: true };
