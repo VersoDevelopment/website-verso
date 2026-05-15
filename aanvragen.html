@@ -136,7 +136,7 @@
     select.f-ctrl option:disabled, select.f-ctrl option[value=""] { color: rgba(255,255,255,.35); }
 
     .chips { display: flex; flex-wrap: wrap; gap: 7px; }
-    .chip input[type="checkbox"] { display: none; }
+    .chip input[type="checkbox"], .chip input[type="radio"] { display: none; }
     .chip-lbl { display: inline-block; padding: 7px 15px; border: 1.5px solid var(--border); border-radius: 30px; font-size: .82rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all .18s; }
     .chip input:checked + .chip-lbl { background: rgba(160,32,240,.14); border-color: rgba(160,32,240,.55); color: var(--primary); }
 
@@ -266,23 +266,55 @@
                 <input type="text" name="doel" class="f-ctrl" placeholder="bijv. Een tool waarmee klanten zelf afspraken inplannen" required>
               </div>
               <div class="f-group">
-                <label class="f-label">Doelgroep</label>
-                <input type="text" name="doelgroep" class="f-ctrl" placeholder="bijv. Klanten van mijn kapsalon">
+                <label class="f-label">Doelgroep <span class="f-req">*</span></label>
+                <input type="text" name="doelgroep" class="f-ctrl" placeholder="bijv. Klanten van mijn kapsalon" required>
               </div>
             </div>
             <div class="brief-card">
-              <div class="brief-card-title">Functies</div>
-              <div class="f-group" style="margin-bottom:14px">
-                <label class="f-label">Must-haves <span class="f-req">*</span> — één per regel</label>
-                <textarea name="musthaves" class="f-ctrl" placeholder="- Functie A&#10;- Functie B&#10;- Functie C" required></textarea>
+              <div class="brief-card-title">Branche & context</div>
+              <div class="f-row">
+                <div class="f-group">
+                  <label class="f-label">Thema / branche</label>
+                  <input type="text" name="thema" class="f-ctrl" placeholder="bijv. Horeca, zorg, mode, sport">
+                </div>
+                <div class="f-group">
+                  <label class="f-label">Voortbouwen op bestaand project?</label>
+                  <input type="text" name="bestaand" class="f-ctrl" placeholder="bijv. Nee / Ja, bestaande site">
+                </div>
               </div>
+            </div>
+            <div class="brief-card">
+              <div class="brief-card-title">Gewenste functionaliteiten</div>
+              <p style="font-size:.8rem;color:var(--muted);margin-bottom:14px">Vink aan wat je wilt hebben. Je kunt daarna nog extra dingen toelichten.</p>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="func" value="Contactformulier"><span class="chip-lbl">Contactformulier</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Online reserveren / agenda"><span class="chip-lbl">Online reserveren / agenda</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Webshop / producten"><span class="chip-lbl">Webshop / producten</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Betaalsysteem"><span class="chip-lbl">Betaalsysteem</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Klantenportaal / inloggen"><span class="chip-lbl">Klantenportaal / inloggen</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Blog / nieuws"><span class="chip-lbl">Blog / nieuws</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Zoekfunctie"><span class="chip-lbl">Zoekfunctie</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Meertalig"><span class="chip-lbl">Meertalig</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Nieuwsbrief / e-mail"><span class="chip-lbl">Nieuwsbrief / e-mail</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Galerij / portfolio"><span class="chip-lbl">Galerij / portfolio</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Recensies / reviews"><span class="chip-lbl">Recensies / reviews</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="FAQ"><span class="chip-lbl">FAQ</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Kaart / locatie"><span class="chip-lbl">Kaart / locatie</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Vacatures"><span class="chip-lbl">Vacatures</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Downloadbare bestanden"><span class="chip-lbl">Downloadbare bestanden</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Livechat"><span class="chip-lbl">Livechat</span></label>
+                <label class="chip"><input type="checkbox" name="func" value="Social media koppeling"><span class="chip-lbl">Social media koppeling</span></label>
+              </div>
+            </div>
+            <div class="brief-card">
+              <div class="brief-card-title">Toelichting</div>
               <div class="f-group" style="margin-bottom:14px">
-                <label class="f-label">Nice-to-haves — optioneel</label>
-                <textarea name="nicetohaves" class="f-ctrl" placeholder="- Later misschien: feature X"></textarea>
+                <label class="f-label">Aanvullingen of specifieke wensen</label>
+                <textarea name="musthaves" class="f-ctrl" placeholder="Bijv. de agenda moet koppelen met Google Calendar, de webshop moet kortingscodes ondersteunen..." required></textarea>
               </div>
               <div class="f-group">
-                <label class="f-label">Voortbouwen op bestaand project?</label>
-                <input type="text" name="bestaand" class="f-ctrl" placeholder="bijv. Nee / Ja: voortbouwen op mijn huidige site">
+                <label class="f-label">Nice-to-haves — optioneel</label>
+                <textarea name="nicetohaves" class="f-ctrl" placeholder="- Later misschien: feature X"></textarea>
               </div>
             </div>
             <div class="brief-nav">
@@ -292,7 +324,7 @@
             </div>
           </div>
 
-          <!-- STAP 3: Design & tech -->
+          <!-- STAP 3: Design & extras -->
           <div class="brief-page" id="bpage-2">
             <div class="brief-card">
               <div class="brief-card-title">Stijl & design</div>
@@ -306,42 +338,48 @@
                   <label class="chip"><input type="checkbox" name="stijl" value="Speels"><span class="chip-lbl">Speels</span></label>
                   <label class="chip"><input type="checkbox" name="stijl" value="Zakelijk / strak"><span class="chip-lbl">Zakelijk / strak</span></label>
                   <label class="chip"><input type="checkbox" name="stijl" value="Futuristisch"><span class="chip-lbl">Futuristisch</span></label>
+                  <label class="chip"><input type="checkbox" name="stijl" value="Modern"><span class="chip-lbl">Modern</span></label>
+                  <label class="chip"><input type="checkbox" name="stijl" value="Elegant"><span class="chip-lbl">Elegant</span></label>
                 </div>
               </div>
               <div class="f-row">
-                <div class="f-group"><label class="f-label">Kleurenschema</label><input type="text" name="kleuren" class="f-ctrl" placeholder="bijv. Blauw/wit, donker, geen"></div>
-                <div class="f-group"><label class="f-label">Referentie app / site</label><input type="text" name="referentie" class="f-ctrl" placeholder="bijv. Spotify, Airbnb, geen"></div>
+                <div class="f-group"><label class="f-label">Kleurenschema</label><input type="text" name="kleuren" class="f-ctrl" placeholder="bijv. Blauw/wit, donker, geen voorkeur"></div>
+                <div class="f-group"><label class="f-label">Referentie / inspiratie</label><input type="text" name="referentie" class="f-ctrl" placeholder="bijv. Spotify, Airbnb, geen"></div>
               </div>
             </div>
             <div class="brief-card">
-              <div class="brief-card-title">Techniek</div>
-              <div class="f-row" style="margin-bottom:14px">
+              <div class="brief-card-title">Extra wensen</div>
+              <div class="f-row" style="margin-bottom:18px">
                 <div class="f-group">
-                  <label class="f-label">Technologie voorkeur</label>
-                  <select name="tech" class="f-ctrl">
-                    <option>Geen voorkeur (jij kiest)</option>
-                    <option>HTML / CSS / JavaScript</option>
-                    <option>Python script</option>
-                    <option>Python + Flask</option>
-                    <option>React / Next.js</option>
-                    <option>Weet ik niet</option>
-                  </select>
+                  <label class="f-label">Foto's of video's op de site?</label>
+                  <div class="chips" style="margin-top:4px">
+                    <label class="chip"><input type="radio" name="media" value="Ja"><span class="chip-lbl">Ja</span></label>
+                    <label class="chip"><input type="radio" name="media" value="Nee"><span class="chip-lbl">Nee</span></label>
+                    <label class="chip"><input type="radio" name="media" value="Weet ik nog niet"><span class="chip-lbl">Weet ik nog niet</span></label>
+                  </div>
                 </div>
                 <div class="f-group">
-                  <label class="f-label">Gegevensopslag</label>
-                  <select name="opslag" class="f-ctrl">
-                    <option>Geen opslag nodig</option>
-                    <option>localStorage (browser)</option>
-                    <option>JSON-bestand</option>
-                    <option>Database (SQLite / Postgres)</option>
-                    <option>Externe API / cloud</option>
-                    <option>Weet ik niet</option>
-                  </select>
+                  <label class="f-label">Klantenportaal gewenst?</label>
+                  <div class="chips" style="margin-top:4px">
+                    <label class="chip"><input type="radio" name="portal" value="Ja"><span class="chip-lbl">Ja</span></label>
+                    <label class="chip"><input type="radio" name="portal" value="Nee"><span class="chip-lbl">Nee</span></label>
+                    <label class="chip"><input type="radio" name="portal" value="Misschien"><span class="chip-lbl">Misschien</span></label>
+                  </div>
                 </div>
               </div>
-              <div class="f-group" style="margin-bottom:14px">
-                <label class="f-label">Externe API's of diensten</label>
-                <input type="text" name="apis" class="f-ctrl" placeholder="bijv. Google Maps, betaalsysteem, geen">
+              <div class="f-row" style="margin-bottom:14px">
+                <div class="f-group">
+                  <label class="f-label">Betaalsysteem?</label>
+                  <div class="chips" style="margin-top:4px">
+                    <label class="chip"><input type="radio" name="betaal" value="Ja"><span class="chip-lbl">Ja</span></label>
+                    <label class="chip"><input type="radio" name="betaal" value="Nee"><span class="chip-lbl">Nee</span></label>
+                    <label class="chip"><input type="radio" name="betaal" value="Misschien"><span class="chip-lbl">Misschien</span></label>
+                  </div>
+                </div>
+                <div class="f-group">
+                  <label class="f-label">Koppeling met andere diensten?</label>
+                  <input type="text" name="koppelingen" class="f-ctrl" placeholder="bijv. Google agenda, WhatsApp, Mollie, geen">
+                </div>
               </div>
               <div class="f-group">
                 <label class="f-label">Extra opmerkingen of context</label>
@@ -424,6 +462,12 @@ async function submitForm(form) {
   const data = new FormData(form);
   const stijl = [...form.querySelectorAll('input[name="stijl"]:checked')].map(c => c.value).join(', ');
   if (stijl) data.set('stijl', stijl);
+  const func = [...form.querySelectorAll('input[name="func"]:checked')].map(c => c.value).join(', ');
+  if (func) data.set('functionaliteiten', func);
+  ['media','portal','betaal'].forEach(n => {
+    const checked = form.querySelector(`input[name="${n}"]:checked`);
+    if (checked) data.set(n, checked.value);
+  });
   try {
     const res = await fetch('https://formspree.io/f/mdabvonb', {
       method: 'POST',

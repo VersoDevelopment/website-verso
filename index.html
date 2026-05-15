@@ -76,15 +76,17 @@
     .rd1 { transition-delay: .1s; } .rd2 { transition-delay: .2s; } .rd3 { transition-delay: .3s; } .rd4 { transition-delay: .4s; }
 
     /* ── NAV ────────────────────────────────────────── */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; padding: 18px 0; transition: all .3s; opacity: 0; transform: translateY(-12px); pointer-events: none; }
-    nav.scrolled { background: rgba(11,18,38,.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 12px 0; opacity: 1; transform: translateY(0); pointer-events: auto; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; padding: 13px 0; transition: all .3s; opacity: 0; transform: translateY(-12px); pointer-events: none; }
+    nav.scrolled { background: rgba(11,18,38,.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 8px 0; opacity: 1; transform: translateY(0); pointer-events: auto; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 160px; width: auto; }
+    .nav-logo img { height: 112px; width: auto; }
     .nav-links { display: flex; align-items: center; gap: 4px; }
     .nav-link { padding: 7px 13px; border-radius: 8px; font-size: .95rem; font-weight: 500; color: rgba(255,255,255,.78); text-decoration: none; transition: all .2s; }
     .nav-link:hover, .nav-link.active { color: var(--secondary); background: rgba(255,77,210,.08); }
     .nav-cta { padding: 9px 20px; }
+    .nav-portal { padding: 7px 14px; font-size: .88rem; margin-left: auto; background: linear-gradient(135deg, #3A5BFF 0%, #00D4FF 100%); color: #FFFFFF; box-shadow: 0 0 22px rgba(58,91,255,.28); }
+    .nav-portal:hover { box-shadow: 0 0 42px rgba(58,91,255,.5); transform: translateY(-2px); color: #FFFFFF; background: linear-gradient(135deg, #3A5BFF 0%, #00D4FF 100%); }
     .nav-cta:hover, .nav-cta.active { color: #FFFFFF; background: var(--grad); }
     @media (max-width: 720px) { .nav-links .nav-link:not(.nav-cta) { display: none; } }
 
@@ -308,8 +310,8 @@
       <a href="#portfolio" class="nav-link" data-s="portfolio">Portfolio</a>
       <a href="#prijzen"   class="nav-link" data-s="prijzen">Prijzen</a>
       <a href="#over"      class="nav-link" data-s="over">Over mij</a>
-      <a href="https://portal.versodevelopment.nl" class="nav-link" target="_blank">Klanten portaal</a>
       <a href="aanvragen.html" class="nav-link btn btn-primary nav-cta">Vraag aan</a>
+      <a href="https://portal.versodevelopment.nl" class="nav-link btn nav-portal" target="_blank">Klanten portaal</a>
     </div>
   </div>
 </nav>
@@ -327,6 +329,7 @@
     <div class="hero-actions">
       <a href="#aanvragen" class="btn btn-primary">Project aanvragen →</a>
       <a href="#diensten"  class="btn btn-outline">Bekijk diensten</a>
+      <a href="https://portal.versodevelopment.nl" class="btn nav-portal" style="margin-left:0" target="_blank">Klanten portaal</a>
     </div>
   </div>
   <div class="scroll-hint"><div class="scroll-line"></div>scroll</div>
