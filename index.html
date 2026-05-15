@@ -332,9 +332,9 @@
       <a href="#prijzen"   class="nav-link" data-s="prijzen"  data-nl="Prijzen"        data-en="Pricing">Prijzen</a>
       <a href="#over"      class="nav-link" data-s="over"     data-nl="Over mij"       data-en="About me">Over mij</a>
       <a href="aanvragen.html" class="nav-link btn btn-primary nav-cta" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
-      <button id="themeToggle" class="nav-toggle" onclick="toggleTheme()" aria-label="Thema wisselen">🌙</button>
-      <button id="langToggle"  class="nav-toggle" onclick="toggleLang()">EN</button>
       <a href="https://portal.versodevelopment.nl" class="nav-link btn nav-portal" target="_blank" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
+      <button id="themeToggle" class="nav-toggle" onclick="toggleTheme()" aria-label="Thema wisselen">☀️</button>
+      <button id="langToggle"  class="nav-toggle" onclick="toggleLang()">🇬🇧</button>
     </div>
   </div>
 </nav>
@@ -425,7 +425,7 @@
     </div>
     <div class="port-grid">
       <div class="port-card reveal rd1">
-        <div class="port-thumb" style="background:linear-gradient(135deg,#0d1226,#0e2040)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7.39 4.26v8.48L12 19l-7.39-4.26V6.26L12 2z"/></svg></div>
+        <div class="port-thumb" style="background:#e8ddd4;padding:0;overflow:hidden;"><img src="https://image.thum.io/get/width/640/crop/400/https://veramiek.nl" alt="Veramiek website" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" /></div>
         <div class="port-body">
           <div class="port-tags"><span class="port-tag">Website</span><span class="port-tag">E-commerce</span></div>
           <div class="port-title" data-nl="Veramiek" data-en="Veramiek">Veramiek</div>
@@ -684,10 +684,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 const themeBtn = document.getElementById('themeToggle');
 function applyTheme(light) {
   document.body.classList.toggle('light', light);
-  themeBtn.textContent = light ? '🌞' : '🌙';
+  themeBtn.textContent = light ? '🌙' : '☀️';
   localStorage.setItem('verso-theme', light ? 'light' : 'dark');
 }
-themeBtn.addEventListener('click', () => toggleTheme());
 function toggleTheme() { applyTheme(!document.body.classList.contains('light')); }
 applyTheme(localStorage.getItem('verso-theme') === 'light');
 
@@ -701,7 +700,7 @@ const langBtn = document.getElementById('langToggle');
 
 function applyLang(lang) {
   currentLang = lang;
-  langBtn.textContent = lang === 'nl' ? 'EN' : 'NL';
+  langBtn.textContent = lang === 'nl' ? '🇬🇧' : '🇳🇱';
   localStorage.setItem('verso-lang', lang);
   document.querySelectorAll('[data-nl]').forEach(el => {
     const val = el.getAttribute('data-' + lang);
