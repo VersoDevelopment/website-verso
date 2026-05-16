@@ -192,6 +192,21 @@
     .price-peek { text-align: center; padding: 7px 0 14px; font-size: .82rem; color: var(--muted2); letter-spacing: .2em; transition: opacity .25s; user-select: none; }
     .price-card:hover .price-peek, .price-card.expanded .price-peek { opacity: 0; pointer-events: none; }
     .btn-price { width: 100%; justify-content: center; padding: 12px; margin-top: 18px; cursor: pointer; }
+    /* ── PRICING TOGGLE ─────────────────────────────────── */
+    .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 14px; margin: -16px auto 36px; }
+    .pt-label { font-size: .88rem; font-weight: 500; color: var(--muted2); transition: color .2s; display: flex; align-items: center; gap: 6px; }
+    .pt-label.active { color: var(--text); }
+    .pt-switch { position: relative; display: inline-block; width: 50px; height: 28px; flex-shrink: 0; }
+    .pt-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .pt-slider { position: absolute; cursor: pointer; inset: 0; background: rgba(160,32,240,.25); border-radius: 28px; transition: background .3s; }
+    .pt-slider::before { content: ''; position: absolute; width: 22px; height: 22px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: transform .3s; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+    .pt-switch input:checked + .pt-slider { background: linear-gradient(135deg,#A020F0,#FF4DD2); }
+    .pt-switch input:checked + .pt-slider::before { transform: translateX(22px); }
+    .pt-badge { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; background: var(--grad); color: #fff; padding: 2px 7px; border-radius: 20px; }
+    .hosting-free { text-align: center; margin-bottom: 40px; }
+    .hosting-free-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(0,210,150,.07); border: 1px solid rgba(0,210,150,.28); border-radius: 30px; padding: 9px 22px; font-size: .82rem; color: var(--muted); }
+    .hosting-free-badge strong { color: #00d296; }
+    .price-period { font-size: .76rem; color: var(--muted2); margin-bottom: 16px; min-height: 1.1em; }
 
     /* ── ABOUT ──────────────────────────────────────── */
     .over-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -443,14 +458,32 @@
     <div class="reveal" style="text-align:center">
       <div class="label-tag" data-nl="Prijzen" data-en="Pricing">Prijzen</div>
       <h2 class="section-title" data-nl="Transparante <span class='grad-text'>tarieven</span>" data-en="Transparent <span class='grad-text'>pricing</span>">Transparante <span class="grad-text">tarieven</span></h2>
-      <p class="section-sub" style="margin:0 auto 52px" data-nl="Geen verborgen kosten. Wat je ziet is wat je krijgt." data-en="No hidden costs. What you see is what you get.">Geen verborgen kosten. Wat je ziet is wat je krijgt.</p>
+      <p class="section-sub" style="margin:0 auto 36px" data-nl="Geen verborgen kosten. Wat je ziet is wat je krijgt." data-en="No hidden costs. What you see is what you get.">Geen verborgen kosten. Wat je ziet is wat je krijgt.</p>
+    </div>
+    <div class="pricing-toggle reveal">
+      <span class="pt-label active" id="pt-label-once" data-nl="Eenmalig" data-en="One-time">Eenmalig</span>
+      <label class="pt-switch" aria-label="Gespreide betaling">
+        <input type="checkbox" id="pricing-toggle">
+        <span class="pt-slider"></span>
+      </label>
+      <span class="pt-label" id="pt-label-spread">
+        <span data-nl="12 termijnen" data-en="12 installments">12 termijnen</span>
+        <span class="pt-badge" data-nl="Gespreide betaling" data-en="Spread payment">Gespreide betaling</span>
+      </span>
+    </div>
+    <div class="hosting-free reveal">
+      <div class="hosting-free-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d296" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span data-nl="Eerste jaar hosting, onderhoud &amp; beveiliging" data-en="First year hosting, maintenance &amp; security">Eerste jaar hosting, onderhoud &amp; beveiliging</span>&nbsp;<strong data-nl="GRATIS!" data-en="FREE!">GRATIS!</strong>
+      </div>
     </div>
     <div class="price-grid reveal rd1">
 
       <!-- BASIC -->
       <div class="price-card">
         <div class="price-name">Basic</div>
-        <div class="price-amount"><sup>€</sup>500</div>
+        <div class="price-amount" data-once="500" data-termijn="41,67"><sup>€</sup><span class="pa-val">500</span></div>
+        <div class="price-period">eenmalig</div>
         <ul class="price-features">
           <li>Responsief design</li>
           <li class="hl">1 revisie inbegrepen</li>
@@ -468,14 +501,14 @@
         </div>
         <div class="price-peek">···</div>
         <a href="aanvragen.html" class="btn btn-outline btn-price">Aanvragen</a>
-        <p class="price-monthly">+ €45/mnd voor hosting, onderhoud & beveiliging</p>
       </div>
 
       <!-- PLUS -->
       <div class="price-card featured">
         <div class="price-badge">Meest gekozen</div>
         <div class="price-name">Plus</div>
-        <div class="price-amount"><sup>€</sup>800</div>
+        <div class="price-amount" data-once="800" data-termijn="66,67"><sup>€</sup><span class="pa-val">800</span></div>
+        <div class="price-period">eenmalig</div>
         <ul class="price-features">
           <li>Responsief design</li>
           <li class="hl">3 revisies inbegrepen</li>
@@ -493,13 +526,13 @@
         </div>
         <div class="price-peek">···</div>
         <a href="aanvragen.html" class="btn btn-primary btn-price">Aanvragen</a>
-        <p class="price-monthly">+ €45/mnd voor hosting, onderhoud & beveiliging</p>
       </div>
 
       <!-- ENTERPRISE -->
       <div class="price-card">
         <div class="price-name">Enterprise</div>
-        <div class="price-amount"><sup>€</sup>1.250</div>
+        <div class="price-amount" data-once="1.250" data-termijn="104,17"><sup>€</sup><span class="pa-val">1.250</span></div>
+        <div class="price-period">eenmalig</div>
         <ul class="price-features">
           <li>Responsief design</li>
           <li class="hl">5 revisies inbegrepen</li>
@@ -517,7 +550,6 @@
         </div>
         <div class="price-peek">···</div>
         <a href="aanvragen.html" class="btn btn-outline btn-price">Aanvragen</a>
-        <p class="price-monthly">+ €45/mnd voor hosting, onderhoud & beveiliging</p>
       </div>
 
     </div>
@@ -711,6 +743,7 @@ function applyLang(lang) {
   });
   phrases.length = 0;
   typingPhrases[lang].forEach(p => phrases.push(p));
+  updatePricing();
 }
 
 function toggleLang() { applyLang(currentLang === 'nl' ? 'en' : 'nl'); }
@@ -719,6 +752,32 @@ applyLang(currentLang);
 function showToast(msg){
   const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
   clearTimeout(showToast._t); showToast._t=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+// ── PRICING TOGGLE ────────────────────────────────────────────────────────
+let isTermijn = false;
+const pricingToggleEl = document.getElementById('pricing-toggle');
+
+function updatePricing() {
+  const lang = currentLang || 'nl';
+  const periodText = isTermijn
+    ? (lang === 'nl' ? 'per maand × 12 termijnen' : 'per month × 12 installments')
+    : (lang === 'nl' ? 'eenmalig' : 'one-time');
+  document.querySelectorAll('.price-amount').forEach(el => {
+    el.querySelector('.pa-val').textContent = isTermijn ? el.dataset.termijn : el.dataset.once;
+  });
+  document.querySelectorAll('.price-period').forEach(el => { el.textContent = periodText; });
+  const ptOnce = document.getElementById('pt-label-once');
+  const ptSpread = document.getElementById('pt-label-spread');
+  if (ptOnce) ptOnce.classList.toggle('active', !isTermijn);
+  if (ptSpread) ptSpread.classList.toggle('active', isTermijn);
+}
+
+if (pricingToggleEl) {
+  pricingToggleEl.addEventListener('change', function() {
+    isTermijn = this.checked;
+    updatePricing();
+  });
 }
 </script>
 </body>
