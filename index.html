@@ -482,7 +482,7 @@
       <!-- BASIC -->
       <div class="price-card">
         <div class="price-name">Basic</div>
-        <div class="price-amount" data-once="500" data-termijn="41,67"><sup>€</sup><span class="pa-val">500</span></div>
+        <div class="price-amount" data-once="499,99" data-termijn="41,67"><sup>€</sup><span class="pa-val">499,99</span></div>
         <div class="price-period">eenmalig</div>
         <ul class="price-features">
           <li>Responsief design</li>
@@ -507,7 +507,7 @@
       <div class="price-card featured">
         <div class="price-badge">Meest gekozen</div>
         <div class="price-name">Plus</div>
-        <div class="price-amount" data-once="800" data-termijn="66,67"><sup>€</sup><span class="pa-val">800</span></div>
+        <div class="price-amount" data-once="799,99" data-termijn="66,67"><sup>€</sup><span class="pa-val">799,99</span></div>
         <div class="price-period">eenmalig</div>
         <ul class="price-features">
           <li>Responsief design</li>
@@ -531,7 +531,7 @@
       <!-- ENTERPRISE -->
       <div class="price-card">
         <div class="price-name">Enterprise</div>
-        <div class="price-amount" data-once="1.250" data-termijn="104,17"><sup>€</sup><span class="pa-val">1.250</span></div>
+        <div class="price-amount" data-once="1.249,99" data-termijn="104,17"><sup>€</sup><span class="pa-val">1.249,99</span></div>
         <div class="price-period">eenmalig</div>
         <ul class="price-features">
           <li>Responsief design</li>
@@ -729,6 +729,7 @@ const typingPhrases = {
 };
 let currentLang = localStorage.getItem('verso-lang') || 'nl';
 const langBtn = document.getElementById('langToggle');
+let isTermijn = false;
 
 function applyLang(lang) {
   currentLang = lang;
@@ -755,7 +756,6 @@ function showToast(msg){
 }
 
 // ── PRICING TOGGLE ────────────────────────────────────────────────────────
-let isTermijn = false;
 const pricingToggleEl = document.getElementById('pricing-toggle');
 
 function updatePricing() {
