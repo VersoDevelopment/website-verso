@@ -227,6 +227,17 @@
               </div>
             </div>
             <div class="brief-card">
+              <div class="brief-card-title">Pakket interesse</div>
+              <div class="chips" id="pakket-chips">
+                <label class="chip"><input type="radio" name="pakket" value="Basic"><span class="chip-lbl">Basic</span></label>
+                <label class="chip"><input type="radio" name="pakket" value="Plus"><span class="chip-lbl">Plus</span></label>
+                <label class="chip"><input type="radio" name="pakket" value="Enterprise"><span class="chip-lbl">Enterprise</span></label>
+                <label class="chip"><input type="radio" name="pakket" value="Nog niet zeker"><span class="chip-lbl">Nog niet zeker</span></label>
+              </div>
+              <p id="pakket-prijs-display" style="margin-top:12px;font-size:.82rem;color:var(--muted);min-height:1.2em"></p>
+              <input type="hidden" name="prijs_indicatie" id="prijs-indicatie-field">
+            </div>
+            <div class="brief-card">
               <div class="brief-card-title">Project basics</div>
               <div class="f-row">
                 <div class="f-group">
@@ -429,11 +440,51 @@
 </footer>
 
 <script>
+const PAKKET_PRICES = { Basic: 499.99, Plus: 799.99, Enterprise: 1249.99 };
+const FORM_DISCOUNTS = { 'PORTFOLIO25': 0.25 };
+
+function fmtPrice(n) {
+  const s = n.toFixed(2);
+  const [int, dec] = s.split('.');
+  return int.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + dec;
+}
+
+function updatePakketPrijs() {
+  const selected = document.querySelector('input[name="pakket"]:checked');
+  const display = document.getElementById('pakket-prijs-display');
+  const field = document.getElementById('prijs-indicatie-field');
+  if (!selected || selected.value === 'Nog niet zeker' || !PAKKET_PRICES[selected.value]) {
+    display.textContent = ''; field.value = ''; return;
+  }
+  const base = PAKKET_PRICES[selected.value];
+  const code = (document.getElementById('kortingscode-input').value || '').trim().toUpperCase();
+  const discount = FORM_DISCOUNTS[code] || 0;
+  if (discount > 0) {
+    const net = base * (1 - discount);
+    display.textContent = '€' + fmtPrice(net) + ' (kortingscode ' + code + ', ' + Math.round(discount * 100) + '% korting op €' + fmtPrice(base) + ')';
+    field.value = selected.value + ' — €' + fmtPrice(net) + ' (kortingscode ' + code + ', ' + Math.round(discount * 100) + '% korting)';
+  } else {
+    display.textContent = '€' + fmtPrice(base);
+    field.value = selected.value + ' — €' + fmtPrice(base);
+  }
+}
+
+document.querySelectorAll('input[name="pakket"]').forEach(r => r.addEventListener('change', updatePakketPrijs));
+const kortingsInput = document.getElementById('kortingscode-input');
+if (kortingsInput) kortingsInput.addEventListener('input', updatePakketPrijs);
+
 const savedCode = sessionStorage.getItem('verso-discount-code');
 if (savedCode) {
   const codeInput = document.getElementById('kortingscode-input');
-  if (codeInput) codeInput.value = savedCode;
+  if (codeInput) { codeInput.value = savedCode; }
 }
+
+const urlPakket = new URLSearchParams(window.location.search).get('pakket');
+if (urlPakket) {
+  const radio = document.querySelector(`input[name="pakket"][value="${urlPakket}"]`);
+  if (radio) { radio.checked = true; }
+}
+updatePakketPrijs();
 
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -477,7 +528,7 @@ async function submitForm(form) {
   if (stijl) data.set('stijl', stijl);
   const func = [...form.querySelectorAll('input[name="func"]:checked')].map(c => c.value).join(', ');
   if (func) data.set('functionaliteiten', func);
-  ['media','portal','betaal'].forEach(n => {
+  ['media','portal','betaal','pakket'].forEach(n => {
     const checked = form.querySelector(`input[name="${n}"]:checked`);
     if (checked) data.set(n, checked.value);
   });
