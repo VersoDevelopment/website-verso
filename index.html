@@ -188,12 +188,12 @@
     .price-features li.hl { color: var(--muted); }
     .price-monthly { font-size: .72rem; color: var(--muted2); text-align: center; margin-top: 10px; line-height: 1.5; }
     .pa-orig { font-size: 1.1rem; font-weight: 400; color: var(--muted2); margin-left: 8px; vertical-align: middle; }
-    .discount-wrap { display: flex; justify-content: center; margin: -8px auto 28px; }
-    .discount-box { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .discount-wrap { display: flex; flex-direction: column; align-items: center; margin: -8px auto 28px; gap: 8px; }
+    .discount-box { display: flex; align-items: center; gap: 10px; }
     .discount-input { padding: 10px 13px; background: rgba(255,255,255,.03); border: 1.5px solid var(--border); border-radius: 9px; color: var(--text); font-family: var(--font-b); font-size: .88rem; outline: none; transition: border-color .2s; width: 200px; }
     .discount-input:focus { border-color: rgba(160,32,240,.55); }
     .discount-input::placeholder { color: var(--muted2); }
-    .discount-msg { font-size: .82rem; font-weight: 500; min-width: 160px; }
+    .discount-msg { font-size: .82rem; font-weight: 500; text-align: center; min-height: 1.2em; }
     .price-extra { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .42s cubic-bezier(.4,0,.2,1), opacity .35s; }
     .price-card:hover .price-extra, .price-card.expanded .price-extra { max-height: 300px; opacity: 1; }
     .price-extra .price-features { margin-top: 10px; }
@@ -486,8 +486,8 @@
       <div class="discount-box">
         <input type="text" id="discount-input" class="discount-input" placeholder="Kortingscode" autocomplete="off" onkeydown="if(event.key==='Enter')applyDiscount()">
         <button class="btn btn-outline" onclick="applyDiscount()" style="padding:10px 20px">Toepassen</button>
-        <span id="discount-msg" class="discount-msg"></span>
       </div>
+      <span id="discount-msg" class="discount-msg"></span>
     </div>
     <div class="price-grid reveal rd1">
 
