@@ -764,13 +764,16 @@ function applyDiscount() {
     activeDiscount = DISCOUNT_CODES[code];
     msg.style.color = '#4ade80';
     msg.textContent = '✓ ' + Math.round(activeDiscount * 100) + '% korting toegepast!';
+    sessionStorage.setItem('verso-discount-code', code);
   } else if (code === '') {
     activeDiscount = 0;
     msg.textContent = '';
+    sessionStorage.removeItem('verso-discount-code');
   } else {
     activeDiscount = 0;
     msg.style.color = 'rgba(255,77,210,1)';
     msg.textContent = 'Ongeldige kortingscode.';
+    sessionStorage.removeItem('verso-discount-code');
   }
   updatePricing();
 }

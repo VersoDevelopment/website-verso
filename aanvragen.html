@@ -251,6 +251,13 @@
                 </div>
               </div>
             </div>
+            <div class="brief-card">
+              <div class="brief-card-title">Kortingscode</div>
+              <div class="f-group">
+                <label class="f-label">Kortingscode <span style="color:var(--muted2);font-weight:400">(optioneel)</span></label>
+                <input type="text" name="kortingscode" id="kortingscode-input" class="f-ctrl" placeholder="Voer je kortingscode in">
+              </div>
+            </div>
             <div class="brief-nav">
               <span class="brief-nav-note">Stap 1 van 3</span>
               <button type="button" class="btn btn-primary" onclick="briefNext()">Volgende →</button>
@@ -422,6 +429,12 @@
 </footer>
 
 <script>
+const savedCode = sessionStorage.getItem('verso-discount-code');
+if (savedCode) {
+  const codeInput = document.getElementById('kortingscode-input');
+  if (codeInput) codeInput.value = savedCode;
+}
+
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   navEl.classList.toggle('scrolled', window.scrollY > 60);
