@@ -3,4 +3,12 @@ services:
     build: .
     restart: always
     ports:
-      - "8080:80"
+      - "127.0.0.1:8080:80"
+    depends_on:
+      - api
+  api:
+    build: ./api
+    restart: always
+    expose:
+      - "3002"
+    env_file: ./api/.env

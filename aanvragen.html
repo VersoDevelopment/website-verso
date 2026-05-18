@@ -523,26 +523,26 @@ function briefNext() {
 function briefPrev() { if (briefStep > 0) { briefStep--; briefUpdateUI(); } }
 
 async function submitForm(form) {
-  const data = new FormData(form);
+  const fd = new FormData(form);
   const stijl = [...form.querySelectorAll('input[name="stijl"]:checked')].map(c => c.value).join(', ');
-  if (stijl) data.set('stijl', stijl);
+  if (stijl) fd.set('stijl', stijl);
   const func = [...form.querySelectorAll('input[name="func"]:checked')].map(c => c.value).join(', ');
-  if (func) data.set('functionaliteiten', func);
+  if (func) fd.set('functionaliteiten', func);
   ['media','portal','betaal','pakket'].forEach(n => {
     const checked = form.querySelector(`input[name="${n}"]:checked`);
-    if (checked) data.set(n, checked.value);
+    if (checked) fd.set(n, checked.value);
   });
+  const body = {};
+  for (const [k, v] of fd.entries()) body[k] = v;
   try {
-    const res = await fetch('https://formspree.io/f/mdabvonb', {
+    const res = await fetch('/api/send-aanvraag', {
       method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
     });
     if (!res.ok) {
       const json = await res.json().catch(() => null);
-      const fieldErrors = json?.errors?.map(e => (e.field ? e.field + ': ' : '') + e.message).join(' | ');
-      const msg = fieldErrors || json?.error || `Fout ${res.status}`;
-      return { ok: false, msg };
+      return { ok: false, msg: json?.error || `Fout ${res.status}` };
     }
     return { ok: true };
   } catch (e) { return { ok: false, msg: 'Geen verbinding' }; }
