@@ -1,10 +1,35 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
+const Anthropic = require('@anthropic-ai/sdk');
 
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: ['https://versodevelopment.nl', 'http://localhost:8080'] }));
+
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+const CHAT_SYSTEM_PROMPT = `Je bent een vriendelijke AI-assistent voor Verso Development, een webdevelopment studio van Kenny van Teeffelen.
+
+Diensten:
+- Web apps: interactieve dashboards, real-time applicaties, tools & automatisering, API-integraties
+- Websites: bedrijfswebsites, landingspagina's, portfolio sites, content-beheer
+- Mobiel: mobiele web apps, PWA's, touch-geoptimaliseerde apps, push notificaties
+- AI-integraties zijn inbegrepen in Plus en Enterprise
+
+Pakketten (eenmalig, ook beschikbaar in 12 termijnen):
+- Basic: €499,99 (€44,99/mnd) — responsief design, 1 revisie
+- Plus: €799,99 (€69,99/mnd) — responsief design, 3 revisies, animaties, AI-integratie, nazorg inbegrepen — meest gekozen
+- Enterprise: €1.249,99 (€109,99/mnd) — alles van Plus + API-koppelingen, doorontwikkeling & onderhoud, dedicated aandacht, SLA mogelijk
+
+Hosting: eerste 3 maanden gratis, daarna €19/maand.
+Kortingscode PORTFOLIO25 geeft 25% korting.
+
+Werkwijze: 1) Briefing via aanvraagformulier, 2) Design & Build met tussentijdse updates, 3) Oplevering live en getest.
+
+Contact: info@versodevelopment.nl · WhatsApp +31 6 20 37 58 14 · versodevelopment.nl/aanvragen.html
+
+Beantwoord vragen bondig en behulpzaam. Reageer in de taal van de bezoeker (Nederlands of Engels). Verwijs bij aanvragen of complexe vragen door naar het aanvraagformulier of e-mail.`;
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.eu',
@@ -132,6 +157,27 @@ app.post('/send-aanvraag', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Mail mislukt' });
+  }
+});
+
+app.post('/chat', async (req, res) => {
+  try {
+    const { messages } = req.body;
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return res.status(400).json({ error: 'Berichten ontbreken' });
+    }
+
+    const response = await anthropic.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 512,
+      system: CHAT_SYSTEM_PROMPT,
+      messages: messages.slice(-10),
+    });
+
+    res.json({ reply: response.content[0].text });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'AI tijdelijk niet beschikbaar' });
   }
 });
 
