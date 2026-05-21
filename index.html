@@ -472,8 +472,10 @@
     .nav-toggle:hover { border-color: var(--secondary); color: var(--secondary); }
 
     /* ── AI CHAT ─────────────────────────────────────── */
-    #chat-btn { position: fixed; bottom: 28px; right: 28px; z-index: 950; width: 58px; height: 58px; border-radius: 50%; border: none; cursor: pointer; background: var(--grad); box-shadow: 0 0 32px var(--glow), 0 4px 16px rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s; }
-    #chat-btn:hover { transform: scale(1.1); box-shadow: 0 0 52px var(--glow-lg), 0 8px 24px rgba(0,0,0,.3); }
+    #chat-btn { position: fixed; bottom: 28px; right: 28px; z-index: 950; width: 58px; height: 58px; border-radius: 50%; border: none; cursor: pointer; background: var(--grad); box-shadow: 0 0 32px var(--glow), 0 4px 16px rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s, opacity .3s; }
+    #chat-btn:hover { box-shadow: 0 0 52px var(--glow-lg), 0 8px 24px rgba(0,0,0,.3); }
+    .fab-grow { transform: scale(1.18) !important; }
+    .fab-shrink { transform: scale(0.78) !important; opacity: .6 !important; }
     #chat-btn svg { width: 24px; height: 24px; color: #fff; }
     #chat-panel { position: fixed; bottom: 100px; right: 28px; z-index: 950; width: 364px; max-width: calc(100vw - 32px); background: rgba(12,22,40,.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 24px 80px rgba(0,0,0,.45); display: flex; flex-direction: column; transform: scale(.92) translateY(16px); opacity: 0; pointer-events: none; transition: transform .3s cubic-bezier(.34,1.56,.64,1), opacity .22s; }
     #chat-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: auto; }
@@ -542,7 +544,7 @@
       align-items: center; justify-content: center;
       box-shadow: 0 4px 24px var(--glow), 0 2px 8px rgba(0,0,0,.3);
       opacity: 0; transform: translateY(10px) scale(.9);
-      transition: opacity .3s cubic-bezier(.4,0,.2,1), transform .3s cubic-bezier(.4,0,.2,1);
+      transition: opacity .3s cubic-bezier(.4,0,.2,1), transform .3s cubic-bezier(.34,1.56,.64,1);
       pointer-events: none;
     }
     #back-to-top.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
@@ -1107,7 +1109,18 @@ function toggleChat() {
   if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
 }
 
-document.getElementById('chat-btn').addEventListener('click', toggleChat);
+const chatFab = document.getElementById('chat-btn');
+chatFab.addEventListener('click', toggleChat);
+
+// Paired hover: hovering one grows it, shrinks the other
+(function(){
+  const a = chatFab, b = bttBtn;
+  function pair(hovered, other) {
+    hovered.addEventListener('mouseenter', () => { hovered.classList.add('fab-grow'); other.classList.add('fab-shrink'); });
+    hovered.addEventListener('mouseleave', () => { hovered.classList.remove('fab-grow'); other.classList.remove('fab-shrink'); });
+  }
+  pair(a, b); pair(b, a);
+})();
 
 function addChatMsg(role, text) {
   const msgs = document.getElementById('chat-messages');
