@@ -515,9 +515,11 @@
     /* ── MOBILE PERFORMANCE ──────────────────────────── */
     @media (max-width: 768px) {
       #shader-bg { display: none; }
-      .orb-1 { width: 340px; height: 340px; filter: blur(60px); }
-      .orb-2 { width: 280px; height: 280px; filter: blur(60px); }
-      .orb-3 { display: none; }
+      .orb { display: none !important; }
+      .hero-logo img {
+        animation: logo-float 6s ease-in-out infinite;
+        filter: drop-shadow(0 0 24px rgba(160,32,240,.7));
+      }
       .svc-card, .step, .port-card, .price-card, .stat-box,
       .brief-card, .clink, .tabs-bar, .btn-outline,
       .label-tag, .hero-badge, .hosting-free-badge,
