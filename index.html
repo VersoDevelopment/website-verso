@@ -535,8 +535,8 @@
 
     /* ── BACK TO TOP ─────────────────────────────────── */
     #back-to-top {
-      display: none;
-      position: fixed; bottom: 22px; right: 20px; z-index: 800;
+      display: flex;
+      position: fixed; bottom: 100px; right: 28px; z-index: 800;
       width: 46px; height: 46px; border-radius: 50%;
       background: var(--grad); color: #fff; border: none; cursor: pointer;
       align-items: center; justify-content: center;
@@ -546,7 +546,6 @@
       pointer-events: none;
     }
     #back-to-top.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
-    @media (max-width: 768px) { #back-to-top { display: flex; } }
   </style>
 </head>
 <body>
