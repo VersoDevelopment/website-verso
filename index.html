@@ -474,6 +474,7 @@
     /* ── AI CHAT ─────────────────────────────────────── */
     #chat-btn { position: fixed; bottom: 28px; right: 28px; z-index: 950; width: 58px; height: 58px; border-radius: 50%; border: none; cursor: pointer; background: var(--grad); box-shadow: 0 0 32px var(--glow), 0 4px 16px rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s, opacity .3s; }
     #chat-btn:hover { box-shadow: 0 0 52px var(--glow-lg), 0 8px 24px rgba(0,0,0,.3); }
+    #chat-btn:active, #back-to-top:active { transform: scale(0.84) !important; transition-duration: .08s !important; }
     .fab-grow { transform: scale(1.18) !important; }
     .fab-shrink { transform: scale(0.78) !important; opacity: .6 !important; }
     #chat-btn svg { width: 24px; height: 24px; color: #fff; }
@@ -528,6 +529,14 @@
         backdrop-filter: none; -webkit-backdrop-filter: none;
       }
       nav.scrolled { display: none; }
+    }
+
+    /* ── MOBILE FAB SIZES ───────────────────────────── */
+    @media (max-width: 768px) {
+      #chat-btn   { width: 46px; height: 46px; bottom: 20px; right: 16px; }
+      #back-to-top{ width: 38px; height: 38px; bottom: 78px; right: 16px; }
+      #chat-btn svg { width: 20px; height: 20px; }
+      #back-to-top svg { width: 15px; height: 15px; }
     }
 
     /* ── MOBILE HOSTING BADGE ────────────────────────── */
