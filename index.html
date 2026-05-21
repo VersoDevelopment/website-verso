@@ -77,8 +77,8 @@
     .rd1 { transition-delay: .1s; } .rd2 { transition-delay: .2s; } .rd3 { transition-delay: .3s; } .rd4 { transition-delay: .4s; }
 
     /* ── STAGGER ───────────────────────────────────── */
-    .stagger-item { opacity: 0; transition: opacity 1.1s ease; }
-    .stagger-item.visible { opacity: 1; }
+    .stagger-item { opacity: 0; transform: translateY(40px); transition: opacity 1.8s ease, transform 2s ease; }
+    .stagger-item.visible { opacity: 1; transform: translateY(0); }
 
     /* ── NAV ────────────────────────────────────────── */
     nav {
@@ -803,7 +803,7 @@ const staggerObs = new IntersectionObserver((entries) => {
     const items = [...e.target.querySelectorAll(':scope > .stagger-item')];
     if (e.isIntersecting) {
       items.forEach((el, i) => {
-        el._staggerTimer = setTimeout(() => el.classList.add('visible'), i * 500);
+        el._staggerTimer = setTimeout(() => el.classList.add('visible'), i * 700);
       });
     } else {
       items.forEach(el => {
