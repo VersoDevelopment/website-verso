@@ -803,7 +803,7 @@ const staggerObs = new IntersectionObserver((entries) => {
     const items = [...e.target.querySelectorAll(':scope > .stagger-item')];
     if (e.isIntersecting) {
       items.forEach((el, i) => {
-        el._staggerTimer = setTimeout(() => el.classList.add('visible'), i * 700);
+        el._staggerTimer = setTimeout(() => el.classList.add('visible'), i * 350);
       });
     } else {
       items.forEach(el => {
