@@ -76,6 +76,10 @@
     .reveal.visible { opacity: 1; transform: none; }
     .rd1 { transition-delay: .1s; } .rd2 { transition-delay: .2s; } .rd3 { transition-delay: .3s; } .rd4 { transition-delay: .4s; }
 
+    /* ── STAGGER ───────────────────────────────────── */
+    .stagger-item { opacity: 0; transform: translateY(52px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+    .stagger-item.visible { opacity: 1; transform: none; }
+
     /* ── NAV ────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 900;
@@ -513,11 +517,11 @@
       <h2 class="section-title" data-nl="Van idee naar <span class='grad-text'>live product</span>" data-en="From idea to <span class='grad-text'>live product</span>">Van idee naar <span class="grad-text">live product</span></h2>
       <p class="section-sub" style="margin:0 auto 52px" data-nl="Ik regel alles van A tot Z. Van eerste idee tot live, én alles wat daarna komt. Jij hoeft niks te regelen." data-en="I handle everything from A to Z. From first idea to live, and everything that follows. You don't have to arrange a thing.">Ik regel alles van A tot Z. Van eerste idee tot live, én alles wat daarna komt. Jij hoeft niks te regelen.</p>
     </div>
-    <div class="steps">
-      <div class="step reveal rd1"><div class="step-nr">01</div><div class="step-title" data-nl="Briefing" data-en="Briefing">Briefing</div><div class="step-desc" data-nl="Vul het aanvraagformulier in. Ik neem contact op voor een kort gesprek zodat we op één lijn zitten." data-en="Fill in the request form. I'll reach out for a quick call to make sure we're on the same page.">Vul het aanvraagformulier in. Ik neem contact op voor een kort gesprek zodat we op één lijn zitten.</div></div>
-      <div class="step reveal rd2"><div class="step-nr">02</div><div class="step-title" data-nl="Design & Build" data-en="Design & Build">Design & Build</div><div class="step-desc" data-nl="Ik bouw het volledig uit: design, development, teksten en structuur. Tussentijdse updates en ruimte voor feedback zijn standaard." data-en="I build it out completely: design, development, copy and structure. Progress updates and feedback rounds are standard.">Ik bouw het volledig uit: design, development, teksten en structuur. Tussentijdse updates en ruimte voor feedback zijn standaard.</div></div>
-      <div class="step reveal rd3"><div class="step-nr">03</div><div class="step-title" data-nl="Oplevering" data-en="Delivery">Oplevering</div><div class="step-desc" data-nl="Live, getest en klaar voor gebruik. Ik zet alles op en zorg dat het goed staat. Kleine aanpassingen na oplevering zijn geen probleem." data-en="Live, tested and ready to use. I set everything up and make sure it's solid. Small adjustments after delivery are no problem.">Live, getest en klaar voor gebruik. Ik zet alles op en zorg dat het goed staat. Kleine aanpassingen na oplevering zijn geen probleem.</div></div>
-      <div class="step reveal rd4"><div class="step-nr">04</div><div class="step-title" data-nl="Hosting & Beheer" data-en="Hosting & Management">Hosting & Beheer</div><div class="step-desc" data-nl="Ik regel hosting, server, monitoring, beveiliging en updates. Alles inbegrepen, jij hoeft er niks voor te doen." data-en="I handle hosting, server, monitoring, security and updates. All included, you don't have to do a thing.">Ik regel hosting, server, monitoring, beveiliging en updates. Alles inbegrepen, jij hoeft er niks voor te doen.</div></div>
+    <div class="steps stagger-group">
+      <div class="step stagger-item"><div class="step-nr">01</div><div class="step-title" data-nl="Briefing" data-en="Briefing">Briefing</div><div class="step-desc" data-nl="Vul het aanvraagformulier in. Ik neem contact op voor een kort gesprek zodat we op één lijn zitten." data-en="Fill in the request form. I'll reach out for a quick call to make sure we're on the same page.">Vul het aanvraagformulier in. Ik neem contact op voor een kort gesprek zodat we op één lijn zitten.</div></div>
+      <div class="step stagger-item"><div class="step-nr">02</div><div class="step-title" data-nl="Design & Build" data-en="Design & Build">Design & Build</div><div class="step-desc" data-nl="Ik bouw het volledig uit: design, development, teksten en structuur. Tussentijdse updates en ruimte voor feedback zijn standaard." data-en="I build it out completely: design, development, copy and structure. Progress updates and feedback rounds are standard.">Ik bouw het volledig uit: design, development, teksten en structuur. Tussentijdse updates en ruimte voor feedback zijn standaard.</div></div>
+      <div class="step stagger-item"><div class="step-nr">03</div><div class="step-title" data-nl="Oplevering" data-en="Delivery">Oplevering</div><div class="step-desc" data-nl="Live, getest en klaar voor gebruik. Ik zet alles op en zorg dat het goed staat. Kleine aanpassingen na oplevering zijn geen probleem." data-en="Live, tested and ready to use. I set everything up and make sure it's solid. Small adjustments after delivery are no problem.">Live, getest en klaar voor gebruik. Ik zet alles op en zorg dat het goed staat. Kleine aanpassingen na oplevering zijn geen probleem.</div></div>
+      <div class="step stagger-item"><div class="step-nr">04</div><div class="step-title" data-nl="Hosting & Beheer" data-en="Hosting & Management">Hosting & Beheer</div><div class="step-desc" data-nl="Ik regel hosting, server, monitoring, beveiliging en updates. Alles inbegrepen, jij hoeft er niks voor te doen." data-en="I handle hosting, server, monitoring, security and updates. All included, you don't have to do a thing.">Ik regel hosting, server, monitoring, beveiliging en updates. Alles inbegrepen, jij hoeft er niks voor te doen.</div></div>
     </div>
   </div>
 </section>
@@ -572,10 +576,10 @@
       </div>
       <span id="discount-msg" class="discount-msg"></span>
     </div>
-    <div class="price-grid reveal rd1">
+    <div class="price-grid stagger-group">
 
       <!-- BASIC -->
-      <div class="price-card">
+      <div class="price-card stagger-item">
         <div class="price-name">Basic</div>
         <div class="price-amount" data-once="499,99" data-termijn="44,99"><span class="price-from" data-nl="Vanaf" data-en="From">Vanaf</span> <sup>€</sup><span class="pa-val">499,99</span><del class="pa-orig"></del></div>
         <div class="price-period">eenmalig</div>
@@ -599,7 +603,7 @@
       </div>
 
       <!-- PLUS -->
-      <div class="price-card featured">
+      <div class="price-card featured stagger-item">
         <div class="price-badge" data-nl="Meest gekozen" data-en="Most popular">Meest gekozen</div>
         <div class="price-name">Plus</div>
         <div class="price-amount" data-once="799,99" data-termijn="69,99"><span class="price-from" data-nl="Vanaf" data-en="From">Vanaf</span> <sup>€</sup><span class="pa-val">799,99</span><del class="pa-orig"></del></div>
@@ -624,7 +628,7 @@
       </div>
 
       <!-- ENTERPRISE -->
-      <div class="price-card">
+      <div class="price-card stagger-item">
         <div class="price-name">Enterprise</div>
         <div class="price-amount" data-once="1.249,99" data-termijn="109,99"><span class="price-from" data-nl="Vanaf" data-en="From">Vanaf</span> <sup>€</sup><span class="pa-val">1.249,99</span><del class="pa-orig"></del></div>
         <div class="price-period">eenmalig</div>
@@ -792,6 +796,18 @@ tabBtns.forEach(btn=>{
 // ── REVEAL ───────────────────────────────────────────────────────────────
 const revObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// ── STAGGER GROUPS ────────────────────────────────────────────────────────
+const staggerObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    staggerObs.unobserve(e.target);
+    [...e.target.querySelectorAll(':scope > .stagger-item')].forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 220);
+    });
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.stagger-group').forEach(el => staggerObs.observe(el));
 
 // ── COUNTERS ─────────────────────────────────────────────────────────────
 const cntObs=new IntersectionObserver(entries=>{
@@ -1027,6 +1043,54 @@ document.getElementById('chat-input').addEventListener('input', function() {
   this.style.height = 'auto';
   this.style.height = Math.min(this.scrollHeight, 120) + 'px';
 });
+
+// ── HERO SUCK EFFECT ─────────────────────────────────────────────────────
+(function() {
+  const hero    = document.getElementById('hero');
+  const content = hero.querySelector('.hero-content');
+  const hint    = hero.querySelector('.scroll-hint');
+  const orbs    = hero.querySelectorAll('.orb');
+
+  let raf;
+  window.addEventListener('scroll', () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      // p = 0 (top) → 1 (halfway down viewport)
+      const p = Math.max(0, Math.min(1, window.scrollY / (window.innerHeight * 1.6)));
+
+      if (p === 0) {
+        content.style.cssText = '';
+        if (hint) hint.style.opacity = '';
+        orbs.forEach(o => o.style.transform = '');
+        return;
+      }
+
+      // ease: slow start, fast finish — makes it feel like sudden suction
+      const e = p * p * (3 - 2 * p);
+
+      const scale   = Math.max(0.001, 1 - e);
+      const opacity = Math.max(0, 1 - e * 1.6);
+      const blur    = e * 22;
+
+      // convergence point ≈ top of viewport (nav area)
+      content.style.transformOrigin = '50% -90px';
+      content.style.transform       = `scale(${scale.toFixed(4)})`;
+      content.style.opacity         = opacity.toFixed(4);
+      content.style.filter          = `blur(${blur.toFixed(1)}px)`;
+      content.style.willChange      = 'transform, opacity, filter';
+
+      if (hint) hint.style.opacity = Math.max(0, 1 - e * 8).toFixed(4);
+
+      // orbs drift inward and upward like debris being pulled in
+      orbs.forEach((o, i) => {
+        const dx = e * (i % 2 === 0 ? 120 : -90);
+        const dy = -e * 160;
+        const s  = Math.max(0.2, 1 - e * 0.6);
+        o.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${s.toFixed(3)})`;
+      });
+    });
+  }, { passive: true });
+})();
 
 // ── SHADER BACKGROUND ─────────────────────────────────────────────────────
 (function() {
