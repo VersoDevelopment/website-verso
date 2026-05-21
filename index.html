@@ -182,6 +182,7 @@
     .price-name { font-family: var(--font-h); font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
     .price-amount { font-family: var(--font-h); font-size: 2.4rem; font-weight: 700; letter-spacing: -.03em; line-height: 1; margin-bottom: 3px; }
     .price-amount sup { font-size: 1rem; font-weight: 500; vertical-align: top; margin-top: 6px; display: inline-block; }
+    .price-from { font-size: .85rem; font-weight: 500; opacity: .6; display: block; margin-bottom: 2px; }
     .price-note { font-size: .78rem; color: var(--muted); margin-bottom: 22px; }
     .price-features { list-style: none; margin-bottom: 0; display: flex; flex-direction: column; gap: 10px; }
     .price-features li { display: flex; align-items: flex-start; gap: 9px; font-size: .86rem; color: var(--muted); }
@@ -504,8 +505,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center">
       <div class="label-tag" data-nl="Prijzen" data-en="Pricing">Prijzen</div>
-      <h2 class="section-title" data-nl="Transparante <span class='grad-text'>tarieven</span>" data-en="Transparent <span class='grad-text'>pricing</span>">Transparante <span class="grad-text">tarieven</span></h2>
-      <p class="section-sub" style="margin:0 auto 36px" data-nl="Geen verborgen kosten. Wat je ziet is wat je krijgt." data-en="No hidden costs. What you see is what you get.">Geen verborgen kosten. Wat je ziet is wat je krijgt.</p>
+      <h2 class="section-title" data-nl="Onze <span class='grad-text'>tarieven</span>" data-en="Our <span class='grad-text'>pricing</span>">Onze <span class="grad-text">tarieven</span></h2>
     </div>
     <div class="pricing-toggle reveal">
       <span class="pt-label active" id="pt-label-once" data-nl="Eenmalig" data-en="One-time">Eenmalig</span>
@@ -533,7 +533,7 @@
       <!-- BASIC -->
       <div class="price-card">
         <div class="price-name">Basic</div>
-        <div class="price-amount" data-once="499,99" data-termijn="44,99"><sup>€</sup><span class="pa-val">499,99</span><del class="pa-orig"></del></div>
+        <div class="price-amount" data-once="499,99" data-termijn="44,99"><span class="price-from" data-nl="Vanaf" data-en="From">Vanaf</span> <sup>€</sup><span class="pa-val">499,99</span><del class="pa-orig"></del></div>
         <div class="price-period">eenmalig</div>
         <ul class="price-features">
           <li data-nl="Responsief design" data-en="Responsive design">Responsief design</li>
@@ -558,7 +558,7 @@
       <div class="price-card featured">
         <div class="price-badge" data-nl="Meest gekozen" data-en="Most popular">Meest gekozen</div>
         <div class="price-name">Plus</div>
-        <div class="price-amount" data-once="799,99" data-termijn="69,99"><sup>€</sup><span class="pa-val">799,99</span><del class="pa-orig"></del></div>
+        <div class="price-amount" data-once="799,99" data-termijn="69,99"><span class="price-from" data-nl="Vanaf" data-en="From">Vanaf</span> <sup>€</sup><span class="pa-val">799,99</span><del class="pa-orig"></del></div>
         <div class="price-period">eenmalig</div>
         <ul class="price-features">
           <li data-nl="Responsief design" data-en="Responsive design">Responsief design</li>
@@ -582,7 +582,7 @@
       <!-- ENTERPRISE -->
       <div class="price-card">
         <div class="price-name">Enterprise</div>
-        <div class="price-amount" data-once="1.249,99" data-termijn="109,99"><sup>€</sup><span class="pa-val">1.249,99</span><del class="pa-orig"></del></div>
+        <div class="price-amount" data-once="1.249,99" data-termijn="109,99"><span class="price-from" data-nl="Vanaf" data-en="From">Vanaf</span> <sup>€</sup><span class="pa-val">1.249,99</span><del class="pa-orig"></del></div>
         <div class="price-period">eenmalig</div>
         <ul class="price-features">
           <li data-nl="Responsief design" data-en="Responsive design">Responsief design</li>
