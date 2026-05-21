@@ -430,7 +430,7 @@
     .foot-links a:hover { color: var(--secondary); }
 
     /* ── SHADER BACKGROUND ───────────────────────────── */
-    #shader-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1 !important; pointer-events: none; }
+    #shader-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0 !important; pointer-events: none; }
 
     /* ── TOAST ───────────────────────────────────────── */
     #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(18px); background: rgba(12,22,40,.95); backdrop-filter: blur(16px); color: var(--text); padding: 12px 26px; border-radius: 50px; font-size: .86rem; font-weight: 500; border: 1px solid var(--border); opacity: 0; z-index: 999; transition: all .3s cubic-bezier(.34,1.56,.64,1); white-space: nowrap; pointer-events: none; box-shadow: 0 8px 32px rgba(0,0,0,.3); }
@@ -444,7 +444,7 @@
       --glow: rgba(160,32,240,.12);
       background: var(--bg);
     }
-    body.light #hero { background: #0B1226; }
+    body.light #hero { background: transparent; }
     body.light #hero .hero-title { color: #fff; }
     body.light #hero .hero-sub { color: rgba(255,255,255,.62); }
     body.light #hero .hero-badge { color: rgba(255,255,255,.65); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); }
@@ -514,7 +514,6 @@
 
     /* ── MOBILE PERFORMANCE ──────────────────────────── */
     @media (max-width: 768px) {
-      #shader-bg { display: none; }
       .orb { display: none !important; }
       .hero-logo img {
         animation: logo-float 6s ease-in-out infinite;
@@ -530,7 +529,6 @@
   </style>
 </head>
 <body>
-<canvas id="shader-bg"></canvas>
 <div id="toast"></div>
 
 <!-- ══ NAV ═══════════════════════════════════════════════════════════════ -->
@@ -555,6 +553,7 @@
 
 <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
 <section id="hero">
+  <canvas id="shader-bg"></canvas>
   <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
   <div class="hero-content">
     <div class="hero-logo">
@@ -1197,7 +1196,6 @@ document.getElementById('chat-input').addEventListener('input', function() {
 
 // ── SHADER BACKGROUND ─────────────────────────────────────────────────────
 (function() {
-  if (window.innerWidth <= 768) return;
   const canvas = document.getElementById('shader-bg');
   if (!canvas) return;
   const gl = canvas.getContext('webgl');
@@ -1314,10 +1312,12 @@ document.getElementById('chat-input').addEventListener('input', function() {
   const uTime = gl.getUniformLocation(program, 'iTime');
 
   function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const scale = window.innerWidth <= 768 ? 0.5 : 1;
+    canvas.width  = Math.floor(window.innerWidth  * scale);
+    canvas.height = Math.floor(window.innerHeight * scale);
+    canvas.style.width  = '100%';
+    canvas.style.height = '100%';
     gl.viewport(0, 0, canvas.width, canvas.height);
-    canvas.style.height = window.innerHeight + 'px';
   }
   window.addEventListener('resize', resize, { passive: true });
   resize();
