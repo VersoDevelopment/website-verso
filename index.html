@@ -800,17 +800,12 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 // ── STAGGER GROUPS ────────────────────────────────────────────────────────
 const staggerObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
+    if (!e.isIntersecting) return;
     const items = [...e.target.querySelectorAll(':scope > .stagger-item')];
-    if (e.isIntersecting) {
-      items.forEach((el, i) => {
-        el._staggerTimer = setTimeout(() => el.classList.add('visible'), i * 350);
-      });
-    } else {
-      items.forEach(el => {
-        clearTimeout(el._staggerTimer);
-        el.classList.remove('visible');
-      });
-    }
+    items.forEach((el, i) => {
+      el._staggerTimer = setTimeout(() => el.classList.add('visible'), i * 350);
+    });
+    staggerObs.unobserve(e.target);
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.stagger-group').forEach(el => staggerObs.observe(el));
