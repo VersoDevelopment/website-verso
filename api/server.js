@@ -2,10 +2,15 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const Anthropic = require('@anthropic-ai/sdk');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
-app.use(express.json());
+app.set('trust proxy', 1);
+app.use(express.json({ limit: '50kb' }));
 app.use(cors({ origin: ['https://versodevelopment.nl', 'http://localhost:8080'] }));
+
+const aanvraagLimit = rateLimit({ windowMs: 60_000, max: 3, standardHeaders: true, legacyHeaders: false });
+const chatLimit     = rateLimit({ windowMs: 60_000, max: 10, standardHeaders: true, legacyHeaders: false });
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -126,10 +131,13 @@ function buildApplicantEmail(d) {
 </table></td></tr></table></body></html>`;
 }
 
-app.post('/send-aanvraag', async (req, res) => {
+app.post('/send-aanvraag', aanvraagLimit, async (req, res) => {
   try {
     const d = req.body;
+    if (d.website) return res.json({ ok: true }); // honeypot
     if (!d.naam || !d.email) return res.status(400).json({ error: 'Naam en e-mail zijn verplicht' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return res.status(400).json({ error: 'Ongeldig e-mailadres' });
+    if (String(d.naam).length > 100 || String(d.email).length > 200) return res.status(400).json({ error: 'Invoer te lang' });
 
     const subject = `Nieuwe aanvraag — ${d.naam}${d.pakket && d.pakket !== 'Nog niet zeker' ? ' ('+d.pakket+')' : ''}`;
 
@@ -155,12 +163,18 @@ app.post('/send-aanvraag', async (req, res) => {
   }
 });
 
-app.post('/chat', async (req, res) => {
+app.post('/chat', chatLimit, async (req, res) => {
   try {
     const { messages } = req.body;
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: 'Berichten ontbreken' });
     }
+    const valid = messages.every(m =>
+      m && typeof m.role === 'string' && typeof m.content === 'string' &&
+      (m.role === 'user' || m.role === 'assistant') &&
+      m.content.length <= 2000
+    );
+    if (!valid) return res.status(400).json({ error: 'Ongeldig berichtformaat' });
 
     const response = await anthropic.messages.create({
       model: 'claude-haiku-4-5-20251001',
