@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Vraag een project aan bij Verso Development — vertel me over jouw idee." />
-  <title>Aanvragen — Verso Development</title>
+  <meta name="description" content="Vraag een project aan bij Verso Development. Vertel me over jouw idee." />
+  <title>Aanvragen | Verso Development</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -192,7 +192,7 @@
 
       <!-- LEFT: info -->
       <div class="brief-info">
-        <p>Vul het formulier zo volledig mogelijk in. Geen zorgen als je iets niet zeker weet — we bespreken de details samen.</p>
+        <p>Vul het formulier zo volledig mogelijk in. Geen zorgen als je iets niet zeker weet, we bespreken de details samen.</p>
         <div class="brief-perks">
           <div class="brief-perk"><svg class="brief-perk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Reactie binnen 24 uur</div>
           <div class="brief-perk"><svg class="brief-perk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Vrijblijvend kennismakingsgesprek</div>
@@ -243,7 +243,7 @@
               <div class="f-group">
                 <label class="f-label">Type project <span class="f-req">*</span></label>
                 <select name="type" class="f-ctrl" required>
-                  <option value="">— kies —</option>
+                  <option value="">kies een type...</option>
                   <option>Website</option>
                   <option>Web app (mobiel)</option>
                   <option>Web app (desktop)</option>
@@ -321,7 +321,7 @@
                 <textarea name="musthaves" class="f-ctrl" placeholder="Bijv. de agenda moet koppelen met Google Calendar, de webshop moet kortingscodes ondersteunen..." required></textarea>
               </div>
               <div class="f-group">
-                <label class="f-label">Nice-to-haves — optioneel</label>
+                <label class="f-label">Nice-to-haves (optioneel)</label>
                 <textarea name="nicetohaves" class="f-ctrl" placeholder="- Later misschien: feature X"></textarea>
               </div>
             </div>
@@ -452,10 +452,10 @@ function updatePakketPrijs() {
   if (discount > 0) {
     const net = base * (1 - discount);
     display.textContent = '€' + fmtPrice(net) + ' (kortingscode ' + code + ', ' + Math.round(discount * 100) + '% korting op €' + fmtPrice(base) + ')';
-    field.value = selected.value + ' — €' + fmtPrice(net) + ' (kortingscode ' + code + ', ' + Math.round(discount * 100) + '% korting)';
+    field.value = selected.value + ': €' + fmtPrice(net) + ' (kortingscode ' + code + ', ' + Math.round(discount * 100) + '% korting)';
   } else {
     display.textContent = '€' + fmtPrice(base);
-    field.value = selected.value + ' — €' + fmtPrice(base);
+    field.value = selected.value + ': €' + fmtPrice(base);
   }
 }
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Verso Development — Web apps, AI-integraties en mobiele ervaringen op maat. Professioneel, snel en betaalbaar." />
-  <title>Verso — Web Apps & AI Integraties</title>
+  <meta name="description" content="Verso Development: Web apps, AI-integraties en mobiele ervaringen op maat. Professioneel, snel en betaalbaar." />
+  <title>Verso | Web Apps &amp; AI Integraties</title>
   <link rel="icon" type="image/png" href="assets/logo-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,14 +113,14 @@
       border-radius: 50px;
       box-shadow: 0 8px 40px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.08);
     }
-    nav.scrolled .nav-logo img { height: 32px; }
+    nav.scrolled .nav-logo img { height: 32px; min-width: 100px; }
     nav.scrolled #themeToggle, nav.scrolled #langToggle, nav.scrolled .nav-divider { display: none; }
     nav.scrolled .nav-link:not(.nav-cta) { font-size: .8rem; padding: 6px 10px; color: rgba(255,255,255,.75); }
     nav.scrolled .nav-cta { font-size: .82rem; padding: 8px 16px; color: #fff; }
 
     .nav-inner { display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 46px; width: auto; transition: height .4s cubic-bezier(.4,0,.2,1); }
+    .nav-logo img { height: 46px; width: auto; min-width: 120px; max-width: 220px; object-fit: contain; transition: height .4s cubic-bezier(.4,0,.2,1); }
     .nav-links { display: flex; align-items: center; gap: 2px; }
     .nav-link { padding: 7px 13px; border-radius: 30px; font-size: .9rem; font-weight: 500; color: rgba(255,255,255,.72); text-decoration: none; transition: all .2s; cursor: pointer; }
     .nav-link:hover, .nav-link.active { color: var(--secondary); background: rgba(255,77,210,.08); }
@@ -131,6 +131,41 @@
     .nav-divider { width: 1px; height: 20px; background: rgba(255,255,255,.1); margin: 0 6px; flex-shrink: 0; }
     @media (max-width: 860px) { .nav-portal { display: none; } }
     @media (max-width: 720px) { .nav-links .nav-link:not(.nav-cta) { display: none; } .nav-divider { display: none; } }
+
+    /* ── HAMBURGER NAV ───────────────────────────────── */
+    .nav-hamburger {
+      display: none; background: none; border: 1.5px solid var(--border);
+      border-radius: 9px; color: var(--muted); cursor: pointer;
+      padding: 7px 10px; transition: border-color .2s, color .2s;
+      flex-direction: column; gap: 5px; align-items: center; justify-content: center;
+    }
+    .nav-hamburger:hover { border-color: var(--secondary); color: var(--secondary); }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 2px; background: currentColor;
+      border-radius: 2px; transition: transform .3s, opacity .3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 720px) {
+      .nav-hamburger { display: flex; }
+      #themeToggle, #langToggle { display: none; }
+    }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(11,18,38,.97); backdrop-filter: blur(20px); z-index: 850;
+      flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      padding: 80px 32px 40px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .nav-link {
+      font-size: 1.3rem; font-weight: 600; padding: 14px 32px;
+      width: 100%; max-width: 320px; text-align: center; border-radius: 14px;
+      color: rgba(255,255,255,.8);
+    }
+    .mobile-menu .nav-link:hover { color: var(--secondary); background: rgba(255,77,210,.08); }
+    .mobile-menu .nav-cta { background: var(--grad); color: #fff; margin-top: 12px; font-size: 1.1rem; }
+    .mobile-menu .nav-cta:hover { background: var(--grad); color: #fff; box-shadow: 0 0 32px var(--glow); }
 
     /* ── HERO ────────────────────────────────────────── */
     #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; padding: 130px 32px 100px; }
@@ -423,7 +458,7 @@
     /* ── FOOTER ──────────────────────────────────────── */
     footer { border-top: 1px solid var(--border); padding: 40px 0; }
     .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
-    .foot-logo img { height: 52px; width: auto; }
+    .foot-logo img { height: 52px; width: auto; min-width: 120px; max-width: 240px; object-fit: contain; }
     .foot-copy { font-size: .78rem; color: var(--muted); }
     .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
     .foot-links a { font-size: .8rem; color: var(--muted); text-decoration: none; transition: color .2s; }
@@ -582,8 +617,21 @@
       <button id="themeToggle" class="nav-toggle" onclick="toggleTheme()" aria-label="Thema wisselen"></button>
       <button id="langToggle"  class="nav-toggle" onclick="toggleLang()">EN</button>
     </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu openen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- ══ MOBILE MENU ════════════════════════════════════════════════════════ -->
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Navigatiemenu">
+  <a href="#diensten"  class="nav-link" data-nl="Diensten"  data-en="Services">Diensten</a>
+  <a href="#portfolio" class="nav-link" data-nl="Portfolio" data-en="Portfolio">Portfolio</a>
+  <a href="#prijzen"   class="nav-link" data-nl="Prijzen"   data-en="Pricing">Prijzen</a>
+  <a href="#over"      class="nav-link" data-nl="Over mij"  data-en="About me">Over mij</a>
+  <a href="#contact"   class="nav-link" data-nl="Contact"   data-en="Contact">Contact</a>
+  <a href="aanvragen.html" class="nav-link nav-cta" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
+</div>
 
 <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
 <section id="hero">
@@ -701,7 +749,7 @@
     <div class="hosting-free reveal">
       <div class="hosting-free-badge">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d296" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span data-nl="Eerste 3 maanden hosting, onderhoud &amp; monitoring" data-en="First 3 months hosting, maintenance &amp; monitoring">Eerste 3 maanden hosting, onderhoud &amp; monitoring</span>&nbsp;<strong data-nl="GRATIS!" data-en="FREE!">GRATIS!</strong>&nbsp;<span data-nl="— daarna €19/maand" data-en="— then €19/month" style="font-size:.78rem;color:var(--muted)">— daarna €19/maand</span>
+        <span data-nl="Eerste 3 maanden hosting, onderhoud &amp; monitoring" data-en="First 3 months hosting, maintenance &amp; monitoring">Eerste 3 maanden hosting, onderhoud &amp; monitoring</span>&nbsp;<strong data-nl="GRATIS!" data-en="FREE!">GRATIS!</strong>&nbsp;<span data-nl="daarna €19/maand" data-en="then €19/month" style="font-size:.78rem;color:var(--muted)">daarna €19/maand</span>
       </div>
     </div>
     <div class="discount-wrap reveal">
@@ -909,6 +957,38 @@ window.addEventListener('scroll',()=>{
   sects.forEach(s=>{if(window.scrollY>=s.offsetTop-150)cur=s.id;});
   nLinks.forEach(l=>l.classList.toggle('active',l.dataset.s===cur));
 },{passive:true});
+
+// ── HAMBURGER MENU ───────────────────────────────────────────────────────
+(function() {
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (!hamburger || !mobileMenu) return;
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('open')) closeMenu(); else openMenu();
+  });
+
+  mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+})();
 
 // ── MARQUEE ──────────────────────────────────────────────────────────────
 const techs=['HTML','CSS','JavaScript','Python','Flask','WebSockets','Claude AI','Riot API','React','Responsive Design','PWA','REST API','SQLite','Git','Netlify','TypeScript'];
@@ -1214,7 +1294,7 @@ document.getElementById('chat-input').addEventListener('input', function() {
         return;
       }
 
-      // ease: slow start, fast finish — makes it feel like sudden suction
+      // ease: slow start, fast finish - makes it feel like sudden suction
       const e = p * p * (3 - 2 * p);
 
       const scale   = Math.max(0.001, 1 - e);
