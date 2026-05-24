@@ -45,7 +45,7 @@ h1,h2,h3,h4{font-family:var(--font-h)}
 @media(max-width:768px){.container{padding:0 20px}.section{padding:72px 0}}
 .sec-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--primary);display:block;margin-bottom:18px}
 .sec-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px}
-.sec-sub{color:var(--muted);font-size:.95rem;max-width:520px;line-height:1.8;margin-bottom:48px}
+.sec-sub{color:var(--text);font-size:.95rem;max-width:520px;line-height:1.8;margin-bottom:48px}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .reveal.visible{opacity:1;transform:none}
 .rd1{transition-delay:.08s}.rd2{transition-delay:.18s}.rd3{transition-delay:.28s}.rd4{transition-delay:.38s}
@@ -101,7 +101,7 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px #4ade80;animation:blink 2s infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 .hero-title{font-size:clamp(3rem,8vw,6.5rem);font-weight:700;line-height:1;letter-spacing:-.04em;margin-bottom:24px;text-shadow:0 0 40px rgba(192,193,255,.15)}
-.hero-sub{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--muted);margin-bottom:40px;min-height:1.9em}
+.hero-sub{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--text);margin-bottom:40px;min-height:1.9em}
 #typing-cursor{display:inline-block;width:2px;height:.85em;background:var(--primary);margin-left:2px;vertical-align:text-bottom;animation:cur .8s step-end infinite}
 @keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
 .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
@@ -125,12 +125,12 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .svc-card{padding:24px 22px}
 .svc-icon{width:26px;height:26px;margin-bottom:14px;display:block;color:var(--primary)}
 .svc-title{font-family:var(--font-h);font-size:.96rem;font-weight:600;margin-bottom:7px;color:var(--text)}
-.svc-desc{font-size:.84rem;color:var(--muted);line-height:1.7}
+.svc-desc{font-size:.84rem;color:var(--text);line-height:1.7}
 
 /* WERKWIJZE */
 .step-nr{font-family:var(--font-h);font-size:3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.45;line-height:1;margin-bottom:18px;display:block}
 .step-title{font-family:var(--font-h);font-size:1.02rem;font-weight:600;margin-bottom:10px}
-.step-desc{font-size:.84rem;color:var(--muted);line-height:1.7}
+.step-desc{font-size:.84rem;color:var(--text);line-height:1.7}
 
 /* PORTFOLIO */
 .port-hero{position:relative;border-radius:var(--r);overflow:hidden;min-height:520px;display:flex;align-items:center;cursor:pointer}
@@ -141,7 +141,7 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .port-hero-content{position:relative;z-index:2;padding:48px;max-width:580px}
 .port-tag-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--secondary);margin-bottom:16px;display:block}
 .port-hero-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:700;letter-spacing:-.03em;margin-bottom:20px}
-.port-hero-desc{font-size:.92rem;color:var(--muted);line-height:1.8;margin-bottom:28px}
+.port-hero-desc{font-size:.92rem;color:var(--text);line-height:1.8;margin-bottom:28px}
 
 /* SMALL PORT GRID */
 .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -157,7 +157,7 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .port-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
 .port-tag{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 9px;border-radius:4px;background:rgba(192,193,255,.08);color:var(--primary);border:1px solid rgba(192,193,255,.2)}
 .port-card-title{font-family:var(--font-h);font-size:.98rem;font-weight:600;margin-bottom:6px}
-.port-card-desc{font-size:.82rem;color:var(--muted);line-height:1.65;flex:1;margin-bottom:14px}
+.port-card-desc{font-size:.82rem;color:var(--text);line-height:1.65;flex:1;margin-bottom:14px}
 .port-link{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:var(--primary);text-decoration:none;transition:gap .2s}
 .port-link:hover{gap:11px}
 
@@ -482,7 +482,7 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
         <div class="step-desc" data-nl="Ik regel hosting, server, monitoring, beveiliging en updates. Alles inbegrepen." data-en="I handle hosting, server, monitoring, security and updates. All included.">Ik regel hosting, server, monitoring, beveiliging en updates. Alles inbegrepen.</div>
       </div>
     </div>
-    <style>@media(max-width:900px){#werkwijze .stagger-group{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){#werkwijze .stagger-group{grid-template-columns:1fr}}</style>
+    <style>@media(max-width:900px){#werkwijze .stagger-group{grid-template-columns:repeat(2,1fr)}}@media(max-width:540px){#werkwijze .stagger-group{grid-template-columns:1fr}}</style>
   </div>
 </section>
 
@@ -620,9 +620,9 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
         <span class="sec-label" data-nl="[ OVER MIJ ]" data-en="[ ABOUT ME ]">[ OVER MIJ ]</span>
         <h2 class="sec-title">Kenny <span class="grad-text">van Teeffelen</span></h2>
         <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:36px">
-          <p style="font-size:.94rem;color:var(--muted);line-height:1.85" data-nl="Ik ben een zelfstandige developer met een diepe passie voor techniek en een neus voor nieuwe ontwikkelingen. Van AI tot de nieuwste webstandaarden, ik volg het op de voet en pas het direct toe." data-en="I'm an independent developer with a deep passion for technology and a nose for new developments. From AI to the latest web standards, I follow them closely and apply them directly.">Ik ben een zelfstandige developer met een diepe passie voor techniek en een neus voor nieuwe ontwikkelingen. Van AI tot de nieuwste webstandaarden, ik volg het op de voet en pas het direct toe.</p>
-          <p style="font-size:.94rem;color:var(--muted);line-height:1.85" data-nl="Mijn aanpak is eenvoudig: ik bouw dingen die écht werken, er goed uitzien en jouw klanten verrassen. Geen onnodige complexiteit, wel slimme oplossingen die het verschil maken." data-en="My approach is simple: I build things that actually work, look great and impress your clients. No unnecessary complexity, just smart solutions that make a difference.">Mijn aanpak is eenvoudig: ik bouw dingen die écht werken, er goed uitzien en jouw klanten verrassen. Geen onnodige complexiteit, wel slimme oplossingen die het verschil maken.</p>
-          <p style="font-size:.94rem;color:var(--muted);line-height:1.85" data-nl="Bij Verso werk je altijd rechtstreeks met mij. Geen accountmanagers, geen doorverbinden. Jij weet wie er aan jouw project werkt, en ik weet wat jij nodig hebt." data-en="With Verso you always work directly with me. No account managers, no being passed around. You know who's working on your project, and I know what you need.">Bij Verso werk je altijd rechtstreeks met mij. Geen accountmanagers, geen doorverbinden. Jij weet wie er aan jouw project werkt, en ik weet wat jij nodig hebt.</p>
+          <p style="font-size:.94rem;color:var(--text);line-height:1.85" data-nl="Ik ben een zelfstandige developer met een diepe passie voor techniek en een neus voor nieuwe ontwikkelingen. Van AI tot de nieuwste webstandaarden, ik volg het op de voet en pas het direct toe." data-en="I'm an independent developer with a deep passion for technology and a nose for new developments. From AI to the latest web standards, I follow them closely and apply them directly.">Ik ben een zelfstandige developer met een diepe passie voor techniek en een neus voor nieuwe ontwikkelingen. Van AI tot de nieuwste webstandaarden, ik volg het op de voet en pas het direct toe.</p>
+          <p style="font-size:.94rem;color:var(--text);line-height:1.85" data-nl="Mijn aanpak is eenvoudig: ik bouw dingen die écht werken, er goed uitzien en jouw klanten verrassen. Geen onnodige complexiteit, wel slimme oplossingen die het verschil maken." data-en="My approach is simple: I build things that actually work, look great and impress your clients. No unnecessary complexity, just smart solutions that make a difference.">Mijn aanpak is eenvoudig: ik bouw dingen die écht werken, er goed uitzien en jouw klanten verrassen. Geen onnodige complexiteit, wel slimme oplossingen die het verschil maken.</p>
+          <p style="font-size:.94rem;color:var(--text);line-height:1.85" data-nl="Bij Verso werk je altijd rechtstreeks met mij. Geen accountmanagers, geen doorverbinden. Jij weet wie er aan jouw project werkt, en ik weet wat jij nodig hebt." data-en="With Verso you always work directly with me. No account managers, no being passed around. You know who's working on your project, and I know what you need.">Bij Verso werk je altijd rechtstreeks met mij. Geen accountmanagers, geen doorverbinden. Jij weet wie er aan jouw project werkt, en ik weet wat jij nodig hebt.</p>
         </div>
         <a href="aanvragen.html" class="btn btn-primary magnetic" data-nl="Start een project →" data-en="Start a project →">Start een project →</a>
       </div>
@@ -657,7 +657,7 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
     <div class="reveal" style="max-width:480px;margin:0 auto;text-align:center">
       <span class="sec-label" data-nl="[ CONTACT ]" data-en="[ CONTACT ]">[ CONTACT ]</span>
       <h2 class="sec-title" data-nl="Snel <span class='grad-text'>contact</span>" data-en="Get in <span class='grad-text'>touch</span>">Snel <span class="grad-text">contact</span></h2>
-      <p style="font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:28px" data-nl="Heb je een korte vraag of wil je direct schakelen? Stuur een berichtje, ik reageer zo spoedig mogelijk." data-en="Have a quick question or want to connect directly? Send a message, I'll get back to you as soon as possible.">Heb je een korte vraag of wil je direct schakelen? Stuur een berichtje, ik reageer zo spoedig mogelijk.</p>
+      <p style="font-size:.9rem;color:var(--text);line-height:1.8;margin-bottom:28px" data-nl="Heb je een korte vraag of wil je direct schakelen? Stuur een berichtje, ik reageer zo spoedig mogelijk." data-en="Have a quick question or want to connect directly? Send a message, I'll get back to you as soon as possible.">Heb je een korte vraag of wil je direct schakelen? Stuur een berichtje, ik reageer zo spoedig mogelijk.</p>
       <div style="display:flex;flex-direction:column;gap:10px">
         <a href="mailto:info@versodevelopment.nl" class="clink glass"><span class="clink-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>info@versodevelopment.nl</a>
         <a href="https://wa.me/31620375814?text=Hoi%20Kenny%2C%20ik%20heb%20een%20vraag!" class="clink glass" target="_blank"><span class="clink-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>+31 6 20 37 58 14</a>
