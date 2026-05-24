@@ -170,8 +170,9 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .price-card.featured::after{content:'';position:absolute;inset:-1.5px;border-radius:calc(var(--r) + 2px);z-index:-1;background:linear-gradient(135deg,#c0c1ff,#8B5CF6,#60A5FA,#c0c1ff);background-size:300% 300%;animation:gradBorder 5s ease infinite}
 @keyframes gradBorder{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .price-card.featured .price-name,.price-card.featured .price-amount,.price-card.featured .price-from{color:#060e20}
-.price-card.featured .price-period,.price-card.featured .price-features li,.price-card.featured .price-peek{color:rgba(6,14,32,.6)}
-.price-card.featured .price-features li.off{color:rgba(6,14,32,.3)}
+.price-card.featured .price-period,.price-card.featured .price-peek{color:rgba(6,14,32,.6)}
+.price-card.featured .price-features li{color:rgba(6,14,32,.85)}
+.price-card.featured .price-features li.off{color:rgba(6,14,32,.45)}
 .price-card.featured .price-features li::before{color:#8B5CF6}
 .price-card.featured .price-features li.off::before{color:rgba(6,14,32,.25)}
 .price-card.featured .pa-orig{color:rgba(6,14,32,.3)}
@@ -182,10 +183,10 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .price-from{font-size:.82rem;font-weight:500;opacity:.6;display:block;margin-bottom:2px}
 .price-period{font-size:.74rem;color:var(--muted);margin-bottom:20px;min-height:1.1em}
 .price-features{list-style:none;display:flex;flex-direction:column;gap:10px}
-.price-features li{display:flex;align-items:flex-start;gap:9px;font-size:.84rem;color:var(--muted)}
+.price-features li{display:flex;align-items:flex-start;gap:9px;font-size:.88rem;color:var(--text)}
 .price-features li::before{content:'✓';color:var(--primary);font-weight:700;flex-shrink:0}
 .price-features li.off::before{content:'–';color:var(--muted2)}
-.price-features li.off{color:var(--muted2)}
+.price-features li.off{color:var(--muted)}
 .price-extra{max-height:0;overflow:hidden;opacity:0;transition:max-height .42s cubic-bezier(.4,0,.2,1),opacity .35s}
 .price-card:hover .price-extra,.price-card.expanded .price-extra{max-height:300px;opacity:1}
 .price-extra .price-features{margin-top:10px}
