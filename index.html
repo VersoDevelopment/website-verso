@@ -983,7 +983,7 @@ async function sendChat(){
   addChatMsg('user',txt);chatHistory.push({role:'user',content:txt});
   document.getElementById('chat-send').disabled=true;addTyping();
   try{
-    const res=await fetch('https://api.verso-ai.versodevelopment.nl/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:chatHistory})});
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:chatHistory})});
     const data=await res.json();removeTyping();
     const reply=data.reply||data.content||'Sorry, er ging iets mis. Probeer het opnieuw.';
     addChatMsg('ai',reply);chatHistory.push({role:'assistant',content:reply});
