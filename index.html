@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Verso Development: Web apps, AI-integraties en mobiele ervaringen op maat. Professioneel, snel en betaalbaar.">
 <title>Verso | Web Apps &amp; AI Integraties</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="assets/logo-icon.png">
+<link rel="apple-touch-icon" href="assets/logo-icon.png">
 <link rel="canonical" href="https://versodevelopment.nl/">
 <meta name="robots" content="index,follow">
 <meta name="author" content="Kenny van Teeffelen">
@@ -39,6 +41,7 @@
   "image": "https://versodevelopment.nl/assets/logo-square.png",
   "logo": "https://versodevelopment.nl/assets/logo-square.png",
   "areaServed": "NL",
+  "knowsLanguage": ["nl", "en"],
   "founder": { "@type": "Person", "name": "Kenny van Teeffelen" },
   "sameAs": ["https://www.instagram.com/versodevelopment/"]
 }
@@ -328,6 +331,7 @@ body.light .nav-link{color:rgba(13,18,38,.65)}
 body.light .nav-link:hover,body.light .nav-link.active{color:#5B21B6;background:rgba(139,92,246,.08)}
 body.light .nav-toggle{color:rgba(13,18,38,.6);border-color:rgba(13,18,38,.2)}
 body.light #toast{background:rgba(240,244,255,.95)}
+body.light .mobile-menu{background:rgba(240,244,255,.97)}
 body.light select option{background:#e8eeff;color:#0d1226}
 body.light #hero .hero-badge{background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.35);color:#5B21B6}
 body.light #hero .hero-badge .dot{background:#16a34a;box-shadow:0 0 8px #16a34a}
@@ -335,6 +339,10 @@ body.light .sec-label{color:#5B21B6}
 body.light .sec-title .grad-text{background:linear-gradient(135deg,#5B21B6,#2563EB);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 body.light .step-nr{background:linear-gradient(135deg,#5B21B6,#2563EB);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.6}
 
+.mobile-theme-btn{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1.5px solid var(--border);border-radius:9999px;color:var(--muted);cursor:pointer;font-size:.82rem;font-weight:600;padding:8px 20px;transition:all .2s;margin-top:4px}
+.mobile-theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+body.light .mobile-theme-btn{background:rgba(13,18,38,.06);border-color:rgba(13,18,38,.2);color:rgba(13,18,38,.6)}
+body.light .mobile-theme-btn:hover{border-color:#5B21B6;color:#5B21B6}
 /* MOBILE PERF */
 @media(max-width:768px){.glass{backdrop-filter:none;-webkit-backdrop-filter:none}#chat-btn{width:46px;height:46px;bottom:20px;right:16px}#back-to-top{bottom:78px;right:16px}.hero-logo img{animation:logo-float 6s ease-in-out infinite;filter:none}}
 *:focus-visible{outline:2px solid rgba(192,193,255,.6);outline-offset:3px}
@@ -384,6 +392,7 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
   <a href="#contact" class="nav-link" data-nl="Contact" data-en="Contact">Contact</a>
   <a href="aanvragen.html" class="nav-link nav-cta" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
   <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" style="border-radius:12px;text-align:center;width:100%;max-width:300px;padding:12px 28px;justify-content:center" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
+  <button class="mobile-theme-btn" id="mobileThemeToggle" onclick="toggleTheme()" aria-label="Thema"></button>
 </div>
 
 <!-- HERO -->
@@ -909,7 +918,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 const themeBtn=document.getElementById('themeToggle');
 const sunSvg=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
 const moonSvg=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
-function applyTheme(light){document.body.classList.toggle('light',light);if(themeBtn)themeBtn.innerHTML=light?moonSvg:sunSvg;localStorage.setItem('verso-theme',light?'light':'dark');}
+function applyTheme(light){document.body.classList.toggle('light',light);const mTBtn=document.getElementById('mobileThemeToggle');const icon=light?moonSvg:sunSvg;if(themeBtn)themeBtn.innerHTML=icon;if(mTBtn)mTBtn.innerHTML=icon+' '+(light?'Donker':'Licht');localStorage.setItem('verso-theme',light?'light':'dark');}
 function toggleTheme(){applyTheme(!document.body.classList.contains('light'));}
 applyTheme(localStorage.getItem('verso-theme')==='light');
 
