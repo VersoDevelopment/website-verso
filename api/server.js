@@ -7,10 +7,17 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 app.set('trust proxy', 1);
 app.use(express.json({ limit: '50kb' }));
-app.use(cors({ origin: ['https://versodevelopment.nl', 'http://localhost:8080'] }));
+
+const allowedOrigins = ['https://versodevelopment.nl', 'https://www.versodevelopment.nl'];
+if (process.env.NODE_ENV !== 'production') allowedOrigins.push('http://localhost:8080');
+app.use(cors({ origin: allowedOrigins }));
 
 const aanvraagLimit = rateLimit({ windowMs: 60_000, max: 3, standardHeaders: true, legacyHeaders: false });
 const chatLimit     = rateLimit({ windowMs: 60_000, max: 10, standardHeaders: true, legacyHeaders: false });
+const discountLimit = rateLimit({ windowMs: 60_000, max: 20, standardHeaders: true, legacyHeaders: false });
+
+// Kortingscodes blijven server-side, zodat ze niet uit de paginabron te lezen zijn.
+const DISCOUNT_CODES = { PORTFOLIO25: 0.25 };
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -19,7 +26,7 @@ const CHAT_SYSTEM_PROMPT = `Je bent de AI-assistent van Verso Development, een w
 Wat je weet over Verso:
 Verso bouwt web apps, websites en mobiele ervaringen op maat. Denk aan interactieve dashboards, real-time applicaties, bedrijfswebsites, landingspagina's, PWA's en AI-integraties. Kenny werkt persoonlijk aan elk project.
 
-Er zijn drie pakketten. Basic kost €499,99 eenmalig (of €44,99/mnd in 12 termijnen) en is geschikt voor een eenvoudige website met responsief design. Plus is het meest gekozen: €799,99 (€69,99/mnd), inclusief animaties, AI-integratie en nazorg. Enterprise is €1.249,99 (€109,99/mnd) en voegt daar API-koppelingen, doorontwikkeling en dedicated aandacht aan toe. Hosting is de eerste 3 maanden gratis, daarna €19/maand.
+Er zijn drie pakketten. Basic kost €399,99 eenmalig (of gespreid in 12 maandtermijnen van €36,99) en is geschikt voor een eenvoudige website met responsief design. Plus is het meest gekozen: €925 eenmalig (of €79,99/mnd in 12 termijnen), inclusief animaties en AI-integratie. Enterprise is €1.449,99 eenmalig (of €129,99/mnd in 12 termijnen) en voegt daar API-koppelingen, doorontwikkeling en nazorg aan toe. Gespreid betalen kan in 12 termijnen, de termijnprijzen staan op de site. Hosting, onderhoud en monitoring zijn de eerste 3 maanden gratis, daarna €22/maand. Noem prijzen alleen als iemand ernaar vraagt en verwijs voor de exacte samenstelling naar de prijzensectie op de site.
 
 Werkwijze: aanvraagformulier invullen, kort gesprek, dan bouwt Kenny van A tot Z met tussentijdse updates, gevolgd door oplevering inclusief nazorg.
 
@@ -52,15 +59,15 @@ function row(label, value) {
 }
 
 function section(title) {
-  return `<tr><td colspan="2" style="padding:10px 14px;background:rgba(160,32,240,.18);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#c084fc">${title}</td></tr>`;
+  return `<tr><td colspan="2" style="padding:10px 14px;background:rgba(139,92,246,.18);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#c0c1ff">${title}</td></tr>`;
 }
 
 function buildKennyEmail(d) {
   return `<!DOCTYPE html><html><head><meta charset="UTF-8"></head>
-<body style="margin:0;padding:0;background:#0B1226;font-family:Arial,sans-serif;">
+<body style="margin:0;padding:0;background:#060e20;font-family:Arial,sans-serif;">
 <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:40px 20px;">
-<table width="620" cellpadding="0" cellspacing="0" style="background:#0d1830;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.1);">
-  <tr><td style="padding:28px 40px;background:linear-gradient(135deg,#A020F0 0%,#FF4DD2 100%);text-align:center;">
+<table width="620" cellpadding="0" cellspacing="0" style="background:#0b1326;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.1);">
+  <tr><td style="padding:28px 40px;background:linear-gradient(135deg,#8B5CF6 0%,#60A5FA 100%);text-align:center;">
     <h1 style="margin:0;color:#fff;font-size:20px;letter-spacing:3px;font-family:Georgia,serif;">VERSO DEVELOPMENT</h1>
     <p style="margin:6px 0 0;color:rgba(255,255,255,.8);font-size:11px;letter-spacing:2px;">NIEUWE AANVRAAG</p>
   </td></tr>
@@ -97,7 +104,7 @@ function buildKennyEmail(d) {
       ${row('Extra', d.extra)}
     </table>
     <p style="text-align:center;margin:28px 0 20px">
-      <a href="mailto:${esc(d.email)}" style="background:linear-gradient(135deg,#A020F0,#FF4DD2);color:#fff;text-decoration:none;padding:12px 30px;border-radius:8px;font-size:14px;font-weight:600;display:inline-block">Beantwoord ${esc(d.naam)} →</a>
+      <a href="mailto:${esc(d.email)}" style="background:linear-gradient(135deg,#8B5CF6,#60A5FA);color:#fff;text-decoration:none;padding:12px 30px;border-radius:8px;font-size:14px;font-weight:600;display:inline-block">Beantwoord ${esc(d.naam)} →</a>
     </p>
   </td></tr>
   <tr><td style="padding:16px 40px;border-top:1px solid rgba(255,255,255,.07);text-align:center;font-size:12px;color:#4a5568;">versodevelopment.nl · info@versodevelopment.nl</td></tr>
@@ -110,22 +117,22 @@ function buildApplicantEmail(d) {
 <body style="margin:0;padding:0;background:#f5f7ff;font-family:Arial,sans-serif;">
 <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:40px 20px;">
 <table width="620" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;">
-  <tr><td style="padding:28px 40px;background:linear-gradient(135deg,#A020F0 0%,#FF4DD2 100%);text-align:center;">
+  <tr><td style="padding:28px 40px;background:linear-gradient(135deg,#8B5CF6 0%,#60A5FA 100%);text-align:center;">
     <h1 style="margin:0;color:#fff;font-size:20px;letter-spacing:3px;font-family:Georgia,serif;">VERSO DEVELOPMENT</h1>
     <p style="margin:6px 0 0;color:rgba(255,255,255,.85);font-size:11px;letter-spacing:2px;">AANVRAAG ONTVANGEN</p>
   </td></tr>
   <tr><td style="padding:36px 40px 24px;">
-    <h2 style="margin:0 0 16px;color:#0B1226;font-size:20px;font-weight:700;">Bedankt, ${esc(d.naam)}!</h2>
-    <p style="margin:0 0 14px;color:#4a5568;font-size:14px;line-height:1.8;">Je aanvraag is goed ontvangen. Ik neem <strong style="color:#0B1226">binnen 24 uur</strong> contact met je op voor een vrijblijvend kennismakingsgesprek.</p>
-    <p style="margin:0 0 28px;color:#4a5568;font-size:14px;line-height:1.8;">Vragen tussendoor? Stuur gerust een berichtje via <a href="mailto:info@versodevelopment.nl" style="color:#A020F0;text-decoration:none;font-weight:600">info@versodevelopment.nl</a> of WhatsApp.</p>
-    ${heeftPakket ? `<div style="background:#f5f7ff;border:1px solid #e2e8f0;border-left:3px solid #A020F0;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:28px;">
-      <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#A020F0">Jouw aanvraag</p>
-      <p style="margin:0;font-size:15px;font-weight:600;color:#0B1226">${esc(d.pakket)} pakket${d.prijs_indicatie ? ' &nbsp;·&nbsp; ' + esc(d.prijs_indicatie) : ''}</p>
+    <h2 style="margin:0 0 16px;color:#060e20;font-size:20px;font-weight:700;">Bedankt, ${esc(d.naam)}!</h2>
+    <p style="margin:0 0 14px;color:#4a5568;font-size:14px;line-height:1.8;">Je aanvraag is goed ontvangen. Ik neem <strong style="color:#060e20">binnen 24 uur</strong> contact met je op voor een vrijblijvend kennismakingsgesprek.</p>
+    <p style="margin:0 0 28px;color:#4a5568;font-size:14px;line-height:1.8;">Vragen tussendoor? Stuur gerust een berichtje via <a href="mailto:info@versodevelopment.nl" style="color:#8B5CF6;text-decoration:none;font-weight:600">info@versodevelopment.nl</a> of WhatsApp.</p>
+    ${heeftPakket ? `<div style="background:#f5f7ff;border:1px solid #e2e8f0;border-left:3px solid #8B5CF6;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:28px;">
+      <p style="margin:0 0 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8B5CF6">Jouw aanvraag</p>
+      <p style="margin:0;font-size:15px;font-weight:600;color:#060e20">${esc(d.pakket)} pakket${d.prijs_indicatie ? ' &nbsp;·&nbsp; ' + esc(d.prijs_indicatie) : ''}</p>
     </div>` : ''}
-    <a href="https://versodevelopment.nl" style="display:inline-block;background:linear-gradient(135deg,#A020F0,#FF4DD2);color:#fff;text-decoration:none;padding:13px 30px;border-radius:8px;font-size:14px;font-weight:600">Bekijk mijn portfolio →</a>
+    <a href="https://versodevelopment.nl" style="display:inline-block;background:linear-gradient(135deg,#8B5CF6,#60A5FA);color:#fff;text-decoration:none;padding:13px 30px;border-radius:8px;font-size:14px;font-weight:600">Bekijk mijn portfolio →</a>
   </td></tr>
   <tr><td style="padding:20px 40px;background:#f5f7ff;border-top:1px solid #e2e8f0;text-align:center;">
-    <p style="margin:0 0 4px;font-size:13px;color:#0B1226;font-style:italic;font-family:Georgia,serif;">Professioneel, snel en betaalbaar.</p>
+    <p style="margin:0 0 4px;font-size:13px;color:#060e20;font-style:italic;font-family:Georgia,serif;">Professioneel, snel en betaalbaar.</p>
     <p style="margin:0;font-size:12px;color:#a0aec0;">versodevelopment.nl · info@versodevelopment.nl</p>
   </td></tr>
 </table></td></tr></table></body></html>`;
@@ -188,6 +195,13 @@ app.post('/chat', chatLimit, async (req, res) => {
     console.error(err);
     res.status(500).json({ error: 'AI tijdelijk niet beschikbaar' });
   }
+});
+
+app.post('/validate-discount', discountLimit, (req, res) => {
+  const code = String(req.body?.code ?? '').trim().toUpperCase();
+  const discount = DISCOUNT_CODES[code];
+  if (discount) return res.json({ valid: true, code, discount });
+  res.json({ valid: false });
 });
 
 app.listen(3002, () => console.log('Verso API op poort 3002'));

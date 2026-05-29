@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Vraag een project aan bij Verso Development. Vertel me over jouw idee." />
   <title>Aanvragen | Verso Development</title>
+  <link rel="icon" type="image/png" href="assets/logo-icon.png">
+  <link rel="canonical" href="https://versodevelopment.nl/aanvragen.html">
+  <meta name="theme-color" content="#060e20">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Verso Development">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:title" content="Aanvragen | Verso Development">
+  <meta property="og:description" content="Vraag een project aan bij Verso Development. Vertel me over jouw idee.">
+  <meta property="og:url" content="https://versodevelopment.nl/aanvragen.html">
+  <meta property="og:image" content="https://versodevelopment.nl/assets/logo-square.png">
+  <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -12,20 +23,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0B1226;
-      --bg1:       #0d1830;
-      --bg2:       #111d3a;
+      --bg:        #060e20;
+      --bg1:       #0b1326;
+      --bg2:       #131b2e;
       --card:      rgba(255,255,255,0.04);
       --border:    rgba(255,255,255,0.10);
       --text:      #FFFFFF;
       --muted:     rgba(255,255,255,0.50);
       --muted2:    rgba(255,255,255,0.25);
-      --primary:   #A020F0;
-      --secondary: #FF4DD2;
-      --blue:      #3A5BFF;
-      --aqua:      #00D4FF;
-      --grad:      linear-gradient(135deg, #A020F0 0%, #FF4DD2 100%);
-      --glow:      rgba(160,32,240,0.22);
+      --primary:   #c0c1ff;
+      --secondary: #8B5CF6;
+      --blue:      #60A5FA;
+      --aqua:      #60A5FA;
+      --grad:      linear-gradient(135deg, #c0c1ff 0%, #60A5FA 100%);
+      --glow:      rgba(192,193,255,0.25);
       --font-h:    'Space Grotesk', -apple-system, sans-serif;
       --font-b:    'Inter', -apple-system, sans-serif;
       --r:         14px;
@@ -54,7 +65,7 @@
       display: inline-flex; align-items: center; gap: 7px;
       font-family: var(--font-b); font-size: .7rem; font-weight: 600;
       text-transform: uppercase; letter-spacing: .12em; color: var(--secondary);
-      background: rgba(255,77,210,.1); border: 1px solid rgba(255,77,210,.28);
+      background: rgba(232,121,249,.1); border: 1px solid rgba(232,121,249,.28);
       padding: 5px 13px; border-radius: 30px; margin-bottom: 18px;
     }
     .label-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); animation: pdot 2s infinite; }
@@ -64,10 +75,10 @@
     .section-sub { color: var(--muted); font-size: .95rem; max-width: 500px; line-height: 1.75; margin-bottom: 52px; }
 
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; font-family: var(--font-b); font-size: .9rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all .22s; }
-    .btn-primary { background: var(--grad); color: #FFFFFF; box-shadow: 0 0 28px var(--glow); }
-    .btn-primary:hover { box-shadow: 0 0 52px rgba(160,32,240,.45); transform: translateY(-2px); }
+    .btn-primary { background: var(--grad); color: #060e20; box-shadow: 0 0 28px var(--glow); }
+    .btn-primary:hover { box-shadow: 0 0 52px rgba(139,92,246,.45); transform: translateY(-2px); }
     .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
-    .btn-outline:hover { border-color: rgba(160,32,240,.55); color: var(--primary); transform: translateY(-2px); }
+    .btn-outline:hover { border-color: rgba(139,92,246,.55); color: var(--primary); transform: translateY(-2px); }
 
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1); }
     .reveal.visible { opacity: 1; transform: none; }
@@ -75,9 +86,9 @@
 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; padding: 18px 0; transition: all .3s; opacity: 0; transform: translateY(-12px); pointer-events: none; }
-    nav.scrolled { background: rgba(11,18,38,.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 12px 0; opacity: 1; transform: translateY(0); pointer-events: auto; }
+    nav.scrolled { background: rgba(6,14,32,.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 12px 0; opacity: 1; transform: translateY(0); pointer-events: auto; }
     @media(max-width:720px){ nav, nav.scrolled { display: none; } }
-    @media(min-width:721px){ nav { position: static; opacity: 1; transform: none; pointer-events: auto; background: rgba(11,18,38,.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 12px 0; } }
+    @media(min-width:721px){ nav { position: static; opacity: 1; transform: none; pointer-events: auto; background: rgba(6,14,32,.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 12px 0; } }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo img { height: 160px; width: auto; }
@@ -99,11 +110,11 @@
     .brief-steps { display: flex; align-items: center; gap: 0; margin-bottom: 32px; }
     .bs { display: flex; align-items: center; gap: 8px; font-size: .78rem; font-weight: 500; color: var(--muted); cursor: pointer; }
     .bs-num { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; transition: all .25s; flex-shrink: 0; }
-    .bs.active .bs-num { background: var(--grad); border-color: transparent; color: #FFFFFF; }
-    .bs.done .bs-num { background: rgba(160,32,240,.15); border-color: var(--primary); color: var(--primary); }
+    .bs.active .bs-num { background: var(--grad); border-color: transparent; color: #060e20; }
+    .bs.done .bs-num { background: rgba(139,92,246,.15); border-color: var(--primary); color: var(--primary); }
     .bs.active, .bs.done { color: var(--text); }
     .bs-line { flex: 1; height: 1px; background: var(--border); margin: 0 10px; min-width: 20px; transition: background .25s; }
-    .bs-line.done { background: rgba(160,32,240,.42); }
+    .bs-line.done { background: rgba(139,92,246,.42); }
 
     .brief-page { display: none; }
     .brief-page.active { display: block; }
@@ -121,24 +132,24 @@
       border-radius: 9px; color: var(--text); font-family: var(--font-b); font-size: .88rem;
       outline: none; transition: border-color .2s; width: 100%;
     }
-    .f-ctrl:focus { border-color: rgba(160,32,240,.55); }
+    .f-ctrl:focus { border-color: rgba(139,92,246,.55); }
     .f-ctrl::placeholder { color: var(--muted2); }
     textarea.f-ctrl { min-height: 100px; resize: vertical; }
     select.f-ctrl {
       cursor: pointer;
       appearance: none; -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A020F0' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c0c1ff' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 13px center;
       padding-right: 38px;
     }
-    select.f-ctrl option { background-color: #0d1830; color: #FFFFFF; }
+    select.f-ctrl option { background-color: #0b1326; color: #FFFFFF; }
     select.f-ctrl option:disabled, select.f-ctrl option[value=""] { color: rgba(255,255,255,.35); }
 
     .chips { display: flex; flex-wrap: wrap; gap: 7px; }
     .chip input[type="checkbox"], .chip input[type="radio"] { display: none; }
     .chip-lbl { display: inline-block; padding: 7px 15px; border: 1.5px solid var(--border); border-radius: 30px; font-size: .82rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all .18s; }
-    .chip input:checked + .chip-lbl { background: rgba(160,32,240,.14); border-color: rgba(160,32,240,.55); color: var(--primary); }
+    .chip input:checked + .chip-lbl { background: rgba(139,92,246,.14); border-color: rgba(139,92,246,.55); color: var(--primary); }
 
     .brief-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; gap: 12px; }
     .brief-nav-note { font-size: .78rem; color: var(--muted2); flex: 1; }
@@ -157,7 +168,7 @@
     .foot-links a { font-size: .8rem; color: var(--muted); text-decoration: none; transition: color .2s; }
     .foot-links a:hover { color: var(--secondary); }
 
-    #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(18px); background: #0d1830; color: var(--text); padding: 12px 24px; border-radius: 50px; font-size: .86rem; font-weight: 500; border: 1px solid var(--border); opacity: 0; z-index: 999; transition: all .3s cubic-bezier(.34,1.56,.64,1); white-space: nowrap; pointer-events: none; }
+    #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(18px); background: #0b1326; color: var(--text); padding: 12px 24px; border-radius: 50px; font-size: .86rem; font-weight: 500; border: 1px solid var(--border); opacity: 0; z-index: 999; transition: all .3s cubic-bezier(.34,1.56,.64,1); white-space: nowrap; pointer-events: none; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
@@ -431,7 +442,8 @@
 
 <script>
 const PAKKET_PRICES = { Basic: 399.99, Plus: 925, Enterprise: 1449.99 };
-const FORM_DISCOUNTS = { 'PORTFOLIO25': 0.25 };
+let formDiscount = 0;
+let formDiscountCode = '';
 
 function fmtPrice(n) {
   const s = n.toFixed(2);
@@ -447,26 +459,37 @@ function updatePakketPrijs() {
     display.textContent = ''; field.value = ''; return;
   }
   const base = PAKKET_PRICES[selected.value];
-  const code = (document.getElementById('kortingscode-input').value || '').trim().toUpperCase();
-  const discount = FORM_DISCOUNTS[code] || 0;
-  if (discount > 0) {
-    const net = base * (1 - discount);
-    display.textContent = '€' + fmtPrice(net) + ' (kortingscode ' + code + ', ' + Math.round(discount * 100) + '% korting op €' + fmtPrice(base) + ')';
-    field.value = selected.value + ': €' + fmtPrice(net) + ' (kortingscode ' + code + ', ' + Math.round(discount * 100) + '% korting)';
+  if (formDiscount > 0) {
+    const net = base * (1 - formDiscount);
+    display.textContent = '€' + fmtPrice(net) + ' (kortingscode ' + formDiscountCode + ', ' + Math.round(formDiscount * 100) + '% korting op €' + fmtPrice(base) + ')';
+    field.value = selected.value + ': €' + fmtPrice(net) + ' (kortingscode ' + formDiscountCode + ', ' + Math.round(formDiscount * 100) + '% korting)';
   } else {
     display.textContent = '€' + fmtPrice(base);
     field.value = selected.value + ': €' + fmtPrice(base);
   }
 }
 
+async function validateFormDiscount() {
+  const code = (document.getElementById('kortingscode-input').value || '').trim().toUpperCase();
+  if (!code) { formDiscount = 0; formDiscountCode = ''; sessionStorage.removeItem('verso-discount-code'); updatePakketPrijs(); return; }
+  try {
+    const res = await fetch('/api/validate-discount', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code }) });
+    const data = await res.json();
+    if (data.valid) { formDiscount = data.discount; formDiscountCode = code; sessionStorage.setItem('verso-discount-code', code); }
+    else { formDiscount = 0; formDiscountCode = ''; sessionStorage.removeItem('verso-discount-code'); }
+  } catch (e) { formDiscount = 0; formDiscountCode = ''; }
+  updatePakketPrijs();
+}
+
 document.querySelectorAll('input[name="pakket"]').forEach(r => r.addEventListener('change', updatePakketPrijs));
 const kortingsInput = document.getElementById('kortingscode-input');
-if (kortingsInput) kortingsInput.addEventListener('input', updatePakketPrijs);
+let discountTimer;
+if (kortingsInput) kortingsInput.addEventListener('input', () => { clearTimeout(discountTimer); discountTimer = setTimeout(validateFormDiscount, 400); });
 
 const savedCode = sessionStorage.getItem('verso-discount-code');
 if (savedCode) {
   const codeInput = document.getElementById('kortingscode-input');
-  if (codeInput) { codeInput.value = savedCode; }
+  if (codeInput) { codeInput.value = savedCode; validateFormDiscount(); }
 }
 
 const urlPakket = new URLSearchParams(window.location.search).get('pakket');
@@ -502,9 +525,9 @@ function briefNext() {
   const page = document.getElementById('bpage-' + briefStep);
   const required = page.querySelectorAll('[required]');
   for (const f of required) {
-    if (!f.value.trim()) { f.focus(); f.style.borderColor = 'rgba(255,77,210,.6)'; setTimeout(() => f.style.borderColor = '', 2000); return; }
+    if (!f.value.trim()) { f.focus(); f.style.borderColor = 'rgba(232,121,249,.6)'; setTimeout(() => f.style.borderColor = '', 2000); return; }
     if (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim())) {
-      f.focus(); f.style.borderColor = 'rgba(255,77,210,.6)'; setTimeout(() => f.style.borderColor = '', 2000);
+      f.focus(); f.style.borderColor = 'rgba(232,121,249,.6)'; setTimeout(() => f.style.borderColor = '', 2000);
       showToast('Vul een geldig e-mailadres in.'); return;
     }
   }

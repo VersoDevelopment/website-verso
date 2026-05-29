@@ -6,6 +6,43 @@
 <meta name="description" content="Verso Development: Web apps, AI-integraties en mobiele ervaringen op maat. Professioneel, snel en betaalbaar.">
 <title>Verso | Web Apps &amp; AI Integraties</title>
 <link rel="icon" type="image/png" href="assets/logo-icon.png">
+<link rel="canonical" href="https://versodevelopment.nl/">
+<meta name="robots" content="index,follow">
+<meta name="author" content="Kenny van Teeffelen">
+<meta name="theme-color" content="#060e20">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Verso Development">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:title" content="Verso | Web Apps &amp; AI Integraties">
+<meta property="og:description" content="Web apps, AI-integraties en mobiele ervaringen op maat. Professioneel, snel en betaalbaar.">
+<meta property="og:url" content="https://versodevelopment.nl/">
+<meta property="og:image" content="https://versodevelopment.nl/assets/logo-square.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Verso | Web Apps &amp; AI Integraties">
+<meta name="twitter:description" content="Web apps, AI-integraties en mobiele ervaringen op maat. Professioneel, snel en betaalbaar.">
+<meta name="twitter:image" content="https://versodevelopment.nl/assets/logo-square.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Verso Development",
+  "description": "Web apps, AI-integraties en mobiele ervaringen op maat. Professioneel, snel en betaalbaar.",
+  "url": "https://versodevelopment.nl/",
+  "email": "info@versodevelopment.nl",
+  "telephone": "+31620375814",
+  "image": "https://versodevelopment.nl/assets/logo-square.png",
+  "logo": "https://versodevelopment.nl/assets/logo-square.png",
+  "areaServed": "NL",
+  "founder": { "@type": "Person", "name": "Kenny van Teeffelen" },
+  "sameAs": ["https://www.instagram.com/versodevelopment/"]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -532,7 +569,7 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
         <input type="checkbox" id="pricing-toggle">
         <span class="pt-slider"></span>
       </label>
-      <span class="pt-label" id="pt-label-spread" data-nl="12 termijnen" data-en="12 installments">12 termijnen <span class="pt-badge">-10%</span></span>
+      <span class="pt-label" id="pt-label-spread" data-nl="12 termijnen" data-en="12 installments">12 termijnen</span>
     </div>
     <div class="hosting-free reveal">
       <div class="hosting-free-badge">
@@ -689,6 +726,7 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
       <a href="#contact" data-nl="Contact" data-en="Contact">Contact</a>
       <a href="https://portal.versodevelopment.nl" target="_blank" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
       <a href="https://www.instagram.com/versodevelopment/" target="_blank">Instagram</a>
+      <a href="/algemene-voorwaarden" data-nl="Algemene voorwaarden" data-en="Terms &amp; conditions">Algemene voorwaarden</a>
     </div>
   </div>
 </footer>
@@ -878,7 +916,6 @@ applyTheme(localStorage.getItem('verso-theme')==='light');
 // ── LANGUAGE ──────────────────────────────────────────────
 const langBtn=document.getElementById('langToggle');
 let isTermijn=false;
-const DISCOUNT_CODES={'PORTFOLIO25':0.25};
 let activeDiscount=0;
 function parsePrice(s){return parseFloat(s.replace(/\./g,'').replace(',','.'))}
 function formatPrice(n){const s=n.toFixed(2);const[i,d]=s.split('.');return i.replace(/\B(?=(\d{3})+(?!\d))/g,'.')+','+d;}
@@ -910,12 +947,16 @@ function updatePricing(){
 }
 const pToggle=document.getElementById('pricing-toggle');
 if(pToggle)pToggle.addEventListener('change',function(){isTermijn=this.checked;updatePricing();});
-function applyDiscount(){
+async function applyDiscount(){
   const code=(document.getElementById('discount-input').value||'').trim().toUpperCase();
   const msg=document.getElementById('discount-msg');
-  if(DISCOUNT_CODES[code]!==undefined){activeDiscount=DISCOUNT_CODES[code];msg.style.color='#4ade80';msg.textContent='✓ '+Math.round(activeDiscount*100)+'% korting toegepast!';sessionStorage.setItem('verso-discount-code',code);}
-  else if(code===''){activeDiscount=0;msg.textContent='';sessionStorage.removeItem('verso-discount-code');}
-  else{activeDiscount=0;msg.style.color='rgba(232,121,249,1)';msg.textContent='Ongeldige kortingscode.';sessionStorage.removeItem('verso-discount-code');}
+  if(code===''){activeDiscount=0;msg.textContent='';sessionStorage.removeItem('verso-discount-code');updatePricing();return;}
+  try{
+    const res=await fetch('/api/validate-discount',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code})});
+    const data=await res.json();
+    if(data.valid){activeDiscount=data.discount;msg.style.color='#4ade80';msg.textContent='✓ '+Math.round(activeDiscount*100)+'% korting toegepast!';sessionStorage.setItem('verso-discount-code',code);}
+    else{activeDiscount=0;msg.style.color='rgba(232,121,249,1)';msg.textContent='Ongeldige kortingscode.';sessionStorage.removeItem('verso-discount-code');}
+  }catch(e){activeDiscount=0;msg.style.color='rgba(232,121,249,1)';msg.textContent='Kon de code niet controleren. Probeer het opnieuw.';}
   updatePricing();
 }
 
@@ -923,7 +964,8 @@ function applyDiscount(){
 let chatHistory=[],chatOpen=false;
 function toggleChat(){chatOpen=!chatOpen;document.getElementById('chat-panel').classList.toggle('open',chatOpen);if(chatOpen&&chatHistory.length===0)addChatMsg('ai','Hoi! Ik ben de AI-assistent van Verso Development. Heb je vragen over diensten, pakketten of prijzen? Ik help je graag.');if(chatOpen)setTimeout(()=>document.getElementById('chat-input').focus(),300);}
 document.getElementById('chat-btn').addEventListener('click',toggleChat);
-function addChatMsg(role,text){const msgs=document.getElementById('chat-messages');const div=document.createElement('div');div.className='chat-msg '+role;div.innerHTML='<div class="chat-bubble">'+text.replace(/\n/g,'<br>')+'</div>';msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;}
+function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function addChatMsg(role,text){const msgs=document.getElementById('chat-messages');const div=document.createElement('div');div.className='chat-msg '+role;const bubble=document.createElement('div');bubble.className='chat-bubble';bubble.innerHTML=escapeHtml(text).replace(/\n/g,'<br>');div.appendChild(bubble);msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;}
 function addTyping(){const msgs=document.getElementById('chat-messages');const div=document.createElement('div');div.className='chat-msg ai';div.id='typing-msg';div.innerHTML='<div class="chat-bubble"><div class="chat-typing"><span></span><span></span><span></span></div></div>';msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;}
 function removeTyping(){const t=document.getElementById('typing-msg');if(t)t.remove();}
 async function sendChat(){
