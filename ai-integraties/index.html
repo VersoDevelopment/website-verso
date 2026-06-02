@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="dark" lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-integraties voor je website of app | Verso Development</title>
+<meta name="description" content="AI-integraties op maat: chatbots, automatisering en slimme functies met ChatGPT en Claude. Verso Development bouwt AI in jouw website, app of workflow. Vraag een demo aan.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/logo-icon.png">
+<link rel="apple-touch-icon" href="/assets/logo-icon.png">
+<link rel="canonical" href="https://versodevelopment.nl/ai-integraties/">
+<meta name="robots" content="index,follow">
+<meta name="author" content="Kenny van Teeffelen">
+<meta name="theme-color" content="#060e20">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Verso Development">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:title" content="AI-integraties voor je website of app | Verso Development">
+<meta property="og:description" content="Chatbots, automatisering en slimme functies met ChatGPT en Claude, ingebouwd in jouw website, app of workflow.">
+<meta property="og:url" content="https://versodevelopment.nl/ai-integraties/">
+<meta property="og:image" content="https://versodevelopment.nl/assets/logo-square.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI-integraties voor je website of app | Verso">
+<meta name="twitter:description" content="Chatbots, automatisering en slimme functies met ChatGPT en Claude, ingebouwd in jouw website of workflow.">
+<meta name="twitter:image" content="https://versodevelopment.nl/assets/logo-square.png">
+
+<!-- Structured data: Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://versodevelopment.nl/" },
+    { "@type": "ListItem", "position": 2, "name": "AI-integraties", "item": "https://versodevelopment.nl/ai-integraties/" }
+  ]
+}
+</script>
+<!-- Structured data: Service -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "AI-integratie",
+  "name": "AI-integraties op maat",
+  "description": "Chatbots, automatisering en slimme functies met ChatGPT en Claude, ingebouwd in websites, apps en workflows.",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "Verso Development",
+    "url": "https://versodevelopment.nl/",
+    "email": "info@versodevelopment.nl",
+    "telephone": "+31620375814",
+    "image": "https://versodevelopment.nl/assets/logo-square.png",
+    "address": { "@type": "PostalAddress", "addressLocality": "Breda", "addressRegion": "Noord-Brabant", "addressCountry": "NL" }
+  },
+  "areaServed": { "@type": "Country", "name": "Nederland" },
+  "url": "https://versodevelopment.nl/ai-integraties/"
+}
+</script>
+<!-- Structured data: FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Wat is een AI-integratie?", "acceptedAnswer": { "@type": "Answer", "text": "Een AI-integratie koppelt slimme taalmodellen zoals ChatGPT of Claude aan jouw website, app of werkproces. Denk aan een chatbot die klantvragen beantwoordt, automatische samenvattingen, slimme zoekfuncties of het automatiseren van terugkerend werk." } },
+    { "@type": "Question", "name": "Welke AI-modellen gebruiken jullie?", "acceptedAnswer": { "@type": "Answer", "text": "Verso werkt met toonaangevende modellen zoals Claude van Anthropic en GPT van OpenAI, en kiest per project het model dat het beste past bij jouw doel, budget en privacy-eisen." } },
+    { "@type": "Question", "name": "Kan AI in mijn bestaande website worden ingebouwd?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Een AI-functie zoals een chatbot of assistent kan in de meeste bestaande websites en apps worden toegevoegd via een koppeling, zonder dat alles opnieuw gebouwd hoeft te worden." } },
+    { "@type": "Question", "name": "Is mijn data veilig bij een AI-integratie?", "acceptedAnswer": { "@type": "Answer", "text": "Privacy staat voorop. We kiezen modellen en instellingen waarbij jouw data niet wordt gebruikt om modellen te trainen, en we verwerken gegevens volgens de AVG. Per project bespreken we welke aanpak past bij jouw situatie." } }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="grain"></div>
+<div id="custom-cursor"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo" aria-label="Verso Development home"><img src="/assets/logo-horizontal.png" alt="Verso Development"></a>
+  <div class="nav-links">
+    <a href="/website-laten-maken/" class="nav-link" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
+    <a href="/webdesign-breda/" class="nav-link" data-nl="Webdesign Breda" data-en="Web design Breda">Webdesign Breda</a>
+    <a href="/ai-integraties/" class="nav-link active" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
+    <a href="/#prijzen" class="nav-link" data-nl="Prijzen" data-en="Pricing">Prijzen</a>
+    <div class="nav-divider"></div>
+    <button id="themeToggle" class="nav-toggle" onclick="toggleTheme()" aria-label="Thema"></button>
+    <button id="langToggle" class="nav-toggle" onclick="toggleLang()">EN</button>
+    <div class="nav-divider"></div>
+    <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" data-nl="Portaal" data-en="Portal">Portaal</a>
+    <a href="/aanvragen.html" class="nav-link nav-cta magnetic" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
+  </div>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mobile-menu" class="mobile-menu">
+  <a href="/website-laten-maken/" class="nav-link" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
+  <a href="/webdesign-breda/" class="nav-link" data-nl="Webdesign Breda" data-en="Web design Breda">Webdesign Breda</a>
+  <a href="/ai-integraties/" class="nav-link" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
+  <a href="/#prijzen" class="nav-link" data-nl="Prijzen" data-en="Pricing">Prijzen</a>
+  <a href="/aanvragen.html" class="nav-link nav-cta" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
+  <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" style="border-radius:12px;text-align:center;width:100%;max-width:300px;padding:12px 28px;justify-content:center" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
+  <button class="mobile-theme-btn" id="mobileThemeToggle" onclick="toggleTheme()" aria-label="Thema"></button>
+</div>
+
+<!-- HERO -->
+<header class="page-hero">
+  <div class="container-narrow">
+    <nav class="breadcrumb" aria-label="Kruimelpad">
+      <a href="/">Home</a><span>/</span>AI-integraties
+    </nav>
+    <div class="hero-badge"><span class="dot"></span><span data-nl="Powered by Claude &amp; GPT" data-en="Powered by Claude &amp; GPT">Powered by Claude &amp; GPT</span></div>
+    <h1 data-nl="<span class='grad-text'>AI-integraties</span> die jouw bedrijf slimmer maken" data-en="<span class='grad-text'>AI integrations</span> that make your business smarter"><span class="grad-text">AI-integraties</span> die jouw bedrijf slimmer maken</h1>
+    <p class="lead" data-nl="Van slimme chatbots tot volledige automatisering. Verso bouwt AI in je website, app of werkproces met krachtige modellen zoals ChatGPT en Claude. Praktisch, veilig en op maat." data-en="From smart chatbots to full automation. Verso builds AI into your website, app or workflow using powerful models like ChatGPT and Claude. Practical, secure and tailored.">Van slimme chatbots tot volledige automatisering. Verso bouwt AI in je website, app of werkproces met krachtige modellen zoals ChatGPT en Claude. Praktisch, veilig en op maat.</p>
+    <div class="hero-actions">
+      <a href="/aanvragen.html" class="btn btn-primary magnetic" data-nl="Bespreek jouw AI-idee →" data-en="Discuss your AI idea →">Bespreek jouw AI-idee →</a>
+      <a href="#toepassingen" class="btn btn-outline" data-nl="Toepassingen" data-en="Use cases">Toepassingen</a>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO PROSE -->
+<section class="section" style="padding-top:40px">
+  <div class="container-narrow">
+    <div class="prose reveal">
+      <h2 data-nl="AI die echt iets oplevert" data-en="AI that actually delivers">AI die echt iets oplevert</h2>
+      <p>AI is meer dan een hype. Goed toegepast bespaart het je uren werk per week en geeft het je klanten direct antwoord, dag en nacht. Bij <strong>Verso Development</strong> bouw ik AI-integraties die passen bij jouw bedrijf: geen los speeltje, maar een functie die naadloos in je website, app of workflow zit.</p>
+      <p>Ik werk met de nieuwste taalmodellen zoals <strong>Claude</strong> van Anthropic en <strong>GPT</strong> van OpenAI, en kies per project het model dat het beste past bij je doel, budget en privacy-eisen. Of het nu gaat om een chatbot die klantvragen afhandelt of een systeem dat automatisch documenten verwerkt, je krijgt een oplossing die werkt in de praktijk.</p>
+      <h3 data-nl="Wat levert een AI-integratie op?" data-en="What does an AI integration deliver?">Wat levert een AI-integratie op?</h3>
+      <ul>
+        <li data-nl="<strong>Tijdwinst.</strong> Automatiseer terugkerend werk zoals e-mails, samenvattingen en intake." data-en="<strong>Time saved.</strong> Automate recurring work such as emails, summaries and intake."><strong>Tijdwinst.</strong> Automatiseer terugkerend werk zoals e-mails, samenvattingen en intake.</li>
+        <li data-nl="<strong>Betere service.</strong> Klanten krijgen direct antwoord met een slimme chatbot, ook buiten kantooruren." data-en="<strong>Better service.</strong> Customers get instant answers with a smart chatbot, even outside office hours."><strong>Betere service.</strong> Klanten krijgen direct antwoord met een slimme chatbot, ook buiten kantooruren.</li>
+        <li data-nl="<strong>Voorsprong.</strong> Slimme functies waar je concurrent nog niet aan denkt." data-en="<strong>An edge.</strong> Smart features your competitor hasn't thought of yet."><strong>Voorsprong.</strong> Slimme functies waar je concurrent nog niet aan denkt.</li>
+        <li data-nl="<strong>Veilig.</strong> AVG-proof opgezet, met modellen die jouw data niet gebruiken om te trainen." data-en="<strong>Secure.</strong> Set up GDPR-proof, with models that don't use your data for training."><strong>Veilig.</strong> AVG-proof opgezet, met modellen die jouw data niet gebruiken om te trainen.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TOEPASSINGEN -->
+<section id="toepassingen" class="section" style="background:rgba(11,19,38,.3);padding-top:72px">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:40px">
+      <span class="sec-label" data-nl="[ TOEPASSINGEN ]" data-en="[ USE CASES ]">[ TOEPASSINGEN ]</span>
+      <h2 class="sec-title" data-nl="Wat AI voor jou <span class='grad-text'>kan doen</span>" data-en="What AI can <span class='grad-text'>do for you</span>">Wat AI voor jou <span class="grad-text">kan doen</span></h2>
+    </div>
+    <div class="feat-grid">
+      <div class="glass feat-card reveal rd1">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <div class="feat-title" data-nl="Slimme chatbots" data-en="Smart chatbots">Slimme chatbots</div>
+        <div class="feat-desc" data-nl="Een AI-assistent op je website die klantvragen beantwoordt en bezoekers omzet in leads." data-en="An AI assistant on your website that answers questions and turns visitors into leads.">Een AI-assistent op je website die klantvragen beantwoordt en bezoekers omzet in leads.</div>
+      </div>
+      <div class="glass feat-card reveal rd2">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <div class="feat-title" data-nl="Automatisering" data-en="Automation">Automatisering</div>
+        <div class="feat-desc" data-nl="Laat AI terugkerend werk overnemen: e-mails opstellen, data verwerken, rapporten genereren." data-en="Let AI take over recurring work: drafting emails, processing data, generating reports.">Laat AI terugkerend werk overnemen: e-mails opstellen, data verwerken, rapporten genereren.</div>
+      </div>
+      <div class="glass feat-card reveal rd3">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+        <div class="feat-title" data-nl="Tekst &amp; content" data-en="Text &amp; content">Tekst &amp; content</div>
+        <div class="feat-desc" data-nl="Genereer, vertaal of vat samen. AI die jouw teksten en content sneller produceert." data-en="Generate, translate or summarise. AI that produces your texts and content faster.">Genereer, vertaal of vat samen. AI die jouw teksten en content sneller produceert.</div>
+      </div>
+      <div class="glass feat-card reveal rd1">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="feat-title" data-nl="Slim zoeken" data-en="Smart search">Slim zoeken</div>
+        <div class="feat-desc" data-nl="Doorzoek je eigen documenten of kennisbank met AI die de vraag echt begrijpt." data-en="Search your own documents or knowledge base with AI that truly understands the question.">Doorzoek je eigen documenten of kennisbank met AI die de vraag echt begrijpt.</div>
+      </div>
+      <div class="glass feat-card reveal rd2">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <div class="feat-title" data-nl="Koppelingen" data-en="Integrations">Koppelingen</div>
+        <div class="feat-desc" data-nl="Verbind AI met je CRM, agenda, mail of andere tools voor een vloeiende workflow." data-en="Connect AI to your CRM, calendar, mail or other tools for a smooth workflow.">Verbind AI met je CRM, agenda, mail of andere tools voor een vloeiende workflow.</div>
+      </div>
+      <div class="glass feat-card reveal rd3">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        <div class="feat-title" data-nl="Advies &amp; maatwerk" data-en="Advice &amp; custom work">Advies &amp; maatwerk</div>
+        <div class="feat-desc" data-nl="Niet zeker waar AI jou helpt? Ik denk mee en bouw alleen wat echt waarde toevoegt." data-en="Not sure where AI helps you? I think along and build only what truly adds value.">Niet zeker waar AI jou helpt? Ik denk mee en bouw alleen wat echt waarde toevoegt.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container-narrow">
+    <div class="reveal" style="margin-bottom:36px">
+      <span class="sec-label" data-nl="[ VEELGESTELDE VRAGEN ]" data-en="[ FAQ ]">[ VEELGESTELDE VRAGEN ]</span>
+      <h2 class="sec-title" data-nl="AI-integraties: <span class='grad-text'>veelgestelde vragen</span>" data-en="AI integrations: <span class='grad-text'>frequently asked questions</span>">AI-integraties: <span class="grad-text">veelgestelde vragen</span></h2>
+    </div>
+    <div class="faq-wrap reveal">
+      <div class="glass faq-item">
+        <button class="faq-q"><span data-nl="Wat is een AI-integratie?" data-en="What is an AI integration?">Wat is een AI-integratie?</span><svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner" data-nl="Een AI-integratie koppelt slimme taalmodellen zoals ChatGPT of Claude aan jouw website, app of werkproces. Denk aan een chatbot die klantvragen beantwoordt, automatische samenvattingen, slimme zoekfuncties of het automatiseren van terugkerend werk." data-en="An AI integration connects smart language models like ChatGPT or Claude to your website, app or workflow. Think of a chatbot answering customer questions, automatic summaries, smart search or automating recurring work.">Een AI-integratie koppelt slimme taalmodellen zoals ChatGPT of Claude aan jouw website, app of werkproces. Denk aan een chatbot die klantvragen beantwoordt, automatische samenvattingen, slimme zoekfuncties of het automatiseren van terugkerend werk.</div></div>
+      </div>
+      <div class="glass faq-item">
+        <button class="faq-q"><span data-nl="Welke AI-modellen gebruiken jullie?" data-en="Which AI models do you use?">Welke AI-modellen gebruiken jullie?</span><svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner" data-nl="Verso werkt met toonaangevende modellen zoals Claude van Anthropic en GPT van OpenAI, en kiest per project het model dat het beste past bij jouw doel, budget en privacy-eisen." data-en="Verso works with leading models such as Claude by Anthropic and GPT by OpenAI, choosing the model that best fits your goal, budget and privacy requirements per project.">Verso werkt met toonaangevende modellen zoals Claude van Anthropic en GPT van OpenAI, en kiest per project het model dat het beste past bij jouw doel, budget en privacy-eisen.</div></div>
+      </div>
+      <div class="glass faq-item">
+        <button class="faq-q"><span data-nl="Kan AI in mijn bestaande website worden ingebouwd?" data-en="Can AI be built into my existing website?">Kan AI in mijn bestaande website worden ingebouwd?</span><svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner" data-nl="Ja. Een AI-functie zoals een chatbot of assistent kan in de meeste bestaande websites en apps worden toegevoegd via een koppeling, zonder dat alles opnieuw gebouwd hoeft te worden." data-en="Yes. An AI feature like a chatbot or assistant can be added to most existing websites and apps via an integration, without rebuilding everything.">Ja. Een AI-functie zoals een chatbot of assistent kan in de meeste bestaande websites en apps worden toegevoegd via een koppeling, zonder dat alles opnieuw gebouwd hoeft te worden.</div></div>
+      </div>
+      <div class="glass faq-item">
+        <button class="faq-q"><span data-nl="Is mijn data veilig bij een AI-integratie?" data-en="Is my data safe with an AI integration?">Is mijn data veilig bij een AI-integratie?</span><svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner" data-nl="Privacy staat voorop. We kiezen modellen en instellingen waarbij jouw data niet wordt gebruikt om modellen te trainen, en we verwerken gegevens volgens de AVG. Per project bespreken we welke aanpak past bij jouw situatie." data-en="Privacy comes first. We choose models and settings where your data is not used to train models, and we process data in line with GDPR. Per project we discuss which approach fits your situation.">Privacy staat voorop. We kiezen modellen en instellingen waarbij jouw data niet wordt gebruikt om modellen te trainen, en we verwerken gegevens volgens de AVG. Per project bespreken we welke aanpak past bij jouw situatie.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="glass cta-band reveal">
+      <h2 data-nl="Benieuwd wat <span class='grad-text'>AI voor jou</span> kan doen?" data-en="Curious what <span class='grad-text'>AI can do</span> for you?">Benieuwd wat <span class="grad-text">AI voor jou</span> kan doen?</h2>
+      <p data-nl="Vertel me over je idee of uitdaging. Ik denk vrijblijvend mee over waar AI in jouw bedrijf het meeste oplevert." data-en="Tell me about your idea or challenge. I'll think along, free of charge, about where AI adds the most value in your business.">Vertel me over je idee of uitdaging. Ik denk vrijblijvend mee over waar AI in jouw bedrijf het meeste oplevert.</p>
+      <div class="hero-actions">
+        <a href="/aanvragen.html" class="btn btn-primary magnetic" data-nl="Plan een gesprek →" data-en="Plan a call →">Plan een gesprek →</a>
+        <a href="mailto:info@versodevelopment.nl" class="btn btn-outline" data-nl="Mail me direct" data-en="Email me directly">Mail me direct</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container foot-inner">
+    <div class="foot-logo"><img src="/assets/logo-horizontal.png" alt="Verso Development"></div>
+    <div class="foot-copy">© 2026 Verso · Kenny van Teeffelen</div>
+    <div class="foot-links">
+      <a href="/website-laten-maken/" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
+      <a href="/webdesign-breda/" data-nl="Webdesign Breda" data-en="Web design Breda">Webdesign Breda</a>
+      <a href="/ai-integraties/" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
+      <a href="/#prijzen" data-nl="Prijzen" data-en="Pricing">Prijzen</a>
+      <a href="/aanvragen.html" data-nl="Aanvragen" data-en="Request">Aanvragen</a>
+      <a href="/algemene-voorwaarden" data-nl="Algemene voorwaarden" data-en="Terms">Algemene voorwaarden</a>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Terug naar boven">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>
