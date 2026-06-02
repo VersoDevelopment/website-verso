@@ -149,7 +149,7 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
   nav.scrolled{width:fit-content;left:50%;transform:translateX(-50%)}
   nav.scrolled .nav-links{display:none !important}
 }
-.mobile-menu{display:none;position:fixed;inset:0;background:rgba(6,14,32,.97);backdrop-filter:blur(20px);z-index:850;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:80px 32px 40px}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(6,14,32,.97);backdrop-filter:blur(20px);z-index:850;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:80px 32px 40px;overflow-y:auto}
 .mobile-menu.open{display:flex}
 .mobile-menu .nav-link{font-size:1.2rem;font-weight:600;padding:12px 28px;width:100%;max-width:300px;text-align:center;border-radius:12px;color:rgba(218,226,253,.8)}
 .mobile-menu .nav-cta{background:var(--grad);color:#060e20 !important;margin-top:12px}
@@ -369,6 +369,20 @@ body.light .mobile-theme-btn:hover{border-color:#5B21B6;color:#5B21B6}
 .f-ctrl::placeholder{color:var(--muted2)}
 select.f-ctrl{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c0c1ff' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:38px}
 select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
+
+/* NAV DROPDOWN */
+.nav-dropdown{position:relative}
+.nav-caret{display:inline-block;margin-left:3px;transition:transform .22s;vertical-align:middle}
+.nav-dropdown:hover .nav-caret,.nav-dropdown:focus-within .nav-caret{transform:rotate(180deg)}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);min-width:212px;background:rgba(6,14,32,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:12px;padding:8px;box-shadow:0 16px 48px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s,transform .22s;z-index:950}
+.nav-dropdown-menu::before{content:'';position:absolute;top:-12px;left:0;right:0;height:14px}
+.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(4px)}
+.nav-dropdown-menu a{display:block;padding:9px 14px;border-radius:8px;font-size:.84rem;font-weight:500;color:rgba(218,226,253,.75);text-decoration:none;white-space:nowrap;transition:background .18s,color .18s}
+.nav-dropdown-menu a:hover{background:rgba(192,193,255,.1);color:var(--primary)}
+body.light .nav-dropdown-menu{background:rgba(240,244,255,.98);border-color:rgba(13,18,38,.14)}
+body.light .nav-dropdown-menu a{color:rgba(13,18,38,.7)}
+body.light .nav-dropdown-menu a:hover{background:rgba(139,92,246,.1);color:#5B21B6}
+.mobile-sublabel{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--muted2);margin:14px 0 2px}
 </style>
 </head>
 <body>
@@ -380,7 +394,14 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-links">
-    <a href="#diensten" class="nav-link" data-s="diensten" data-nl="Diensten" data-en="Services">Diensten</a>
+    <div class="nav-dropdown">
+      <a href="#diensten" class="nav-link" data-s="diensten" data-nl="Diensten <svg class='nav-caret' width='9' height='6' viewBox='0 0 12 7' fill='none'><path d='M1 1l5 5 5-5' stroke='currentColor' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>" data-en="Services <svg class='nav-caret' width='9' height='6' viewBox='0 0 12 7' fill='none'><path d='M1 1l5 5 5-5' stroke='currentColor' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>">Diensten <svg class="nav-caret" width="9" height="6" viewBox="0 0 12 7" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown-menu">
+        <a href="/website-laten-maken/" data-nl="Website laten maken" data-en="Build a website">Website laten maken</a>
+        <a href="/webdesign-breda/" data-nl="Webdesign Breda" data-en="Web design Breda">Webdesign Breda</a>
+        <a href="/ai-integraties/" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
+      </div>
+    </div>
     <a href="#portfolio" class="nav-link" data-s="portfolio" data-nl="Portfolio" data-en="Portfolio">Portfolio</a>
     <a href="#prijzen" class="nav-link" data-s="prijzen" data-nl="Prijzen" data-en="Pricing">Prijzen</a>
     <a href="#over" class="nav-link" data-s="over" data-nl="Over mij" data-en="About me">Over mij</a>
@@ -400,7 +421,10 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
 </nav>
 
 <div id="mobile-menu" class="mobile-menu">
-  <a href="#diensten" class="nav-link" data-nl="Diensten" data-en="Services">Diensten</a>
+  <span class="mobile-sublabel" data-nl="Diensten" data-en="Services">Diensten</span>
+  <a href="/website-laten-maken/" class="nav-link" data-nl="Website laten maken" data-en="Build a website">Website laten maken</a>
+  <a href="/webdesign-breda/" class="nav-link" data-nl="Webdesign Breda" data-en="Web design Breda">Webdesign Breda</a>
+  <a href="/ai-integraties/" class="nav-link" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
   <a href="#portfolio" class="nav-link" data-nl="Portfolio" data-en="Portfolio">Portfolio</a>
   <a href="#prijzen" class="nav-link" data-nl="Prijzen" data-en="Pricing">Prijzen</a>
   <a href="#over" class="nav-link" data-nl="Over mij" data-en="About me">Over mij</a>
