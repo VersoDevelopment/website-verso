@@ -5,6 +5,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
+app.disable('x-powered-by');
 app.set('trust proxy', 1);
 app.use(express.json({ limit: '50kb' }));
 
@@ -176,12 +177,20 @@ app.post('/chat', chatLimit, async (req, res) => {
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: 'Berichten ontbreken' });
     }
+    if (messages.length > 20) {
+      return res.status(400).json({ error: 'Te veel berichten' });
+    }
     const valid = messages.every(m =>
       m && typeof m.role === 'string' && typeof m.content === 'string' &&
       (m.role === 'user' || m.role === 'assistant') &&
       m.content.length <= 2000
     );
     if (!valid) return res.status(400).json({ error: 'Ongeldig berichtformaat' });
+    if (messages[0].role !== 'user') {
+      return res.status(400).json({ error: 'Ongeldig berichtformaat' });
+    }
+    const alternates = messages.every((m, i) => i === 0 || m.role !== messages[i - 1].role);
+    if (!alternates) return res.status(400).json({ error: 'Ongeldig berichtformaat' });
 
     const response = await anthropic.messages.create({
       model: 'claude-haiku-4-5-20251001',
