@@ -366,13 +366,18 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
 .va-panel{position:relative;overflow:hidden;cursor:pointer;border-radius:10px;flex:1 1 0;min-width:0;border:1px solid var(--border);background:linear-gradient(160deg,var(--bg1),var(--bg2));transition:flex .7s cubic-bezier(.4,0,.2,1),border-color .4s;user-select:none}
 .va-panel:hover{border-color:rgba(192,193,255,.3)}
 .va-panel.va-active{flex:3.4 1 0}
-.va-bg{position:absolute;inset:0;background:radial-gradient(130% 80% at 50% 120%,var(--acc,rgba(192,193,255,.2)),transparent 70%);opacity:.45;transition:opacity .6s;pointer-events:none}
+.va-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(130% 80% at 50% 120%,var(--acc,rgba(192,193,255,.2)),transparent 70%);opacity:.45;transition:opacity .6s;pointer-events:none}
 .va-panel.va-active .va-bg{opacity:1}
-.va-ico{position:absolute;top:26px;left:50%;transform:translateX(-50%);width:32px;height:32px;color:var(--primary);opacity:.5;transition:opacity .5s,transform .6s;pointer-events:none}
-.va-panel.va-active .va-ico{opacity:.85;transform:translateX(-50%) scale(1.06)}
-.va-label-sm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--font-h);font-size:.92rem;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap;transition:opacity .3s;pointer-events:none}
+.va-pat{position:absolute;inset:0;z-index:1;opacity:.32;pointer-events:none;transition:opacity .6s}
+.va-panel.va-active .va-pat{opacity:.5}
+#verso-acc .va-panel:nth-child(1) .va-pat{background-image:radial-gradient(rgba(192,193,255,.4) 1.2px,transparent 1.4px);background-size:20px 20px}
+#verso-acc .va-panel:nth-child(2) .va-pat{background-image:repeating-linear-gradient(45deg,rgba(232,121,249,.22) 0 1px,transparent 1px 13px)}
+#verso-acc .va-panel:nth-child(3) .va-pat{background-image:linear-gradient(rgba(96,165,250,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,.16) 1px,transparent 1px);background-size:26px 26px}
+#verso-acc .va-panel:nth-child(4) .va-pat{background-image:repeating-radial-gradient(circle at 50% 25%,rgba(139,92,246,.24) 0 1px,transparent 1px 15px)}
+#verso-acc .va-panel:nth-child(5) .va-pat{background-image:radial-gradient(rgba(52,211,153,.34) 1.2px,transparent 1.4px);background-size:15px 15px}
+.va-label-sm{position:absolute;z-index:2;top:50%;left:50%;transform:translate(-50%,-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--font-h);font-size:.92rem;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap;transition:opacity .3s;pointer-events:none}
 .va-panel.va-active .va-label-sm{opacity:0}
-.va-content{display:block;text-decoration:none;color:inherit;position:absolute;left:0;right:0;bottom:0;padding:30px 28px;opacity:0;transform:translateY(10px);transition:opacity .45s ease .25s,transform .45s ease .25s;pointer-events:none}
+.va-content{display:block;text-decoration:none;color:inherit;position:absolute;z-index:3;left:0;right:0;bottom:0;padding:30px 28px;opacity:0;transform:translateY(10px);transition:opacity .45s ease .25s,transform .45s ease .25s;pointer-events:none}
 .va-panel.va-active .va-content{opacity:1;transform:none;pointer-events:auto}
 .va-content::before{content:'';position:absolute;inset:-40px 0 0;z-index:-1;background:linear-gradient(to top,rgba(6,14,32,.96) 0%,rgba(6,14,32,.65) 48%,transparent 100%)}
 .va-title{display:block;font-family:var(--font-h);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
@@ -385,8 +390,6 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
   #verso-acc{flex-direction:column;height:auto;gap:10px}
   .va-panel{flex:none;height:72px;transition:height .4s cubic-bezier(.4,0,.2,1),border-color .4s}
   .va-panel.va-active{height:auto}
-  .va-ico{top:50%;left:22px;transform:translateY(-50%)}
-  .va-panel.va-active .va-ico{top:24px;left:24px;transform:none}
   .va-label-sm{writing-mode:horizontal-tb;top:50%;left:62px;transform:translateY(-50%);font-size:1.05rem}
   .va-content{position:static;opacity:1;transform:none;pointer-events:auto;padding:58px 24px 26px}
   .va-panel:not(.va-active) .va-content{display:none}
@@ -466,7 +469,7 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
     <div class="reveal rd1" id="verso-acc">
       <div class="va-panel va-active" style="--acc:rgba(192,193,255,.30)">
         <div class="va-bg"></div>
-        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        <div class="va-pat"></div>
         <span class="va-label-sm" data-nl="Websites" data-en="Websites">Websites</span>
         <a class="va-content" href="/website-laten-maken/">
           <span class="va-title" data-nl="Websites" data-en="Websites">Websites</span>
@@ -476,7 +479,7 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
       </div>
       <div class="va-panel" style="--acc:rgba(232,121,249,.28)">
         <div class="va-bg"></div>
-        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <div class="va-pat"></div>
         <span class="va-label-sm" data-nl="Webdesign" data-en="Web design">Webdesign</span>
         <a class="va-content" href="/webdesign-breda/">
           <span class="va-title" data-nl="Webdesign" data-en="Web design">Webdesign</span>
@@ -486,7 +489,7 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
       </div>
       <div class="va-panel" style="--acc:rgba(96,165,250,.30)">
         <div class="va-bg"></div>
-        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3 2-2 3 3"/></svg>
+        <div class="va-pat"></div>
         <span class="va-label-sm" data-nl="Web apps" data-en="Web apps">Web apps</span>
         <a class="va-content" href="/aanvragen.html">
           <span class="va-title" data-nl="Web apps op maat" data-en="Custom web apps">Web apps op maat</span>
@@ -496,7 +499,7 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
       </div>
       <div class="va-panel" style="--acc:rgba(139,92,246,.30)">
         <div class="va-bg"></div>
-        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <div class="va-pat"></div>
         <span class="va-label-sm" data-nl="AI" data-en="AI">AI</span>
         <a class="va-content" href="/ai-integraties/">
           <span class="va-title" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</span>
@@ -506,7 +509,7 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
       </div>
       <div class="va-panel" style="--acc:rgba(52,211,153,.26)">
         <div class="va-bg"></div>
-        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <div class="va-pat"></div>
         <span class="va-label-sm" data-nl="Mobiel" data-en="Mobile">Mobiel</span>
         <a class="va-content" href="/aanvragen.html">
           <span class="va-title" data-nl="Mobiel &amp; PWA" data-en="Mobile &amp; PWA">Mobiel &amp; PWA</span>
