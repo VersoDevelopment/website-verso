@@ -181,15 +181,6 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .marque-item{display:inline-flex;align-items:center;gap:10px;padding:0 24px;font-size:.72rem;font-weight:600;color:var(--muted);flex-shrink:0;letter-spacing:.06em;text-transform:uppercase}
 .marque-dot{width:3px;height:3px;border-radius:50%;background:var(--primary);opacity:.6;flex-shrink:0}
 
-/* DIENSTEN TABS */
-.service-tab-btn{width:100%;padding:20px 24px;text-align:left;cursor:pointer;background:none;border:none;color:var(--muted);font-family:var(--font-h);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;transition:all .3s}
-.service-tab-btn.active,.service-tab-btn:hover{color:var(--primary)}
-.svc-panel{display:none}.svc-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:600px){.svc-panel.active{grid-template-columns:1fr}}
-.svc-card{padding:24px 22px}
-.svc-icon{width:26px;height:26px;margin-bottom:14px;display:block;color:var(--primary)}
-.svc-title{font-family:var(--font-h);font-size:.96rem;font-weight:600;margin-bottom:7px;color:var(--text)}
-.svc-desc{font-size:.84rem;color:var(--text);line-height:1.7}
 
 /* WERKWIJZE */
 .step-nr{font-family:var(--font-h);font-size:3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.45;line-height:1;margin-bottom:18px;display:block}
@@ -369,6 +360,39 @@ body.light .mobile-theme-btn:hover{border-color:#5B21B6;color:#5B21B6}
 .f-ctrl::placeholder{color:var(--muted2)}
 select.f-ctrl{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c0c1ff' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:38px}
 select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
+
+/* DIENSTEN ACCORDION (Verso) */
+#verso-acc{display:flex;flex-direction:row;gap:8px;height:440px}
+.va-panel{position:relative;overflow:hidden;cursor:pointer;border-radius:10px;flex:1 1 0;min-width:0;border:1px solid var(--border);background:linear-gradient(160deg,var(--bg1),var(--bg2));transition:flex .7s cubic-bezier(.4,0,.2,1),border-color .4s;user-select:none}
+.va-panel:hover{border-color:rgba(192,193,255,.3)}
+.va-panel.va-active{flex:3.4 1 0}
+.va-bg{position:absolute;inset:0;background:radial-gradient(130% 80% at 50% 120%,var(--acc,rgba(192,193,255,.2)),transparent 70%);opacity:.45;transition:opacity .6s;pointer-events:none}
+.va-panel.va-active .va-bg{opacity:1}
+.va-ico{position:absolute;top:26px;left:50%;transform:translateX(-50%);width:32px;height:32px;color:var(--primary);opacity:.5;transition:opacity .5s,transform .6s;pointer-events:none}
+.va-panel.va-active .va-ico{opacity:.85;transform:translateX(-50%) scale(1.06)}
+.va-label-sm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--font-h);font-size:.92rem;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap;transition:opacity .3s;pointer-events:none}
+.va-panel.va-active .va-label-sm{opacity:0}
+.va-content{display:block;text-decoration:none;color:inherit;position:absolute;left:0;right:0;bottom:0;padding:30px 28px;opacity:0;transform:translateY(10px);transition:opacity .45s ease .25s,transform .45s ease .25s;pointer-events:none}
+.va-panel.va-active .va-content{opacity:1;transform:none;pointer-events:auto}
+.va-content::before{content:'';position:absolute;inset:-40px 0 0;z-index:-1;background:linear-gradient(to top,rgba(6,14,32,.96) 0%,rgba(6,14,32,.65) 48%,transparent 100%)}
+.va-title{display:block;font-family:var(--font-h);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
+.va-desc{display:block;font-size:.9rem;color:var(--text);line-height:1.7;margin-bottom:18px;max-width:420px}
+.va-cta{display:inline-flex;align-items:center;gap:7px;font-size:.86rem;font-weight:700;color:var(--primary);transition:gap .2s}
+.va-content:hover .va-cta{gap:12px}
+body.light .va-panel{background:linear-gradient(160deg,#e8eeff,#dde6ff)}
+body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,255,.97) 0%,rgba(240,244,255,.7) 48%,transparent 100%)}
+@media(max-width:768px){
+  #verso-acc{flex-direction:column;height:auto;gap:10px}
+  .va-panel{flex:none;height:72px;transition:height .4s cubic-bezier(.4,0,.2,1),border-color .4s}
+  .va-panel.va-active{height:auto}
+  .va-ico{top:50%;left:22px;transform:translateY(-50%)}
+  .va-panel.va-active .va-ico{top:24px;left:24px;transform:none}
+  .va-label-sm{writing-mode:horizontal-tb;top:50%;left:62px;transform:translateY(-50%);font-size:1.05rem}
+  .va-content{position:static;opacity:1;transform:none;pointer-events:auto;padding:58px 24px 26px}
+  .va-panel:not(.va-active) .va-content{display:none}
+  .va-content::before{display:none}
+  .va-desc{max-width:none}
+}
 </style>
 </head>
 <body>
@@ -439,87 +463,58 @@ select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
       <h2 class="sec-title" data-nl="Wat ik voor je <span class='grad-text'>kan bouwen</span>" data-en="What I can <span class='grad-text'>build for you</span>">Wat ik voor je <span class="grad-text">kan bouwen</span></h2>
       <p class="sec-sub" data-nl="Van eenvoudige landingspagina tot volwaardige web app, maatwerk dat werkt zoals jij het voor ogen hebt." data-en="From a simple landing page to a full web app, custom-built to work exactly as you envision.">Van eenvoudige landingspagina tot volwaardige web app, maatwerk dat werkt zoals jij het voor ogen hebt.</p>
     </div>
-    <div class="reveal rd1" style="display:grid;grid-template-columns:260px 1fr;gap:20px;align-items:start">
-      <div class="service-tabs" style="display:flex;flex-direction:column;gap:8px">
-        <div class="glass" style="overflow:hidden">
-          <button class="service-tab-btn active" data-tab="webapps" data-nl="Web Apps" data-en="Web Apps">Web Apps</button>
-          <button class="service-tab-btn" data-tab="websites" data-nl="Websites" data-en="Websites">Websites</button>
-          <button class="service-tab-btn" data-tab="mobiel" data-nl="Mobiel" data-en="Mobile">Mobiel</button>
-        </div>
+    <div class="reveal rd1" id="verso-acc">
+      <div class="va-panel va-active" style="--acc:rgba(192,193,255,.30)">
+        <div class="va-bg"></div>
+        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        <span class="va-label-sm" data-nl="Websites" data-en="Websites">Websites</span>
+        <a class="va-content" href="/website-laten-maken/">
+          <span class="va-title" data-nl="Websites" data-en="Websites">Websites</span>
+          <span class="va-desc" data-nl="Bedrijfswebsites en landingspagina's die snel laden, goed scoren in Google en passen bij jouw merk." data-en="Business websites and landing pages that load fast, rank well on Google and fit your brand.">Bedrijfswebsites en landingspagina's die snel laden, goed scoren in Google en passen bij jouw merk.</span>
+          <span class="va-cta"><span data-nl="Website laten maken" data-en="Build a website">Website laten maken</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
       </div>
-      <div style="position:relative">
-        <!-- Web Apps -->
-        <div id="panel-webapps" class="svc-panel active">
-          <div class="glass svc-card reveal rd1">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3 2-2 3 3"/></svg>
-            <div class="svc-title" data-nl="Interactieve dashboards" data-en="Interactive dashboards">Interactieve dashboards</div>
-            <div class="svc-desc" data-nl="Real-time data, filters, grafieken. Intern portaal of klantfacing, overzichtelijk en snel." data-en="Real-time data, filters, charts. Internal portal or client-facing, clear and fast.">Real-time data, filters, grafieken. Intern portaal of klantfacing, overzichtelijk en snel.</div>
-          </div>
-          <div class="glass svc-card reveal rd2">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            <div class="svc-title" data-nl="Real-time applicaties" data-en="Real-time applications">Real-time applicaties</div>
-            <div class="svc-desc" data-nl="WebSocket-gedreven apps waarbij meerdere gebruikers tegelijkertijd dezelfde live data zien." data-en="WebSocket-driven apps where multiple users see the same live data simultaneously.">WebSocket-gedreven apps waarbij meerdere gebruikers tegelijkertijd dezelfde live data zien.</div>
-          </div>
-          <div class="glass svc-card reveal rd3">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            <div class="svc-title" data-nl="Tools &amp; automatisering" data-en="Tools &amp; automation">Tools &amp; automatisering</div>
-            <div class="svc-desc" data-nl="Formulieren, calculators, intake-systemen, generatoren. Alles wat tijd bespaart in jouw workflow." data-en="Forms, calculators, intake systems, generators. Everything that saves time in your workflow.">Formulieren, calculators, intake-systemen, generatoren. Alles wat tijd bespaart in jouw workflow.</div>
-          </div>
-          <div class="glass svc-card reveal rd4">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            <div class="svc-title" data-nl="API-integraties" data-en="API integrations">API-integraties</div>
-            <div class="svc-desc" data-nl="Koppelingen met externe diensten: betalingen, agenda's, CRM's en meer." data-en="Connections with external services: payments, calendars, CRMs and more.">Koppelingen met externe diensten: betalingen, agenda's, CRM's en meer.</div>
-          </div>
-        </div>
-        <!-- Websites -->
-        <div id="panel-websites" class="svc-panel">
-          <div class="glass svc-card reveal rd1">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-            <div class="svc-title" data-nl="Bedrijfswebsites" data-en="Business websites">Bedrijfswebsites</div>
-            <div class="svc-desc" data-nl="Jouw online visitekaartje. Modern, snel en geoptimaliseerd voor zoekmachines." data-en="Your online business card. Modern, fast and optimised for search engines.">Jouw online visitekaartje. Modern, snel en geoptimaliseerd voor zoekmachines.</div>
-          </div>
-          <div class="glass svc-card reveal rd2">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            <div class="svc-title" data-nl="Landingspagina's" data-en="Landing pages">Landingspagina's</div>
-            <div class="svc-desc" data-nl="Conversiegerichte pagina's voor producten, events, campagnes of launches." data-en="Conversion-focused pages for products, events, campaigns or launches.">Conversiegerichte pagina's voor producten, events, campagnes of launches.</div>
-          </div>
-          <div class="glass svc-card reveal rd3">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-            <div class="svc-title" data-nl="Portfolio sites" data-en="Portfolio sites">Portfolio sites</div>
-            <div class="svc-desc" data-nl="Laat zien wat je kan. Een eigen plek op het web die jouw werk centraal stelt." data-en="Show what you can do. Your own place on the web that puts your work front and center.">Laat zien wat je kan. Een eigen plek op het web die jouw werk centraal stelt.</div>
-          </div>
-          <div class="glass svc-card reveal rd4">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            <div class="svc-title" data-nl="Content-beheer" data-en="Content management">Content-beheer</div>
-            <div class="svc-desc" data-nl="Eenvoudig zelf aanpasbaar via CMS, geen developer nodig voor elke tekstwijziging." data-en="Easily editable via CMS, no developer needed for every text change.">Eenvoudig zelf aanpasbaar via CMS, geen developer nodig voor elke tekstwijziging.</div>
-          </div>
-        </div>
-        <!-- Mobiel -->
-        <div id="panel-mobiel" class="svc-panel">
-          <div class="glass svc-card reveal rd1">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-            <div class="svc-title" data-nl="Mobiele web apps" data-en="Mobile web apps">Mobiele web apps</div>
-            <div class="svc-desc" data-nl="Apps via de browser op je telefoon, geen app store, altijd up-to-date." data-en="Apps via the browser on your phone, no app store, always up to date.">Apps via de browser op je telefoon, geen app store, altijd up-to-date.</div>
-          </div>
-          <div class="glass svc-card reveal rd2">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-            <div class="svc-title" data-nl="Offline-first PWA's" data-en="Offline-first PWAs">Offline-first PWA's</div>
-            <div class="svc-desc" data-nl="Progressive Web Apps die ook zonder internet werken. Installeerbaar op het thuisscherm." data-en="Progressive Web Apps that work without internet. Installable on the home screen.">Progressive Web Apps die ook zonder internet werken. Installeerbaar op het thuisscherm.</div>
-          </div>
-          <div class="glass svc-card reveal rd3">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg>
-            <div class="svc-title" data-nl="Touch-geoptimaliseerd" data-en="Touch-optimised">Touch-geoptimaliseerd</div>
-            <div class="svc-desc" data-nl="Swipes, grote knoppen, vloeiende animaties. Gebouwd voor de telefoon, niet een krimpende desktopsite." data-en="Swipes, large buttons, smooth animations. Built for the phone, not a shrinking desktop site.">Swipes, grote knoppen, vloeiende animaties. Gebouwd voor de telefoon, niet een krimpende desktopsite.</div>
-          </div>
-          <div class="glass svc-card reveal rd4">
-            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <div class="svc-title" data-nl="Push notificaties" data-en="Push notifications">Push notificaties</div>
-            <div class="svc-desc" data-nl="Houd gebruikers op de hoogte met tijdige meldingen rechtstreeks op hun scherm." data-en="Keep users informed with timely notifications directly on their screen.">Houd gebruikers op de hoogte met tijdige meldingen rechtstreeks op hun scherm.</div>
-          </div>
-        </div>
+      <div class="va-panel" style="--acc:rgba(232,121,249,.28)">
+        <div class="va-bg"></div>
+        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <span class="va-label-sm" data-nl="Webdesign" data-en="Web design">Webdesign</span>
+        <a class="va-content" href="/webdesign-breda/">
+          <span class="va-title" data-nl="Webdesign" data-en="Web design">Webdesign</span>
+          <span class="va-desc" data-nl="Een uniek ontwerp op maat dat opvalt. Lokaal in Breda en omgeving, met oog voor detail en gebruiksgemak." data-en="A unique custom design that stands out. Local in Breda and beyond, with an eye for detail and usability.">Een uniek ontwerp op maat dat opvalt. Lokaal in Breda en omgeving, met oog voor detail en gebruiksgemak.</span>
+          <span class="va-cta"><span data-nl="Webdesign Breda" data-en="Web design Breda">Webdesign Breda</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+      </div>
+      <div class="va-panel" style="--acc:rgba(96,165,250,.30)">
+        <div class="va-bg"></div>
+        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3 2-2 3 3"/></svg>
+        <span class="va-label-sm" data-nl="Web apps" data-en="Web apps">Web apps</span>
+        <a class="va-content" href="/aanvragen.html">
+          <span class="va-title" data-nl="Web apps op maat" data-en="Custom web apps">Web apps op maat</span>
+          <span class="va-desc" data-nl="Dashboards, portalen en tools die jouw werk slimmer maken. Real-time data, koppelingen en automatisering." data-en="Dashboards, portals and tools that make your work smarter. Real-time data, integrations and automation.">Dashboards, portalen en tools die jouw werk slimmer maken. Real-time data, koppelingen en automatisering.</span>
+          <span class="va-cta"><span data-nl="Bespreek je project" data-en="Discuss your project">Bespreek je project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+      </div>
+      <div class="va-panel" style="--acc:rgba(139,92,246,.30)">
+        <div class="va-bg"></div>
+        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="va-label-sm" data-nl="AI" data-en="AI">AI</span>
+        <a class="va-content" href="/ai-integraties/">
+          <span class="va-title" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</span>
+          <span class="va-desc" data-nl="Slimme chatbots en automatisering met ChatGPT en Claude, ingebouwd in je website of werkproces." data-en="Smart chatbots and automation with ChatGPT and Claude, built into your website or workflow.">Slimme chatbots en automatisering met ChatGPT en Claude, ingebouwd in je website of werkproces.</span>
+          <span class="va-cta"><span data-nl="Meer over AI" data-en="More about AI">Meer over AI</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+      </div>
+      <div class="va-panel" style="--acc:rgba(52,211,153,.26)">
+        <div class="va-bg"></div>
+        <svg class="va-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <span class="va-label-sm" data-nl="Mobiel" data-en="Mobile">Mobiel</span>
+        <a class="va-content" href="/aanvragen.html">
+          <span class="va-title" data-nl="Mobiel &amp; PWA" data-en="Mobile &amp; PWA">Mobiel &amp; PWA</span>
+          <span class="va-desc" data-nl="Mobiele web apps en Progressive Web Apps die voelen als een echte app, zonder app store en altijd up-to-date." data-en="Mobile web apps and Progressive Web Apps that feel like a real app, without an app store and always up to date.">Mobiele web apps en Progressive Web Apps die voelen als een echte app, zonder app store en altijd up-to-date.</span>
+          <span class="va-cta"><span data-nl="Bespreek je project" data-en="Discuss your project">Bespreek je project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
       </div>
     </div>
-    <style>@media(max-width:768px){#diensten .reveal[style]{grid-template-columns:1fr !important}}</style>
   </div>
 </section>
 
@@ -908,16 +903,19 @@ const techs=['HTML','CSS','JavaScript','Python','Flask','WebSockets','Claude AI'
 const mEl=document.getElementById('marque');
 mEl.innerHTML=[...techs,...techs].map(t=>`<span class="marque-item"><span class="marque-dot"></span>${t}</span>`).join('');
 
-// ── SERVICE TABS ──────────────────────────────────────────
-document.querySelectorAll('.service-tab-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.service-tab-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelectorAll('.svc-panel').forEach(p=>p.classList.remove('active'));
-    btn.classList.add('active');
-    const panel=document.getElementById('panel-'+btn.dataset.tab);
-    if(panel){panel.classList.add('active');panel.querySelectorAll('.reveal').forEach(el=>{el.classList.remove('visible');setTimeout(()=>el.classList.add('visible'),10);});}
+// ── DIENSTEN ACCORDION ────────────────────────────────────
+(function(){
+  const acc=document.getElementById('verso-acc');
+  if(!acc)return;
+  const panels=[...acc.querySelectorAll('.va-panel')];
+  const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  function activate(p){panels.forEach(x=>x.classList.toggle('va-active',x===p));}
+  panels.forEach(p=>{
+    if(fine)p.addEventListener('mouseenter',()=>activate(p));
+    // Klik op een ingeklapt paneel: eerst openklappen (niet doorlinken)
+    p.addEventListener('click',e=>{if(!p.classList.contains('va-active')){e.preventDefault();activate(p);}});
   });
-});
+})();
 
 // ── REVEAL / STAGGER ─────────────────────────────────────
 const revObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
