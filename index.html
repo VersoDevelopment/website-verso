@@ -878,8 +878,13 @@ mEl.innerHTML=[...techs,...techs].map(t=>`<span class="marque-item"><span class=
   }else{
     // Touch: geen hover-logica. Alle panelen dicht starten en met één tik open/dicht schakelen.
     panels.forEach(p=>p.classList.remove('va-active'));
+    const lastTap=new WeakMap();
     panels.forEach(p=>{
       p.addEventListener('click',e=>{
+        // Absorbeer dubbele/spook-clicks die sommige mobiele browsers per tik afvuren
+        const now=Date.now();
+        if(now-(lastTap.get(p)||0)<500){e.preventDefault();return;}
+        lastTap.set(p,now);
         if(!p.classList.contains('va-active')){
           e.preventDefault();
           activate(p);
