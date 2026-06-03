@@ -151,6 +151,31 @@
     .chip-lbl { display: inline-block; padding: 7px 15px; border: 1.5px solid var(--border); border-radius: 30px; font-size: .82rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all .18s; }
     .chip input:checked + .chip-lbl { background: rgba(139,92,246,.14); border-color: rgba(139,92,246,.55); color: var(--primary); }
 
+    /* GROTE FUNCTIE-KNOPPEN */
+    .func-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+    @media(max-width:500px){ .func-grid { grid-template-columns: 1fr; } }
+    .func-opt input { display: none; }
+    .func-lbl {
+      display: flex; align-items: center; gap: 12px; min-height: 60px;
+      padding: 16px 18px; border: 1.5px solid var(--border); border-radius: 12px;
+      font-size: .95rem; font-weight: 600; color: var(--text); cursor: pointer;
+      transition: all .18s; line-height: 1.25;
+    }
+    .func-lbl::before {
+      content: ''; flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
+      border: 1.5px solid var(--muted2); transition: all .18s;
+    }
+    .func-opt:hover .func-lbl { border-color: rgba(139,92,246,.45); transform: translateY(-2px); }
+    .func-opt input:checked + .func-lbl {
+      background: rgba(139,92,246,.16); border-color: rgba(139,92,246,.6); color: var(--primary);
+      box-shadow: 0 0 22px rgba(139,92,246,.16);
+    }
+    .func-opt input:checked + .func-lbl::before {
+      background: var(--grad); border-color: transparent;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='11' viewBox='0 0 14 11'%3E%3Cpath d='M1 5.5l4 4 8-8' stroke='%23060e20' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: center;
+    }
+
     .brief-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; gap: 12px; }
     .brief-nav-note { font-size: .78rem; color: var(--muted2); flex: 1; }
 
@@ -184,7 +209,7 @@
     <div class="nav-links">
       <a href="index.html#diensten"  class="nav-link">Diensten</a>
       <a href="index.html#portfolio" class="nav-link">Portfolio</a>
-      <a href="index.html#prijzen"   class="nav-link">Prijzen</a>
+      <a href="index.html#offerte"   class="nav-link">Offerte</a>
       <a href="index.html#over"      class="nav-link">Over mij</a>
       <a href="aanvragen.html" class="nav-link btn btn-primary nav-cta active">Vraag aan</a>
     </div>
@@ -218,8 +243,6 @@
           <div class="bs active" data-step="0"><div class="bs-num">1</div><span>Gegevens</span></div>
           <div class="bs-line" id="bline1"></div>
           <div class="bs" data-step="1"><div class="bs-num">2</div><span>Project</span></div>
-          <div class="bs-line" id="bline2"></div>
-          <div class="bs" data-step="2"><div class="bs-num">3</div><span>Design</span></div>
         </div>
 
         <form id="briefForm" novalidate>
@@ -239,17 +262,6 @@
               </div>
             </div>
             <div class="brief-card">
-              <div class="brief-card-title">Pakket interesse</div>
-              <div class="chips" id="pakket-chips">
-                <label class="chip"><input type="radio" name="pakket" value="Basic"><span class="chip-lbl">Basic</span></label>
-                <label class="chip"><input type="radio" name="pakket" value="Plus"><span class="chip-lbl">Plus</span></label>
-                <label class="chip"><input type="radio" name="pakket" value="Enterprise"><span class="chip-lbl">Enterprise</span></label>
-                <label class="chip"><input type="radio" name="pakket" value="Nog niet zeker"><span class="chip-lbl">Nog niet zeker</span></label>
-              </div>
-              <p id="pakket-prijs-display" style="margin-top:12px;font-size:.82rem;color:var(--muted);min-height:1.2em"></p>
-              <input type="hidden" name="prijs_indicatie" id="prijs-indicatie-field">
-            </div>
-            <div class="brief-card">
               <div class="brief-card-title">Project basics</div>
               <div class="f-group">
                 <label class="f-label">Type project <span class="f-req">*</span></label>
@@ -263,15 +275,8 @@
                 </select>
               </div>
             </div>
-            <div class="brief-card">
-              <div class="brief-card-title">Kortingscode</div>
-              <div class="f-group">
-                <label class="f-label">Kortingscode <span style="color:var(--muted2);font-weight:400">(optioneel)</span></label>
-                <input type="text" name="kortingscode" id="kortingscode-input" class="f-ctrl" placeholder="Voer je kortingscode in">
-              </div>
-            </div>
             <div class="brief-nav">
-              <span class="brief-nav-note">Stap 1 van 3</span>
+              <span class="brief-nav-note">Stap 1 van 2</span>
               <button type="button" class="btn btn-primary" onclick="briefNext()">Volgende →</button>
             </div>
           </div>
@@ -304,32 +309,32 @@
             </div>
             <div class="brief-card">
               <div class="brief-card-title">Gewenste functionaliteiten</div>
-              <p style="font-size:.8rem;color:var(--muted);margin-bottom:14px">Vink aan wat je wilt hebben. Je kunt daarna nog extra dingen toelichten.</p>
-              <div class="chips">
-                <label class="chip"><input type="checkbox" name="func" value="Contactformulier"><span class="chip-lbl">Contactformulier</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Online reserveren / agenda"><span class="chip-lbl">Online reserveren / agenda</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Webshop / producten"><span class="chip-lbl">Webshop / producten</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Betaalsysteem"><span class="chip-lbl">Betaalsysteem</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Klantenportaal / inloggen"><span class="chip-lbl">Klantenportaal / inloggen</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Blog / nieuws"><span class="chip-lbl">Blog / nieuws</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Zoekfunctie"><span class="chip-lbl">Zoekfunctie</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Meertalig"><span class="chip-lbl">Meertalig</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Nieuwsbrief / e-mail"><span class="chip-lbl">Nieuwsbrief / e-mail</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Galerij / portfolio"><span class="chip-lbl">Galerij / portfolio</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Recensies / reviews"><span class="chip-lbl">Recensies / reviews</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="FAQ"><span class="chip-lbl">FAQ</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Kaart / locatie"><span class="chip-lbl">Kaart / locatie</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Vacatures"><span class="chip-lbl">Vacatures</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Downloadbare bestanden"><span class="chip-lbl">Downloadbare bestanden</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Livechat"><span class="chip-lbl">Livechat</span></label>
-                <label class="chip"><input type="checkbox" name="func" value="Social media koppeling"><span class="chip-lbl">Social media koppeling</span></label>
+              <p style="font-size:.8rem;color:var(--muted);margin-bottom:16px">Kies de functies die je nodig hebt. Je kunt het daarna nog toelichten.</p>
+              <div class="func-grid">
+                <label class="func-opt"><input type="checkbox" name="func" value="Contactformulier"><span class="func-lbl">Contactformulier</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Online reserveren / agenda"><span class="func-lbl">Online reserveren / agenda</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Webshop / producten"><span class="func-lbl">Webshop / producten</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Betaalsysteem"><span class="func-lbl">Betaalsysteem</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Klantenportaal / inloggen"><span class="func-lbl">Klantenportaal / inloggen</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Blog / nieuws"><span class="func-lbl">Blog / nieuws</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Zoekfunctie"><span class="func-lbl">Zoekfunctie</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Meertalig"><span class="func-lbl">Meertalig</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Nieuwsbrief / e-mail"><span class="func-lbl">Nieuwsbrief / e-mail</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Galerij / portfolio"><span class="func-lbl">Galerij / portfolio</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Recensies / reviews"><span class="func-lbl">Recensies / reviews</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="FAQ"><span class="func-lbl">FAQ</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Kaart / locatie"><span class="func-lbl">Kaart / locatie</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Vacatures"><span class="func-lbl">Vacatures</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Downloadbare bestanden"><span class="func-lbl">Downloadbare bestanden</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Livechat"><span class="func-lbl">Livechat</span></label>
+                <label class="func-opt"><input type="checkbox" name="func" value="Social media koppeling"><span class="func-lbl">Social media koppeling</span></label>
               </div>
             </div>
             <div class="brief-card">
               <div class="brief-card-title">Toelichting</div>
               <div class="f-group" style="margin-bottom:14px">
                 <label class="f-label">Aanvullingen of specifieke wensen</label>
-                <textarea name="musthaves" class="f-ctrl" placeholder="Bijv. de agenda moet koppelen met Google Calendar, de webshop moet kortingscodes ondersteunen..." required></textarea>
+                <textarea name="musthaves" class="f-ctrl" placeholder="Bijv. de agenda moet koppelen met Google Calendar, de webshop moet kortingscodes ondersteunen..."></textarea>
               </div>
               <div class="f-group">
                 <label class="f-label">Nice-to-haves (optioneel)</label>
@@ -338,76 +343,7 @@
             </div>
             <div class="brief-nav">
               <button type="button" class="btn btn-outline" onclick="briefPrev()">← Terug</button>
-              <span class="brief-nav-note" style="text-align:center">Stap 2 van 3</span>
-              <button type="button" class="btn btn-primary" onclick="briefNext()">Volgende →</button>
-            </div>
-          </div>
-
-          <!-- STAP 3: Design & extras -->
-          <div class="brief-page" id="bpage-2">
-            <div class="brief-card">
-              <div class="brief-card-title">Stijl & design</div>
-              <div class="f-group" style="margin-bottom:14px">
-                <label class="f-label">Gewenste stijl</label>
-                <div class="chips">
-                  <label class="chip"><input type="checkbox" name="stijl" value="Minimalistisch"><span class="chip-lbl">Minimalistisch</span></label>
-                  <label class="chip"><input type="checkbox" name="stijl" value="Kleurrijk"><span class="chip-lbl">Kleurrijk</span></label>
-                  <label class="chip"><input type="checkbox" name="stijl" value="Dark mode"><span class="chip-lbl">Dark mode</span></label>
-                  <label class="chip"><input type="checkbox" name="stijl" value="Warm / aards"><span class="chip-lbl">Warm / aards</span></label>
-                  <label class="chip"><input type="checkbox" name="stijl" value="Speels"><span class="chip-lbl">Speels</span></label>
-                  <label class="chip"><input type="checkbox" name="stijl" value="Zakelijk / strak"><span class="chip-lbl">Zakelijk / strak</span></label>
-                  <label class="chip"><input type="checkbox" name="stijl" value="Futuristisch"><span class="chip-lbl">Futuristisch</span></label>
-                  <label class="chip"><input type="checkbox" name="stijl" value="Modern"><span class="chip-lbl">Modern</span></label>
-                  <label class="chip"><input type="checkbox" name="stijl" value="Elegant"><span class="chip-lbl">Elegant</span></label>
-                </div>
-              </div>
-              <div class="f-row">
-                <div class="f-group"><label class="f-label">Kleurenschema</label><input type="text" name="kleuren" class="f-ctrl" placeholder="bijv. Blauw/wit, donker, geen voorkeur"></div>
-                <div class="f-group"><label class="f-label">Referentie / inspiratie</label><input type="text" name="referentie" class="f-ctrl" placeholder="bijv. Spotify, Airbnb, geen"></div>
-              </div>
-            </div>
-            <div class="brief-card">
-              <div class="brief-card-title">Extra wensen</div>
-              <div class="f-row" style="margin-bottom:18px">
-                <div class="f-group">
-                  <label class="f-label">Foto's of video's op de site?</label>
-                  <div class="chips" style="margin-top:4px">
-                    <label class="chip"><input type="radio" name="media" value="Ja"><span class="chip-lbl">Ja</span></label>
-                    <label class="chip"><input type="radio" name="media" value="Nee"><span class="chip-lbl">Nee</span></label>
-                    <label class="chip"><input type="radio" name="media" value="Weet ik nog niet"><span class="chip-lbl">Weet ik nog niet</span></label>
-                  </div>
-                </div>
-                <div class="f-group">
-                  <label class="f-label">Klantenportaal gewenst?</label>
-                  <div class="chips" style="margin-top:4px">
-                    <label class="chip"><input type="radio" name="portal" value="Ja"><span class="chip-lbl">Ja</span></label>
-                    <label class="chip"><input type="radio" name="portal" value="Nee"><span class="chip-lbl">Nee</span></label>
-                    <label class="chip"><input type="radio" name="portal" value="Misschien"><span class="chip-lbl">Misschien</span></label>
-                  </div>
-                </div>
-              </div>
-              <div class="f-row" style="margin-bottom:14px">
-                <div class="f-group">
-                  <label class="f-label">Betaalsysteem?</label>
-                  <div class="chips" style="margin-top:4px">
-                    <label class="chip"><input type="radio" name="betaal" value="Ja"><span class="chip-lbl">Ja</span></label>
-                    <label class="chip"><input type="radio" name="betaal" value="Nee"><span class="chip-lbl">Nee</span></label>
-                    <label class="chip"><input type="radio" name="betaal" value="Misschien"><span class="chip-lbl">Misschien</span></label>
-                  </div>
-                </div>
-                <div class="f-group">
-                  <label class="f-label">Koppeling met andere diensten?</label>
-                  <input type="text" name="koppelingen" class="f-ctrl" placeholder="bijv. Google agenda, WhatsApp, Mollie, geen">
-                </div>
-              </div>
-              <div class="f-group">
-                <label class="f-label">Extra opmerkingen of context</label>
-                <textarea name="extra" class="f-ctrl" placeholder="Alles wat ik nog moet weten..."></textarea>
-              </div>
-            </div>
-            <div class="brief-nav">
-              <button type="button" class="btn btn-outline" onclick="briefPrev()">← Terug</button>
-              <span class="brief-nav-note" style="text-align:center">Stap 3 van 3</span>
+              <span class="brief-nav-note" style="text-align:center">Stap 2 van 2</span>
               <button type="submit" class="btn btn-primary">Aanvraag versturen →</button>
             </div>
           </div>
@@ -432,7 +368,7 @@
     <div class="foot-copy">© 2026 Verso · Kenny van Teeffelen</div>
     <div class="foot-links">
       <a href="index.html#diensten">Diensten</a>
-      <a href="index.html#prijzen">Prijzen</a>
+      <a href="index.html#offerte">Offerte</a>
       <a href="aanvragen.html">Aanvragen</a>
       <a href="index.html#contact">Contact</a>
       <a href="https://www.instagram.com/versodevelopment/" target="_blank">Instagram</a>
@@ -441,64 +377,6 @@
 </footer>
 
 <script>
-const PAKKET_PRICES = { Basic: 399.99, Plus: 925, Enterprise: 1449.99 };
-let formDiscount = 0;
-let formDiscountCode = '';
-
-function fmtPrice(n) {
-  const s = n.toFixed(2);
-  const [int, dec] = s.split('.');
-  return int.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + dec;
-}
-
-function updatePakketPrijs() {
-  const selected = document.querySelector('input[name="pakket"]:checked');
-  const display = document.getElementById('pakket-prijs-display');
-  const field = document.getElementById('prijs-indicatie-field');
-  if (!selected || selected.value === 'Nog niet zeker' || !PAKKET_PRICES[selected.value]) {
-    display.textContent = ''; field.value = ''; return;
-  }
-  const base = PAKKET_PRICES[selected.value];
-  if (formDiscount > 0) {
-    const net = base * (1 - formDiscount);
-    display.textContent = '€' + fmtPrice(net) + ' (kortingscode ' + formDiscountCode + ', ' + Math.round(formDiscount * 100) + '% korting op €' + fmtPrice(base) + ')';
-    field.value = selected.value + ': €' + fmtPrice(net) + ' (kortingscode ' + formDiscountCode + ', ' + Math.round(formDiscount * 100) + '% korting)';
-  } else {
-    display.textContent = '€' + fmtPrice(base);
-    field.value = selected.value + ': €' + fmtPrice(base);
-  }
-}
-
-async function validateFormDiscount() {
-  const code = (document.getElementById('kortingscode-input').value || '').trim().toUpperCase();
-  if (!code) { formDiscount = 0; formDiscountCode = ''; sessionStorage.removeItem('verso-discount-code'); updatePakketPrijs(); return; }
-  try {
-    const res = await fetch('/api/validate-discount', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code }) });
-    const data = await res.json();
-    if (data.valid) { formDiscount = data.discount; formDiscountCode = code; sessionStorage.setItem('verso-discount-code', code); }
-    else { formDiscount = 0; formDiscountCode = ''; sessionStorage.removeItem('verso-discount-code'); }
-  } catch (e) { formDiscount = 0; formDiscountCode = ''; }
-  updatePakketPrijs();
-}
-
-document.querySelectorAll('input[name="pakket"]').forEach(r => r.addEventListener('change', updatePakketPrijs));
-const kortingsInput = document.getElementById('kortingscode-input');
-let discountTimer;
-if (kortingsInput) kortingsInput.addEventListener('input', () => { clearTimeout(discountTimer); discountTimer = setTimeout(validateFormDiscount, 400); });
-
-const savedCode = sessionStorage.getItem('verso-discount-code');
-if (savedCode) {
-  const codeInput = document.getElementById('kortingscode-input');
-  if (codeInput) { codeInput.value = savedCode; validateFormDiscount(); }
-}
-
-const urlPakket = new URLSearchParams(window.location.search).get('pakket');
-if (urlPakket) {
-  const radio = document.querySelector(`input[name="pakket"][value="${urlPakket}"]`);
-  if (radio) { radio.checked = true; }
-}
-updatePakketPrijs();
-
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   navEl.classList.toggle('scrolled', window.scrollY > 60);
@@ -510,7 +388,7 @@ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 let briefStep = 0;
 const bPages = document.querySelectorAll('.brief-page');
 const bStepEls = document.querySelectorAll('.bs');
-const bLines = [document.getElementById('bline1'), document.getElementById('bline2')];
+const bLines = [document.getElementById('bline1')];
 
 function briefUpdateUI() {
   bPages.forEach((p, i) => p.classList.toggle('active', i === briefStep));
@@ -531,20 +409,14 @@ function briefNext() {
       showToast('Vul een geldig e-mailadres in.'); return;
     }
   }
-  if (briefStep < 2) { briefStep++; briefUpdateUI(); window.scrollTo({ top: document.getElementById('aanvragen').offsetTop - 80, behavior: 'smooth' }); }
+  if (briefStep < 1) { briefStep++; briefUpdateUI(); window.scrollTo({ top: document.getElementById('aanvragen').offsetTop - 80, behavior: 'smooth' }); }
 }
 function briefPrev() { if (briefStep > 0) { briefStep--; briefUpdateUI(); } }
 
 async function submitForm(form) {
   const fd = new FormData(form);
-  const stijl = [...form.querySelectorAll('input[name="stijl"]:checked')].map(c => c.value).join(', ');
-  if (stijl) fd.set('stijl', stijl);
   const func = [...form.querySelectorAll('input[name="func"]:checked')].map(c => c.value).join(', ');
   if (func) fd.set('functionaliteiten', func);
-  ['media','portal','betaal','pakket'].forEach(n => {
-    const checked = form.querySelector(`input[name="${n}"]:checked`);
-    if (checked) fd.set(n, checked.value);
-  });
   const body = {};
   for (const [k, v] of fd.entries()) body[k] = v;
   try {
@@ -563,6 +435,11 @@ async function submitForm(form) {
 
 document.getElementById('briefForm').addEventListener('submit', async e => {
   e.preventDefault();
+  // valideer de zichtbare stap voor verzenden
+  const curPage = document.getElementById('bpage-' + briefStep);
+  for (const f of curPage.querySelectorAll('[required]')) {
+    if (!f.value.trim()) { f.focus(); f.style.borderColor = 'rgba(232,121,249,.6)'; setTimeout(() => f.style.borderColor = '', 2000); return; }
+  }
   const btn = e.target.querySelector('[type="submit"]');
   btn.disabled = true;
   btn.textContent = 'Versturen…';

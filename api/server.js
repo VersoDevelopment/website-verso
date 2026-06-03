@@ -80,10 +80,6 @@ function buildKennyEmail(d) {
       ${row('E-mail', d.email)}
       ${row('Bedrijf', d.bedrijf)}
       ${row('Telefoon', d.telefoon)}
-      ${section('Pakket & prijs')}
-      ${row('Pakket', d.pakket)}
-      ${row('Prijs', d.prijs_indicatie)}
-      ${row('Kortingscode', d.kortingscode)}
       ${section('Project')}
       ${row('Type', d.type)}
       ${row('Scope', d.scope)}
@@ -94,15 +90,6 @@ function buildKennyEmail(d) {
       ${row('Functionaliteiten', d.functionaliteiten)}
       ${row('Must-haves', d.musthaves)}
       ${row('Nice-to-haves', d.nicetohaves)}
-      ${section('Design')}
-      ${row('Stijl', d.stijl)}
-      ${row('Kleuren', d.kleuren)}
-      ${row('Referentie', d.referentie)}
-      ${row("Foto's/video's", d.media)}
-      ${row('Klantenportaal', d.portal)}
-      ${row('Betaalsysteem', d.betaal)}
-      ${row('Koppelingen', d.koppelingen)}
-      ${row('Extra', d.extra)}
     </table>
     <p style="text-align:center;margin:28px 0 20px">
       <a href="mailto:${esc(d.email)}" style="background:linear-gradient(135deg,#8B5CF6,#60A5FA);color:#fff;text-decoration:none;padding:12px 30px;border-radius:8px;font-size:14px;font-weight:600;display:inline-block">Beantwoord ${esc(d.naam)} →</a>

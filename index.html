@@ -228,59 +228,6 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .port-link{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:var(--primary);text-decoration:none;transition:gap .2s}
 .port-link:hover{gap:11px}
 
-/* PRICING */
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1000px;margin:0 auto;align-items:start}
-@media(max-width:780px){.price-grid{grid-template-columns:1fr;max-width:400px}}
-.price-card{padding:28px 24px;display:flex;flex-direction:column;cursor:pointer;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
-.price-card:hover{transform:translateY(-5px)}
-.price-card.featured{background:#f4f6ff !important;border-color:transparent !important;color:#060e20 !important;box-shadow:0 0 80px rgba(192,193,255,.2),0 24px 64px rgba(0,0,0,.3)}
-.price-card.featured::after{content:'';position:absolute;inset:-1.5px;border-radius:calc(var(--r) + 2px);z-index:-1;background:linear-gradient(135deg,#c0c1ff,#8B5CF6,#60A5FA,#c0c1ff);background-size:300% 300%;animation:gradBorder 5s ease infinite}
-@keyframes gradBorder{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.price-card.featured .price-name,.price-card.featured .price-amount,.price-card.featured .price-from{color:#060e20}
-.price-card.featured .price-period,.price-card.featured .price-peek{color:rgba(6,14,32,.6)}
-.price-card.featured .price-features li{color:rgba(6,14,32,.85)}
-.price-card.featured .price-features li.off{color:rgba(6,14,32,.45)}
-.price-card.featured .price-features li::before{color:#8B5CF6}
-.price-card.featured .price-features li.off::before{color:rgba(6,14,32,.25)}
-.price-card.featured .pa-orig{color:rgba(6,14,32,.3)}
-.price-badge{display:inline-block;font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;background:var(--grad);color:#060e20;padding:4px 12px;border-radius:4px;margin-bottom:18px}
-.price-name{font-family:var(--font-h);font-size:1.15rem;font-weight:700;margin-bottom:8px}
-.price-amount{font-family:var(--font-h);font-size:2.4rem;font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:3px}
-.price-amount sup{font-size:.95rem;font-weight:500;vertical-align:top;margin-top:6px;display:inline-block}
-.price-from{font-size:.82rem;font-weight:500;opacity:.6;display:block;margin-bottom:2px}
-.price-period{font-size:.74rem;color:var(--muted);margin-bottom:20px;min-height:1.1em}
-.price-features{list-style:none;display:flex;flex-direction:column;gap:10px}
-.price-features li{display:flex;align-items:flex-start;gap:9px;font-size:.88rem;color:var(--text)}
-.price-features li::before{content:'✓';color:var(--primary);font-weight:700;flex-shrink:0}
-.price-features li.off::before{content:'–';color:var(--muted2)}
-.price-features li.off{color:var(--muted)}
-.price-extra{max-height:0;overflow:hidden;opacity:0;transition:max-height .42s cubic-bezier(.4,0,.2,1),opacity .35s}
-.price-card:hover .price-extra,.price-card.expanded .price-extra{max-height:300px;opacity:1}
-.price-extra .price-features{margin-top:10px}
-.price-peek{text-align:center;padding:7px 0 14px;font-size:.82rem;color:var(--muted2);letter-spacing:.2em;user-select:none;transition:opacity .25s}
-.price-card:hover .price-peek,.price-card.expanded .price-peek{opacity:0;pointer-events:none}
-.pa-orig{font-size:1rem;font-weight:400;color:var(--muted2);margin-left:8px;vertical-align:middle}
-.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:14px;margin:-16px auto 36px}
-.pt-label{font-size:.88rem;font-weight:500;color:var(--muted2);transition:color .2s;display:flex;align-items:center;gap:6px}
-.pt-label.active{color:var(--text)}
-.pt-switch{position:relative;display:inline-block;width:50px;height:28px;flex-shrink:0}
-.pt-switch input{opacity:0;width:0;height:0;position:absolute}
-.pt-slider{position:absolute;cursor:pointer;inset:0;background:rgba(192,193,255,.2);border-radius:28px;transition:background .3s}
-.pt-slider::before{content:'';position:absolute;width:22px;height:22px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform .3s}
-.pt-switch input:checked+.pt-slider{background:var(--grad)}
-.pt-switch input:checked+.pt-slider::before{transform:translateX(22px)}
-.pt-badge{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--grad);color:#060e20;padding:2px 7px;border-radius:4px}
-.hosting-free{text-align:center;margin-bottom:36px}
-.hosting-free-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(0,210,150,.06);border:1px solid rgba(0,210,150,.24);border-radius:9999px;padding:10px 24px;font-size:.82rem;color:var(--muted);backdrop-filter:blur(10px)}
-.hosting-free-badge strong{color:#00d296}
-.discount-wrap{display:flex;flex-direction:column;align-items:center;margin:-8px auto 28px;gap:8px}
-.discount-box{display:flex;align-items:center;gap:10px}
-.discount-input{padding:10px 14px;background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:7px;color:var(--text);font-family:var(--font-b);font-size:.88rem;outline:none;transition:border-color .2s;width:200px}
-.discount-input:focus{border-color:rgba(192,193,255,.5)}
-.discount-input::placeholder{color:var(--muted2)}
-.discount-msg{font-size:.82rem;font-weight:500;text-align:center;min-height:1.2em}
-.btn-price{width:100%;justify-content:center;padding:12px;margin-top:18px;cursor:pointer}
-
 /* STATS */
 .stat-box{padding:24px 20px}
 .stat-nr{font-family:var(--font-h);font-size:2.3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:5px}
@@ -422,7 +369,6 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
   <div class="nav-links">
     <a href="#diensten" class="nav-link" data-s="diensten" data-nl="Diensten" data-en="Services">Diensten</a>
     <a href="#portfolio" class="nav-link" data-s="portfolio" data-nl="Portfolio" data-en="Portfolio">Portfolio</a>
-    <a href="#prijzen" class="nav-link" data-s="prijzen" data-nl="Prijzen" data-en="Pricing">Prijzen</a>
     <a href="#over" class="nav-link" data-s="over" data-nl="Over mij" data-en="About me">Over mij</a>
     <a href="#contact" class="nav-link" data-s="contact" data-nl="Contact" data-en="Contact">Contact</a>
     <div class="nav-divider"></div>
@@ -442,7 +388,6 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
 <div id="mobile-menu" class="mobile-menu">
   <a href="#diensten" class="nav-link" data-nl="Diensten" data-en="Services">Diensten</a>
   <a href="#portfolio" class="nav-link" data-nl="Portfolio" data-en="Portfolio">Portfolio</a>
-  <a href="#prijzen" class="nav-link" data-nl="Prijzen" data-en="Pricing">Prijzen</a>
   <a href="#over" class="nav-link" data-nl="Over mij" data-en="About me">Over mij</a>
   <a href="#contact" class="nav-link" data-nl="Contact" data-en="Contact">Contact</a>
   <a href="aanvragen.html" class="nav-link nav-cta" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
@@ -530,6 +475,19 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
   </div>
 </section>
 
+<!-- OFFERTE -->
+<section id="offerte" class="section" style="background:rgba(11,19,38,.3)">
+  <div class="container" style="text-align:center;max-width:780px">
+    <div class="reveal">
+      <span class="sec-label" data-nl="[ OFFERTE ]" data-en="[ QUOTE ]">[ OFFERTE ]</span>
+      <h2 class="sec-title" style="margin:0 auto 14px" data-nl="Een website laten maken <span class='grad-text'>vanaf €399</span>" data-en="A website built <span class='grad-text'>from €399</span>">Een website laten maken <span class="grad-text">vanaf €399</span></h2>
+      <p class="sec-sub" style="max-width:640px;margin:0 auto 16px" data-nl="Bij Verso Development laat je een professionele, snelle website op maat bouwen vanaf €399. De eerste maand hosting is helemaal gratis, zodat je zonder zorgen live gaat." data-en="At Verso Development you get a professional, fast custom website from €399. Your first month of hosting is completely free, so you can launch worry-free.">Bij Verso Development laat je een professionele, snelle website op maat bouwen vanaf €399. De eerste maand hosting is helemaal gratis, zodat je zonder zorgen live gaat.</p>
+      <p class="sec-sub" style="max-width:640px;margin:0 auto 36px" data-nl="Liever niet alles in één keer betalen? Dat hoeft niet, je kunt de investering ook gespreid per maand betalen. Vraag vrijblijvend een offerte aan en ik laat je zien wat er mogelijk is voor jouw bedrijf." data-en="Prefer not to pay everything at once? You don't have to, you can also spread the investment and pay monthly. Request a free quote and I'll show you what's possible for your business.">Liever niet alles in één keer betalen? Dat hoeft niet, je kunt de investering ook gespreid per maand betalen. Vraag vrijblijvend een offerte aan en ik laat je zien wat er mogelijk is voor jouw bedrijf.</p>
+      <a href="aanvragen.html" class="btn btn-primary magnetic" style="font-size:1rem;padding:16px 36px" data-nl="Offerte aanvragen →" data-en="Request a quote →">Offerte aanvragen →</a>
+    </div>
+  </div>
+</section>
+
 <!-- PORTFOLIO -->
 <section id="portfolio" class="section">
   <div class="container">
@@ -548,109 +506,6 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
         <h3 class="port-hero-title">Veramiek</h3>
         <p class="port-hero-desc" data-nl="Stijlvolle website voor een keramiek atelier uit Etten-Leur, inclusief collectie, workshops en contactmogelijkheden." data-en="Stylish website for a ceramics studio from Etten-Leur, including collection, workshops and contact options.">Stijlvolle website voor een keramiek atelier uit Etten-Leur, inclusief collectie, workshops en contactmogelijkheden.</p>
         <a href="https://veramiek.nl" target="_blank" class="btn btn-outline" data-nl="Bekijk project →" data-en="View project →">Bekijk project →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRIJZEN -->
-<section id="prijzen" class="section" style="background:rgba(11,19,38,.3)">
-  <div class="container">
-    <div class="reveal" style="text-align:center">
-      <span class="sec-label" data-nl="[ PRIJZEN ]" data-en="[ PRICING ]">[ PRIJZEN ]</span>
-      <h2 class="sec-title" data-nl="Onze <span class='grad-text'>tarieven</span>" data-en="Our <span class='grad-text'>pricing</span>">Onze <span class="grad-text">tarieven</span></h2>
-    </div>
-    <div class="pricing-toggle reveal">
-      <span class="pt-label active" id="pt-label-once" data-nl="Eenmalig" data-en="One-time">Eenmalig</span>
-      <label class="pt-switch" aria-label="Gespreide betaling">
-        <input type="checkbox" id="pricing-toggle">
-        <span class="pt-slider"></span>
-      </label>
-      <span class="pt-label" id="pt-label-spread" data-nl="12 termijnen" data-en="12 installments">12 termijnen</span>
-    </div>
-    <div class="hosting-free reveal">
-      <div class="hosting-free-badge">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d296" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span data-nl="Eerste 3 maanden hosting, onderhoud &amp; monitoring" data-en="First 3 months hosting, maintenance &amp; monitoring">Eerste 3 maanden hosting, onderhoud &amp; monitoring</span>&nbsp;<strong data-nl="GRATIS!" data-en="FREE!">GRATIS!</strong>&nbsp;<span data-nl="daarna €22/maand" data-en="then €22/month" style="font-size:.78rem;color:var(--muted)">daarna €22/maand</span>
-      </div>
-    </div>
-    <div class="discount-wrap reveal">
-      <div class="discount-box">
-        <input type="text" id="discount-input" class="discount-input" placeholder="Kortingscode" autocomplete="off" onkeydown="if(event.key==='Enter')applyDiscount()">
-        <button class="btn btn-outline" onclick="applyDiscount()" style="padding:9px 18px" data-nl="Toepassen" data-en="Apply">Toepassen</button>
-      </div>
-      <span id="discount-msg" class="discount-msg"></span>
-    </div>
-    <div class="price-grid stagger-group">
-      <!-- BASIC -->
-      <div class="glass price-card stagger-item">
-        <div class="price-name">Basic</div>
-        <div class="price-amount" data-once="399,99" data-termijn="36,99"><span class="price-from" data-nl="Vanaf" data-en="From">Vanaf</span> <sup>€</sup><span class="pa-val">399,99</span><del class="pa-orig"></del></div>
-        <div class="price-period" data-nl="eenmalig" data-en="one-time">eenmalig</div>
-        <ul class="price-features">
-          <li data-nl="Responsief design" data-en="Responsive design">Responsief design</li>
-          <li data-nl="1 revisie inbegrepen" data-en="1 revision included">1 revisie inbegrepen</li>
-          <li data-nl="Dedicated aandacht" data-en="Dedicated attention">Dedicated aandacht</li>
-          <li class="off" data-nl="Animaties &amp; interactiviteit" data-en="Animations &amp; interactivity">Animaties &amp; interactiviteit</li>
-          <li class="off" data-nl="AI-integratie" data-en="AI integration">AI-integratie</li>
-          <li class="off" data-nl="Webapplicatie" data-en="Web application">Webapplicatie</li>
-        </ul>
-        <div class="price-extra">
-          <ul class="price-features">
-            <li class="off" data-nl="Nazorg inbegrepen" data-en="Aftercare included">Nazorg inbegrepen</li>
-            <li class="off" data-nl="API-koppelingen" data-en="API integrations">API-koppelingen</li>
-            <li class="off" data-nl="Doorontwikkeling" data-en="Further development">Doorontwikkeling</li>
-          </ul>
-        </div>
-        <div class="price-peek">···</div>
-        <a href="aanvragen.html?pakket=Basic" class="btn btn-outline btn-price" data-nl="Aanvragen" data-en="Request">Aanvragen</a>
-      </div>
-      <!-- PLUS -->
-      <div class="glass price-card featured stagger-item">
-        <div class="price-badge" data-nl="Meest gekozen" data-en="Most popular">Meest gekozen</div>
-        <div class="price-name">Plus</div>
-        <div class="price-amount" data-once="925" data-termijn="79,99"><span class="price-from" data-nl="Vanaf" data-en="From">Vanaf</span> <sup>€</sup><span class="pa-val">925</span><del class="pa-orig"></del></div>
-        <div class="price-period" data-nl="eenmalig" data-en="one-time">eenmalig</div>
-        <ul class="price-features">
-          <li data-nl="Responsief design" data-en="Responsive design">Responsief design</li>
-          <li data-nl="3 revisies inbegrepen" data-en="3 revisions included">3 revisies inbegrepen</li>
-          <li data-nl="Dedicated aandacht" data-en="Dedicated attention">Dedicated aandacht</li>
-          <li data-nl="Animaties &amp; interactiviteit" data-en="Animations &amp; interactivity">Animaties &amp; interactiviteit</li>
-          <li data-nl="AI-integratie" data-en="AI integration">AI-integratie</li>
-          <li class="off" data-nl="Webapplicatie" data-en="Web application">Webapplicatie</li>
-        </ul>
-        <div class="price-extra">
-          <ul class="price-features">
-            <li class="off" data-nl="Nazorg inbegrepen" data-en="Aftercare included">Nazorg inbegrepen</li>
-            <li class="off" data-nl="API-koppelingen" data-en="API integrations">API-koppelingen</li>
-            <li class="off" data-nl="Doorontwikkeling" data-en="Further development">Doorontwikkeling</li>
-          </ul>
-        </div>
-        <div class="price-peek">···</div>
-        <a href="aanvragen.html?pakket=Plus" class="btn btn-primary btn-price" data-nl="Aanvragen" data-en="Request">Aanvragen</a>
-      </div>
-      <!-- ENTERPRISE -->
-      <div class="glass price-card stagger-item">
-        <div class="price-name">Enterprise</div>
-        <div class="price-amount" data-once="1.449,99" data-termijn="129,99"><span class="price-from" data-nl="Vanaf" data-en="From">Vanaf</span> <sup>€</sup><span class="pa-val">1.449,99</span><del class="pa-orig"></del></div>
-        <div class="price-period" data-nl="eenmalig" data-en="one-time">eenmalig</div>
-        <ul class="price-features">
-          <li data-nl="Responsief design" data-en="Responsive design">Responsief design</li>
-          <li data-nl="5 revisies inbegrepen" data-en="5 revisions included">5 revisies inbegrepen</li>
-          <li data-nl="Dedicated aandacht" data-en="Dedicated attention">Dedicated aandacht</li>
-          <li data-nl="Animaties &amp; interactiviteit" data-en="Animations &amp; interactivity">Animaties &amp; interactiviteit</li>
-          <li data-nl="AI-integratie" data-en="AI integration">AI-integratie</li>
-          <li data-nl="Webapplicatie" data-en="Web application">Webapplicatie</li>
-        </ul>
-        <div class="price-extra">
-          <ul class="price-features">
-            <li data-nl="Nazorg inbegrepen" data-en="Aftercare included">Nazorg inbegrepen</li>
-            <li data-nl="API-koppelingen" data-en="API integrations">API-koppelingen</li>
-            <li data-nl="Doorontwikkeling" data-en="Further development">Doorontwikkeling</li>
-          </ul>
-        </div>
-        <div class="price-peek">···</div>
-        <a href="aanvragen.html?pakket=Enterprise" class="btn btn-outline btn-price" data-nl="Aanvragen" data-en="Request">Aanvragen</a>
       </div>
     </div>
   </div>
@@ -720,7 +575,6 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
       <a href="/website-laten-maken/" data-nl="Website laten maken" data-en="Build a website">Website laten maken</a>
       <a href="/webdesign-breda/" data-nl="Webdesign Breda" data-en="Web design Breda">Webdesign Breda</a>
       <a href="/ai-integraties/" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
-      <a href="#prijzen" data-nl="Prijzen" data-en="Pricing">Prijzen</a>
       <a href="aanvragen.html" data-nl="Aanvragen" data-en="Request">Aanvragen</a>
       <a href="#contact" data-nl="Contact" data-en="Contact">Contact</a>
       <a href="https://portal.versodevelopment.nl" target="_blank" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
@@ -870,33 +724,33 @@ mEl.innerHTML=[...techs,...techs].map(t=>`<span class="marque-item"><span class=
   const acc=document.getElementById('verso-acc');
   if(!acc)return;
   const panels=[...acc.querySelectorAll('.va-panel')];
-  const touch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
-  function activate(p){panels.forEach(x=>x.classList.toggle('va-active',x===p));}
-  if(!touch){
-    // Alleen muis-apparaten: hover opent het paneel, klik op de inhoud volgt de link
+  // Echte muis-apparaten (ook touch-laptops met muis) krijgen hover; pure touch krijgt tik-logica.
+  const hoverable=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  let openedAt=0;
+  function activate(p){panels.forEach(x=>x.classList.toggle('va-active',x===p));openedAt=Date.now();}
+  if(hoverable){
+    // Muis: hover opent het paneel, klik op de inhoud volgt de link
     panels.forEach(p=>p.addEventListener('mouseenter',()=>activate(p)));
   }else{
-    // Touch: geen hover-logica. Alle panelen dicht starten en met één tik open/dicht schakelen.
+    // Touch: alle panelen dicht starten
     panels.forEach(p=>p.classList.remove('va-active'));
-    const lastTap=new WeakMap();
-    panels.forEach(p=>{
-      p.addEventListener('click',e=>{
-        // Absorbeer dubbele/spook-clicks die sommige mobiele browsers per tik afvuren
-        const now=Date.now();
-        if(now-(lastTap.get(p)||0)<500){e.preventDefault();return;}
-        lastTap.set(p,now);
-        if(!p.classList.contains('va-active')){
-          e.preventDefault();
-          activate(p);
-        }else if(!e.target.closest('.va-cta')){
-          // tik op een reeds open paneel (niet op de CTA-link) klapt weer dicht
-          e.preventDefault();
-          p.classList.remove('va-active');
-        }
-        // tik op de CTA in een open paneel laat de link gewoon doorgaan
-      });
-    });
   }
+  panels.forEach(p=>{
+    p.addEventListener('click',e=>{
+      if(!p.classList.contains('va-active')){
+        // dicht paneel: open het (geen navigatie)
+        e.preventDefault();
+        activate(p);
+        return;
+      }
+      // open paneel
+      if(e.target.closest('.va-cta'))return;   // CTA-link volgt gewoon de href
+      if(hoverable)return;                      // op muis-apparaten niet dichtklappen bij klik
+      if(Date.now()-openedAt<450)return;        // negeer spook-clicks vlak na het openen
+      e.preventDefault();
+      p.classList.remove('va-active');
+    });
+  });
 })();
 
 // ── REVEAL / STAGGER ─────────────────────────────────────
@@ -909,14 +763,9 @@ document.querySelectorAll('.stagger-group').forEach(el=>stagObs.observe(el));
 const cntObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;const tgt=parseInt(el.dataset.count);if(isNaN(tgt))return;cntObs.unobserve(el);const dur=1400,start=Date.now();const tick=()=>{const t=Math.min((Date.now()-start)/dur,1),ease=1-Math.pow(1-t,3);el.textContent=Math.round(ease*tgt)+(tgt===100?'%':'+');if(t<1)requestAnimationFrame(tick);};requestAnimationFrame(tick);});},{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el=>cntObs.observe(el));
 
-// ── PRICE EXPAND ─────────────────────────────────────────
-document.querySelectorAll('.price-card').forEach(card=>{
-  card.addEventListener('click',e=>{if(e.target.closest('.btn-price'))return;card.classList.toggle('expanded');});
-});
-
 // ── CARD TILT ─────────────────────────────────────────────
 if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
-  document.querySelectorAll('.port-card,.price-card,.glass.stagger-item').forEach(c=>{
+  document.querySelectorAll('.port-card,.glass.stagger-item').forEach(c=>{
     c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();const dx=(e.clientX-r.left-r.width/2)/(r.width/2);const dy=(e.clientY-r.top-r.height/2)/(r.height/2);c.style.transform=`perspective(700px) rotateY(${dx*4}deg) rotateX(${-dy*4}deg) translateY(-3px)`;});
     c.addEventListener('mouseleave',()=>{c.style.transform='';});
   });
@@ -937,17 +786,12 @@ applyTheme(localStorage.getItem('verso-theme')==='light');
 
 // ── LANGUAGE ──────────────────────────────────────────────
 const langBtn=document.getElementById('langToggle');
-let isTermijn=false;
-let activeDiscount=0;
-function parsePrice(s){return parseFloat(s.replace(/\./g,'').replace(',','.'))}
-function formatPrice(n){const s=n.toFixed(2);const[i,d]=s.split('.');return i.replace(/\B(?=(\d{3})+(?!\d))/g,'.')+','+d;}
 function applyLang(lang){
   currentLang=lang;
   if(langBtn)langBtn.textContent=lang==='nl'?'EN':'NL';
   localStorage.setItem('verso-lang',lang);
   document.querySelectorAll('[data-nl]').forEach(el=>{const v=el.getAttribute('data-'+lang);if(v!=null){if(el.children.length>0||v.includes('<'))el.innerHTML=v;else el.textContent=v;}});
   phrases.length=0;typingPhrases[lang].forEach(p=>phrases.push(p));
-  updatePricing();
 }
 function toggleLang(){applyLang(currentLang==='nl'?'en':'nl');}
 applyLang(currentLang);
@@ -1011,36 +855,6 @@ applyLang(currentLang);
   setTimeout(()=>txt.classList.remove('in'),FADE+HOLD);             // fade out
   setTimeout(()=>{splash.remove();revealContent();},FADE+HOLD+OUT+GAP); // 2s niks, dan de rest
 })();
-
-// ── PRICING ───────────────────────────────────────────────
-function updatePricing(){
-  const lang=currentLang||'nl';
-  const periodText=isTermijn?(lang==='nl'?'per maand × 12 termijnen':'per month × 12 installments'):(lang==='nl'?'eenmalig':'one-time');
-  document.querySelectorAll('.price-amount').forEach(el=>{
-    const base=isTermijn?el.dataset.termijn:el.dataset.once;
-    const valEl=el.querySelector('.pa-val');const origEl=el.querySelector('.pa-orig');
-    if(activeDiscount>0){const d=parsePrice(base)*(1-activeDiscount);valEl.textContent=formatPrice(d);if(origEl){origEl.textContent='€'+base;origEl.style.display='inline';}}
-    else{valEl.textContent=base;if(origEl)origEl.style.display='none';}
-  });
-  document.querySelectorAll('.price-period').forEach(el=>{el.textContent=periodText;});
-  const ptO=document.getElementById('pt-label-once');const ptS=document.getElementById('pt-label-spread');
-  if(ptO)ptO.classList.toggle('active',!isTermijn);
-  if(ptS)ptS.classList.toggle('active',isTermijn);
-}
-const pToggle=document.getElementById('pricing-toggle');
-if(pToggle)pToggle.addEventListener('change',function(){isTermijn=this.checked;updatePricing();});
-async function applyDiscount(){
-  const code=(document.getElementById('discount-input').value||'').trim().toUpperCase();
-  const msg=document.getElementById('discount-msg');
-  if(code===''){activeDiscount=0;msg.textContent='';sessionStorage.removeItem('verso-discount-code');updatePricing();return;}
-  try{
-    const res=await fetch('/api/validate-discount',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code})});
-    const data=await res.json();
-    if(data.valid){activeDiscount=data.discount;msg.style.color='#4ade80';msg.textContent='✓ '+Math.round(activeDiscount*100)+'% korting toegepast!';sessionStorage.setItem('verso-discount-code',code);}
-    else{activeDiscount=0;msg.style.color='rgba(232,121,249,1)';msg.textContent='Ongeldige kortingscode.';sessionStorage.removeItem('verso-discount-code');}
-  }catch(e){activeDiscount=0;msg.style.color='rgba(232,121,249,1)';msg.textContent='Kon de code niet controleren. Probeer het opnieuw.';}
-  updatePricing();
-}
 
 // ── AI CHAT ───────────────────────────────────────────────
 let chatHistory=[],chatOpen=false;
