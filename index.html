@@ -116,7 +116,7 @@ h1,h2,h3,h4{font-family:var(--font-h)}
 .magnetic{transition:transform .2s cubic-bezier(.23,1,.32,1)}
 
 /* NAV */
-nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);width:fit-content;background:rgba(11,19,38,.5);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:9999px;padding:10px 20px;z-index:900;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 32px rgba(0,0,0,.4);transition:all .5s cubic-bezier(.4,0,.2,1)}
+nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);width:fit-content;background:transparent;border:1px solid transparent;border-radius:9999px;padding:10px 20px;z-index:900;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .5s cubic-bezier(.4,0,.2,1)}
 @media(max-width:720px){nav{width:90%;max-width:880px;justify-content:space-between}}
 nav.scrolled{top:12px;left:32px;transform:none;width:auto;max-width:none;background:rgba(6,14,32,.9);box-shadow:0 8px 40px rgba(0,0,0,.5);padding:8px 16px}
 .nav-logo img{height:34px;width:auto;object-fit:contain;transition:height .3s}
@@ -155,7 +155,15 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .mobile-menu .nav-cta{background:var(--grad);color:#060e20 !important;margin-top:12px}
 
 /* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 32px 100px;position:relative;overflow:hidden;z-index:1}
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 32px 100px;position:relative;overflow:hidden;z-index:1;background:#060e20}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
+.hero-video-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(6,14,32,.12) 0%,rgba(6,14,32,.38) 80%,rgba(6,14,32,.6) 100%),linear-gradient(to bottom,rgba(6,14,32,.32) 0%,rgba(6,14,32,.04) 40%,rgba(6,14,32,.55) 100%)}
+@media(prefers-reduced-motion:reduce){.hero-video{display:none}}
+/* HERO BLUR-IN INTRO */
+.hero-title{perspective:1000px}
+.hero-word{display:inline-block}
+.blur-init{opacity:0;filter:blur(14px) brightness(.6);transform:translateY(22px) scale(.93) rotateX(-12deg);transform-style:preserve-3d;backface-visibility:hidden;transition:opacity 1.9s cubic-bezier(.25,.46,.45,.94),filter 1.9s cubic-bezier(.25,.46,.45,.94),transform 1.9s cubic-bezier(.25,.46,.45,.94)}
+.blur-init.in{opacity:1;filter:blur(0) brightness(1);transform:none}
 .hero-content{max-width:820px;position:relative;z-index:2}
 .hero-logo{margin-bottom:32px}
 .hero-logo img{height:clamp(110px,28vw,300px);width:auto;animation:logo-float 6s ease-in-out infinite,logo-glow 3s ease-in-out infinite}
@@ -439,6 +447,10 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
 
 <!-- HERO -->
 <section id="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+    <source src="assets/hero-clouds.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
   <div class="hero-content">
     <div class="hero-logo"><img src="assets/logo-icon.png" alt="Verso"></div>
     <div class="hero-badge" id="hero-badge">
@@ -447,10 +459,6 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
     </div>
     <h1 class="hero-title" data-nl="Van passie,<br>tot <span class='grad-text'>product.</span>" data-en="From passion,<br>to <span class='grad-text'>product.</span>">Van passie,<br>tot <span class="grad-text">product.</span></h1>
     <p class="hero-sub"><span id="typing"></span><span id="typing-cursor"></span></p>
-    <div class="hero-actions">
-      <a href="#aanvragen" class="btn btn-primary magnetic" data-nl="Project aanvragen →" data-en="Request a project →">Project aanvragen →</a>
-      <a href="#diensten" class="btn btn-outline" data-nl="Bekijk diensten" data-en="View services">Bekijk diensten</a>
-    </div>
   </div>
   <div class="scroll-hint"><div class="scroll-line"></div><span>scroll</span></div>
 </section>
@@ -922,6 +930,45 @@ function applyLang(lang){
 }
 function toggleLang(){applyLang(currentLang==='nl'?'en':'nl');}
 applyLang(currentLang);
+
+// ── HERO BLUR-IN INTRO ────────────────────────────────────
+(function heroIntro(){
+  const hero=document.getElementById('hero');
+  if(!hero)return;
+  const title=hero.querySelector('.hero-title');
+  const logo=hero.querySelector('.hero-logo');
+  const badge=hero.querySelector('.hero-badge');
+  const sub=hero.querySelector('.hero-sub');
+  // Split de titel woord-voor-woord, met behoud van <br> en de grad-text span
+  if(title){
+    const frag=document.createDocumentFragment();
+    [...title.childNodes].forEach(node=>{
+      if(node.nodeType===3){
+        node.textContent.split(/(\s+)/).forEach(tok=>{
+          if(tok==='')return;
+          if(tok.trim()===''){frag.appendChild(document.createTextNode(tok));return;}
+          const s=document.createElement('span');s.className='hero-word';s.textContent=tok;frag.appendChild(s);
+        });
+      }else if(node.nodeName==='BR'){
+        frag.appendChild(node.cloneNode());
+      }else{
+        const s=document.createElement('span');s.className='hero-word';s.appendChild(node.cloneNode(true));frag.appendChild(s);
+      }
+    });
+    title.innerHTML='';title.appendChild(frag);
+  }
+  const words=title?[...title.querySelectorAll('.hero-word')]:[];
+  const items=[logo,badge,...words,sub].filter(Boolean);
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  items.forEach(el=>el.classList.add('blur-init'));
+  void hero.offsetWidth; // reflow zodat de begintoestand telt
+  let d=120;
+  items.forEach(el=>{
+    el.style.transitionDelay=(d/1000)+'s';
+    d+=el.classList.contains('hero-word')?115:170;
+    requestAnimationFrame(()=>el.classList.add('in'));
+  });
+})();
 
 // ── PRICING ───────────────────────────────────────────────
 function updatePricing(){
