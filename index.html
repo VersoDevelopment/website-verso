@@ -321,40 +321,24 @@ select.f-ctrl{cursor:pointer;appearance:none;background-image:url("data:image/sv
 select.f-ctrl option{background-color:#0b1326;color:#dae2fd}
 
 /* DIENSTEN ACCORDION (Verso) */
-#verso-acc{display:flex;flex-direction:row;gap:8px;height:440px}
-.va-panel{position:relative;overflow:hidden;cursor:pointer;border-radius:10px;flex:1 1 0;min-width:0;border:1px solid var(--border);background:linear-gradient(160deg,var(--bg1),var(--bg2));transition:flex .7s cubic-bezier(.4,0,.2,1),border-color .4s;user-select:none}
-.va-panel:hover{border-color:rgba(192,193,255,.3)}
-.va-panel.va-active{flex:3.4 1 0}
-.va-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(130% 80% at 50% 120%,var(--acc,rgba(192,193,255,.2)),transparent 70%);opacity:.45;transition:opacity .6s;pointer-events:none}
-.va-panel.va-active .va-bg{opacity:1}
-.va-pat{position:absolute;inset:0;z-index:1;opacity:.32;pointer-events:none;transition:opacity .6s}
-.va-panel.va-active .va-pat{opacity:.5}
-#verso-acc .va-panel:nth-child(1) .va-pat{background-image:radial-gradient(rgba(192,193,255,.4) 1.2px,transparent 1.4px);background-size:20px 20px}
-#verso-acc .va-panel:nth-child(2) .va-pat{background-image:repeating-linear-gradient(45deg,rgba(232,121,249,.22) 0 1px,transparent 1px 13px)}
-#verso-acc .va-panel:nth-child(3) .va-pat{background-image:linear-gradient(rgba(96,165,250,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,.16) 1px,transparent 1px);background-size:26px 26px}
-#verso-acc .va-panel:nth-child(4) .va-pat{background-image:repeating-radial-gradient(circle at 50% 25%,rgba(139,92,246,.24) 0 1px,transparent 1px 15px)}
-#verso-acc .va-panel:nth-child(5) .va-pat{background-image:radial-gradient(rgba(52,211,153,.34) 1.2px,transparent 1.4px);background-size:15px 15px}
-.va-label-sm{position:absolute;z-index:2;left:0;right:0;bottom:24px;text-align:center;padding:0 10px;font-family:var(--font-h);font-size:1.05rem;font-weight:700;letter-spacing:.01em;color:var(--text);white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.5);transition:opacity .3s;pointer-events:none}
-.va-panel.va-active .va-label-sm{opacity:0}
-.va-content{display:block;text-decoration:none;color:inherit;position:absolute;z-index:3;left:0;right:0;bottom:0;padding:30px 28px;opacity:0;transform:translateY(10px);transition:opacity .45s ease .25s,transform .45s ease .25s;pointer-events:none}
-.va-panel.va-active .va-content{opacity:1;transform:none;pointer-events:auto}
-.va-content::before{content:'';position:absolute;inset:-40px 0 0;z-index:-1;background:linear-gradient(to top,rgba(6,14,32,.96) 0%,rgba(6,14,32,.65) 48%,transparent 100%)}
-.va-title{display:block;font-family:var(--font-h);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
-.va-desc{display:block;font-size:.9rem;color:var(--text);line-height:1.7;margin-bottom:18px;max-width:420px}
-.va-cta{display:inline-flex;align-items:center;gap:7px;font-size:.86rem;font-weight:700;color:var(--primary);transition:gap .2s}
-.va-content:hover .va-cta{gap:12px}
-body.light .va-panel{background:linear-gradient(160deg,#e8eeff,#dde6ff)}
-body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,255,.97) 0%,rgba(240,244,255,.7) 48%,transparent 100%)}
-@media(max-width:768px){
-  #verso-acc{flex-direction:column;height:auto;gap:10px}
-  .va-panel{flex:none;height:auto;overflow:hidden;transition:border-color .4s}
-  .va-bg,.va-pat{display:none}
-  .va-label-sm{position:static;opacity:1;transform:none;text-align:left;white-space:normal;padding:22px 24px;font-size:1.18rem;text-shadow:none}
-  .va-panel.va-active .va-label-sm{opacity:1}
-  .va-content{position:static;display:block;opacity:0;max-height:0;overflow:hidden;padding:0 24px;transform:none;pointer-events:none;transition:max-height .45s cubic-bezier(.4,0,.2,1),opacity .35s ease,padding .45s cubic-bezier(.4,0,.2,1)}
-  .va-panel.va-active .va-content{opacity:1;max-height:520px;padding:0 24px 26px;pointer-events:auto}
-  .va-content::before{display:none}
-  .va-desc{max-width:none}
+#verso-acc{display:flex;flex-direction:column;gap:12px;max-width:820px;margin:0 auto}
+.va-item{position:relative;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:linear-gradient(160deg,var(--bg1),var(--bg2));transition:border-color .35s,box-shadow .35s}
+.va-item.open{border-color:var(--acc);box-shadow:0 0 38px -14px var(--acc)}
+body.light .va-item{background:linear-gradient(160deg,#eef2ff,#e3e9ff)}
+.va-head{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0;padding:22px 24px;background:none;border:0;cursor:pointer;text-align:left;color:var(--text);font-family:var(--font-h);font-size:1.22rem;font-weight:700;letter-spacing:-.01em;line-height:1.25;-webkit-tap-highlight-color:transparent;transition:color .3s}
+.va-item.open .va-head{color:var(--primary)}
+.va-chevron{flex-shrink:0;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;border:1.5px solid var(--border);color:var(--muted);transition:transform .4s cubic-bezier(.4,0,.2,1),border-color .3s,background .3s,color .3s}
+.va-item.open .va-chevron{transform:rotate(180deg);border-color:transparent;background:var(--acc);color:var(--text)}
+.va-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+.va-item.open .va-body{max-height:360px}
+.va-body-inner{padding:0 24px 26px;opacity:0;transform:translateY(8px);transition:opacity .4s ease .08s,transform .4s ease .08s}
+.va-item.open .va-body-inner{opacity:1;transform:none}
+.va-desc{font-size:.96rem;color:var(--text);line-height:1.75;margin:0 0 18px;max-width:580px}
+.va-cta{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:700;color:var(--primary);text-decoration:none;transition:gap .2s}
+.va-cta:hover{gap:13px}
+@media(max-width:600px){
+  .va-head{padding:18px 18px;font-size:1.1rem}
+  .va-body-inner{padding:0 18px 22px}
 }
 </style>
 </head>
@@ -434,55 +418,65 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
       <p class="sec-sub" data-nl="Van eenvoudige landingspagina tot volwaardige web app, maatwerk dat werkt zoals jij het voor ogen hebt." data-en="From a simple landing page to a full web app, custom-built to work exactly as you envision.">Van eenvoudige landingspagina tot volwaardige web app, maatwerk dat werkt zoals jij het voor ogen hebt.</p>
     </div>
     <div class="reveal rd1" id="verso-acc">
-      <div class="va-panel va-active" style="--acc:rgba(192,193,255,.30)">
-        <div class="va-bg"></div>
-        <div class="va-pat"></div>
-        <span class="va-label-sm" data-nl="Websites" data-en="Websites">Websites</span>
-        <a class="va-content" href="/website-laten-maken/">
-          <span class="va-title" data-nl="Websites" data-en="Websites">Websites</span>
-          <span class="va-desc" data-nl="Bedrijfswebsites en landingspagina's die snel laden, goed scoren in Google en passen bij jouw merk." data-en="Business websites and landing pages that load fast, rank well on Google and fit your brand.">Bedrijfswebsites en landingspagina's die snel laden, goed scoren in Google en passen bij jouw merk.</span>
-          <span class="va-cta"><span data-nl="Website laten maken" data-en="Build a website">Website laten maken</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-        </a>
+      <div class="va-item open" style="--acc:rgba(192,193,255,.55)">
+        <button class="va-head" type="button" aria-expanded="true" aria-controls="va-body-1">
+          <span data-nl="Websites" data-en="Websites">Websites</span>
+          <span class="va-chevron" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="va-body" id="va-body-1" role="region">
+          <div class="va-body-inner">
+            <p class="va-desc" data-nl="Bedrijfswebsites en landingspagina's die snel laden, goed scoren in Google en passen bij jouw merk." data-en="Business websites and landing pages that load fast, rank well on Google and fit your brand.">Bedrijfswebsites en landingspagina's die snel laden, goed scoren in Google en passen bij jouw merk.</p>
+            <a class="va-cta" href="/website-laten-maken/"><span data-nl="Website laten maken" data-en="Build a website">Website laten maken</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
       </div>
-      <div class="va-panel" style="--acc:rgba(232,121,249,.28)">
-        <div class="va-bg"></div>
-        <div class="va-pat"></div>
-        <span class="va-label-sm" data-nl="Webdesign" data-en="Web design">Webdesign</span>
-        <a class="va-content" href="/webdesign-breda/">
-          <span class="va-title" data-nl="Webdesign" data-en="Web design">Webdesign</span>
-          <span class="va-desc" data-nl="Een uniek ontwerp op maat dat opvalt. Lokaal in Breda en omgeving, met oog voor detail en gebruiksgemak." data-en="A unique custom design that stands out. Local in Breda and beyond, with an eye for detail and usability.">Een uniek ontwerp op maat dat opvalt. Lokaal in Breda en omgeving, met oog voor detail en gebruiksgemak.</span>
-          <span class="va-cta"><span data-nl="Webdesign Breda" data-en="Web design Breda">Webdesign Breda</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-        </a>
+      <div class="va-item" style="--acc:rgba(232,121,249,.5)">
+        <button class="va-head" type="button" aria-expanded="false" aria-controls="va-body-2">
+          <span data-nl="Webdesign" data-en="Web design">Webdesign</span>
+          <span class="va-chevron" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="va-body" id="va-body-2" role="region">
+          <div class="va-body-inner">
+            <p class="va-desc" data-nl="Een uniek ontwerp op maat dat opvalt. Lokaal in Breda en omgeving, met oog voor detail en gebruiksgemak." data-en="A unique custom design that stands out. Local in Breda and beyond, with an eye for detail and usability.">Een uniek ontwerp op maat dat opvalt. Lokaal in Breda en omgeving, met oog voor detail en gebruiksgemak.</p>
+            <a class="va-cta" href="/webdesign-breda/"><span data-nl="Webdesign Breda" data-en="Web design Breda">Webdesign Breda</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
       </div>
-      <div class="va-panel" style="--acc:rgba(96,165,250,.30)">
-        <div class="va-bg"></div>
-        <div class="va-pat"></div>
-        <span class="va-label-sm" data-nl="Web apps" data-en="Web apps">Web apps</span>
-        <a class="va-content" href="/aanvragen.html">
-          <span class="va-title" data-nl="Web apps op maat" data-en="Custom web apps">Web apps op maat</span>
-          <span class="va-desc" data-nl="Dashboards, portalen en tools die jouw werk slimmer maken. Real-time data, koppelingen en automatisering." data-en="Dashboards, portals and tools that make your work smarter. Real-time data, integrations and automation.">Dashboards, portalen en tools die jouw werk slimmer maken. Real-time data, koppelingen en automatisering.</span>
-          <span class="va-cta"><span data-nl="Bespreek je project" data-en="Discuss your project">Bespreek je project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-        </a>
+      <div class="va-item" style="--acc:rgba(96,165,250,.55)">
+        <button class="va-head" type="button" aria-expanded="false" aria-controls="va-body-3">
+          <span data-nl="Web apps" data-en="Web apps">Web apps</span>
+          <span class="va-chevron" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="va-body" id="va-body-3" role="region">
+          <div class="va-body-inner">
+            <p class="va-desc" data-nl="Dashboards, portalen en tools die jouw werk slimmer maken. Real-time data, koppelingen en automatisering." data-en="Dashboards, portals and tools that make your work smarter. Real-time data, integrations and automation.">Dashboards, portalen en tools die jouw werk slimmer maken. Real-time data, koppelingen en automatisering.</p>
+            <a class="va-cta" href="/aanvragen.html"><span data-nl="Bespreek je project" data-en="Discuss your project">Bespreek je project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
       </div>
-      <div class="va-panel" style="--acc:rgba(139,92,246,.30)">
-        <div class="va-bg"></div>
-        <div class="va-pat"></div>
-        <span class="va-label-sm" data-nl="AI" data-en="AI">AI</span>
-        <a class="va-content" href="/ai-integraties/">
-          <span class="va-title" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</span>
-          <span class="va-desc" data-nl="Slimme chatbots en automatisering met ChatGPT en Claude, ingebouwd in je website of werkproces." data-en="Smart chatbots and automation with ChatGPT and Claude, built into your website or workflow.">Slimme chatbots en automatisering met ChatGPT en Claude, ingebouwd in je website of werkproces.</span>
-          <span class="va-cta"><span data-nl="Meer over AI" data-en="More about AI">Meer over AI</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-        </a>
+      <div class="va-item" style="--acc:rgba(139,92,246,.55)">
+        <button class="va-head" type="button" aria-expanded="false" aria-controls="va-body-4">
+          <span data-nl="AI-integraties" data-en="AI integrations">AI-integraties</span>
+          <span class="va-chevron" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="va-body" id="va-body-4" role="region">
+          <div class="va-body-inner">
+            <p class="va-desc" data-nl="Slimme chatbots en automatisering met ChatGPT en Claude, ingebouwd in je website of werkproces." data-en="Smart chatbots and automation with ChatGPT and Claude, built into your website or workflow.">Slimme chatbots en automatisering met ChatGPT en Claude, ingebouwd in je website of werkproces.</p>
+            <a class="va-cta" href="/ai-integraties/"><span data-nl="Meer over AI" data-en="More about AI">Meer over AI</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
       </div>
-      <div class="va-panel" style="--acc:rgba(52,211,153,.26)">
-        <div class="va-bg"></div>
-        <div class="va-pat"></div>
-        <span class="va-label-sm" data-nl="Mobiel" data-en="Mobile">Mobiel</span>
-        <a class="va-content" href="/aanvragen.html">
-          <span class="va-title" data-nl="Mobiel &amp; PWA" data-en="Mobile &amp; PWA">Mobiel &amp; PWA</span>
-          <span class="va-desc" data-nl="Mobiele web apps en Progressive Web Apps die voelen als een echte app, zonder app store en altijd up-to-date." data-en="Mobile web apps and Progressive Web Apps that feel like a real app, without an app store and always up to date.">Mobiele web apps en Progressive Web Apps die voelen als een echte app, zonder app store en altijd up-to-date.</span>
-          <span class="va-cta"><span data-nl="Bespreek je project" data-en="Discuss your project">Bespreek je project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-        </a>
+      <div class="va-item" style="--acc:rgba(52,211,153,.5)">
+        <button class="va-head" type="button" aria-expanded="false" aria-controls="va-body-5">
+          <span data-nl="Mobiel &amp; PWA" data-en="Mobile &amp; PWA">Mobiel &amp; PWA</span>
+          <span class="va-chevron" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="va-body" id="va-body-5" role="region">
+          <div class="va-body-inner">
+            <p class="va-desc" data-nl="Mobiele web apps en Progressive Web Apps die voelen als een echte app, zonder app store en altijd up-to-date." data-en="Mobile web apps and Progressive Web Apps that feel like a real app, without an app store and always up to date.">Mobiele web apps en Progressive Web Apps die voelen als een echte app, zonder app store en altijd up-to-date.</p>
+            <a class="va-cta" href="/aanvragen.html"><span data-nl="Bespreek je project" data-en="Discuss your project">Bespreek je project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -723,25 +717,20 @@ mEl.innerHTML=[...techs,...techs].map(t=>`<span class="marque-item"><span class=
 (function(){
   const acc=document.getElementById('verso-acc');
   if(!acc)return;
-  const panels=[...acc.querySelectorAll('.va-panel')];
-  // Echte muis-apparaten (ook touch-laptops met muis) krijgen hover; pure touch krijgt tik-logica.
-  const hoverable=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  function activate(p){panels.forEach(x=>x.classList.toggle('va-active',x===p));}
-  if(hoverable){
-    // Muis: hover opent het paneel
-    panels.forEach(p=>p.addEventListener('mouseenter',()=>activate(p)));
-  }else{
-    // Touch: alle panelen dicht starten
-    panels.forEach(p=>p.classList.remove('va-active'));
-  }
-  // Een tik/klik opent altijd dit paneel en sluit de rest. Bewust GEEN dichtklappen
-  // bij nogmaals tikken: zo kan geen enkele dubbele of spook-tap het paneel sluiten.
-  // Je wisselt door een ander paneel te tikken, net als de hover-versie op desktop.
-  panels.forEach(p=>{
-    p.addEventListener('click',e=>{
-      if(p.classList.contains('va-active')&&e.target.closest('.va-cta'))return; // CTA-link volgt de href
-      e.preventDefault();
-      activate(p);
+  const items=[...acc.querySelectorAll('.va-item')];
+  // Eén gedrag op elk apparaat: een tik op de kop opent dat item en sluit de rest.
+  // De kop is een echte <button>, die op iedere telefoon betrouwbaar een click afvuurt.
+  // Een al geopend item blijft open bij hertikken, zodat niets ooit per ongeluk dichtklapt.
+  items.forEach(item=>{
+    const head=item.querySelector('.va-head');
+    head.addEventListener('click',()=>{
+      if(item.classList.contains('open'))return;
+      items.forEach(other=>{
+        other.classList.remove('open');
+        other.querySelector('.va-head').setAttribute('aria-expanded','false');
+      });
+      item.classList.add('open');
+      head.setAttribute('aria-expanded','true');
     });
   });
 })();
