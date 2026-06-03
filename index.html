@@ -870,13 +870,28 @@ mEl.innerHTML=[...techs,...techs].map(t=>`<span class="marque-item"><span class=
   const acc=document.getElementById('verso-acc');
   if(!acc)return;
   const panels=[...acc.querySelectorAll('.va-panel')];
-  const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const touch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
   function activate(p){panels.forEach(x=>x.classList.toggle('va-active',x===p));}
-  panels.forEach(p=>{
-    if(fine)p.addEventListener('mouseenter',()=>activate(p));
-    // Klik op een ingeklapt paneel: eerst openklappen (niet doorlinken)
-    p.addEventListener('click',e=>{if(!p.classList.contains('va-active')){e.preventDefault();activate(p);}});
-  });
+  if(!touch){
+    // Alleen muis-apparaten: hover opent het paneel, klik op de inhoud volgt de link
+    panels.forEach(p=>p.addEventListener('mouseenter',()=>activate(p)));
+  }else{
+    // Touch: geen hover-logica. Alle panelen dicht starten en met één tik open/dicht schakelen.
+    panels.forEach(p=>p.classList.remove('va-active'));
+    panels.forEach(p=>{
+      p.addEventListener('click',e=>{
+        if(!p.classList.contains('va-active')){
+          e.preventDefault();
+          activate(p);
+        }else if(!e.target.closest('.va-cta')){
+          // tik op een reeds open paneel (niet op de CTA-link) klapt weer dicht
+          e.preventDefault();
+          p.classList.remove('va-active');
+        }
+        // tik op de CTA in een open paneel laat de link gewoon doorgaan
+      });
+    });
+  }
 })();
 
 // ── REVEAL / STAGGER ─────────────────────────────────────
