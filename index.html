@@ -63,7 +63,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -164,6 +164,10 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .hero-word{display:inline-block}
 .blur-init{opacity:0;filter:blur(14px) brightness(.6);transform:translateY(22px) scale(.93) rotateX(-12deg);transform-style:preserve-3d;backface-visibility:hidden;transition:opacity 1.9s cubic-bezier(.25,.46,.45,.94),filter 1.9s cubic-bezier(.25,.46,.45,.94),transform 1.9s cubic-bezier(.25,.46,.45,.94)}
 .blur-init.in{opacity:1;filter:blur(0) brightness(1);transform:none}
+/* HERO INTRO SPLASH (Verso Development) */
+.hero-splash{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px;pointer-events:none}
+.hero-splash-text{font-family:'Playfair Display',Georgia,serif;font-weight:700;color:#fbfcff;font-size:clamp(2.4rem,8.5vw,6.5rem);letter-spacing:.01em;line-height:1.06;opacity:0;filter:blur(18px);transform:scale(.97);transition:opacity 1.2s cubic-bezier(.25,.46,.45,.94),filter 1.2s cubic-bezier(.25,.46,.45,.94),transform 1.2s cubic-bezier(.25,.46,.45,.94);text-shadow:0 6px 50px rgba(6,14,32,.6)}
+.hero-splash-text.in{opacity:1;filter:blur(0);transform:scale(1)}
 .hero-content{max-width:820px;position:relative;z-index:2}
 .hero-logo{margin-bottom:32px}
 .hero-logo img{height:clamp(110px,28vw,300px);width:auto;animation:logo-float 6s ease-in-out infinite,logo-glow 3s ease-in-out infinite}
@@ -827,7 +831,7 @@ let phrases=[...typingPhrases[currentLang]];
 let pI=0,cI=0,del=false;
 const typEl=document.getElementById('typing');
 function type(){const p=phrases[pI];if(!del){typEl.textContent=p.slice(0,++cI);if(cI===p.length){del=true;return setTimeout(type,2200);}setTimeout(type,68);}else{typEl.textContent=p.slice(0,--cI);if(cI===0){del=false;pI=(pI+1)%phrases.length;return setTimeout(type,300);}setTimeout(type,28);}}
-setTimeout(type,900);
+// typing wordt gestart vanuit heroIntro (na de splash-sequentie)
 
 // ── NAV ───────────────────────────────────────────────────
 const navEl=document.getElementById('nav');
@@ -955,15 +959,36 @@ applyLang(currentLang);
   }
   const words=title?[...title.querySelectorAll('.hero-word')]:[];
   const items=[logo,badge,...words,sub].filter(Boolean);
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const startTyping=()=>{if(typeof type==='function')type();};
+
+  // Reduced motion: alles direct tonen, geen splash
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){
+    setTimeout(startTyping,300);
+    return;
+  }
+
+  // Verberg de hero-content tot na de splash
   items.forEach(el=>el.classList.add('blur-init'));
+
+  function revealContent(){
+    let d=120;
+    items.forEach(el=>{
+      el.style.transitionDelay=(d/1000)+'s';
+      d+=el.classList.contains('hero-word')?115:170;
+      requestAnimationFrame(()=>el.classList.add('in'));
+    });
+    setTimeout(startTyping,900);
+  }
+
+  // 1) "Verso Development" groot in beeld  2) verdwijnt  3) 2s niks  4) de rest verschijnt
+  const splash=document.createElement('div');splash.className='hero-splash';
+  const txt=document.createElement('div');txt.className='hero-splash-text';txt.innerHTML='<span class="grad-text">Verso</span> Development';
+  splash.appendChild(txt);hero.appendChild(splash);
   void hero.offsetWidth; // reflow zodat de begintoestand telt
-  let d=120;
-  items.forEach(el=>{
-    el.style.transitionDelay=(d/1000)+'s';
-    d+=el.classList.contains('hero-word')?115:170;
-    requestAnimationFrame(()=>el.classList.add('in'));
-  });
+  const FADE=1200,HOLD=1500,OUT=1000,GAP=1100;
+  requestAnimationFrame(()=>txt.classList.add('in'));               // fade in
+  setTimeout(()=>txt.classList.remove('in'),FADE+HOLD);             // fade out
+  setTimeout(()=>{splash.remove();revealContent();},FADE+HOLD+OUT+GAP); // 2s niks, dan de rest
 })();
 
 // ── PRICING ───────────────────────────────────────────────
