@@ -63,7 +63,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -76,7 +76,7 @@
   --text:#dae2fd;--muted:rgba(218,226,253,.55);--muted2:rgba(218,226,253,.28);
   --border:rgba(255,255,255,.08);--card:rgba(23,31,51,.4);
   --blur:16px;--r:6px;
-  --font-h:'Space Grotesk',sans-serif;--font-b:'Inter',sans-serif;
+  --font-h:'Playfair Display',Georgia,serif;--font-b:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth;background:#060e20}
 body{background:#060e20;color:var(--text);font-family:var(--font-b);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
@@ -412,6 +412,19 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
 <!-- MARQUEE -->
 <div class="marque-wrap"><div class="marque-track" id="marque"></div></div>
 
+<!-- OFFERTE -->
+<section id="offerte" class="section" style="background:rgba(11,19,38,.3)">
+  <div class="container" style="text-align:center;max-width:860px">
+    <div class="reveal">
+      <span class="sec-label" data-nl="[ OFFERTE ]" data-en="[ QUOTE ]">[ OFFERTE ]</span>
+      <h2 class="sec-title" style="margin:0 auto 18px;font-size:clamp(2.2rem,4.5vw,3.4rem)" data-nl="Website of app <span class='grad-text'>laten maken</span>" data-en="Have a website or app <span class='grad-text'>built</span>">Website of app <span class="grad-text">laten maken</span></h2>
+      <p class="sec-sub" style="max-width:720px;margin:0 auto 18px;font-size:1.2rem;line-height:1.85" data-nl="Bij Verso Development laat je een professionele en snelle website op maat bouwen. We houden rekening met jouw wensen en zorgen voor een schaalbare, unieke website die goed vindbaar is in Google." data-en="At Verso Development you get a professional, fast website built to measure. We take your wishes into account and deliver a scalable, unique website that ranks well on Google.">Bij Verso Development laat je een professionele en snelle website op maat bouwen. We houden rekening met jouw wensen en zorgen voor een schaalbare, unieke website die goed vindbaar is in Google.</p>
+      <p class="sec-sub" style="max-width:720px;margin:0 auto 40px;font-size:1.2rem;line-height:1.85" data-nl="We gebruiken geen WordPress of andere kant-en-klare platforms, maar schrijven alles zelf in code en zetten AI-tools in om je website of app nog krachtiger te maken. Dat geeft ons volledige vrijheid om te bouwen wat jij nodig hebt, zonder beperkingen in de mogelijkheden. Een complexe API, AI-integraties of een eigen portaal? Voor ons is niets onmogelijk. Vraag vrijblijvend een offerte aan en wie weet heb jij binnenkort de website waar je altijd van hebt gedroomd." data-en="We don't use WordPress or other off-the-shelf platforms. We write everything in code and apply AI tools to make your website or app even more powerful. That gives us complete freedom to build exactly what you need, with no limits on what's possible. A complex API, AI integrations or your own portal? For us, nothing is impossible. Request a free quote, and who knows, you might soon have the website you've always dreamed of.">We gebruiken geen WordPress of andere kant-en-klare platforms, maar schrijven alles zelf in code en zetten AI-tools in om je website of app nog krachtiger te maken. Dat geeft ons volledige vrijheid om te bouwen wat jij nodig hebt, zonder beperkingen in de mogelijkheden. Een complexe API, AI-integraties of een eigen portaal? Voor ons is niets onmogelijk. Vraag vrijblijvend een offerte aan en wie weet heb jij binnenkort de website waar je altijd van hebt gedroomd.</p>
+      <a href="aanvragen.html" class="btn btn-primary magnetic" style="font-size:1.05rem;padding:17px 40px" data-nl="Offerte aanvragen →" data-en="Request a quote →">Offerte aanvragen →</a>
+    </div>
+  </div>
+</section>
+
 <!-- DIENSTEN -->
 <section id="diensten" class="section">
   <div class="container">
@@ -471,19 +484,6 @@ body.light .va-content::before{background:linear-gradient(to top,rgba(240,244,25
           <span class="va-cta"><span data-nl="Bespreek je project" data-en="Discuss your project">Bespreek je project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- OFFERTE -->
-<section id="offerte" class="section" style="background:rgba(11,19,38,.3)">
-  <div class="container" style="text-align:center;max-width:780px">
-    <div class="reveal">
-      <span class="sec-label" data-nl="[ OFFERTE ]" data-en="[ QUOTE ]">[ OFFERTE ]</span>
-      <h2 class="sec-title" style="margin:0 auto 14px" data-nl="Een website laten maken <span class='grad-text'>vanaf €399</span>" data-en="A website built <span class='grad-text'>from €399</span>">Een website laten maken <span class="grad-text">vanaf €399</span></h2>
-      <p class="sec-sub" style="max-width:640px;margin:0 auto 16px" data-nl="Bij Verso Development laat je een professionele, snelle website op maat bouwen vanaf €399. De eerste maand hosting is helemaal gratis, zodat je zonder zorgen live gaat." data-en="At Verso Development you get a professional, fast custom website from €399. Your first month of hosting is completely free, so you can launch worry-free.">Bij Verso Development laat je een professionele, snelle website op maat bouwen vanaf €399. De eerste maand hosting is helemaal gratis, zodat je zonder zorgen live gaat.</p>
-      <p class="sec-sub" style="max-width:640px;margin:0 auto 36px" data-nl="Liever niet alles in één keer betalen? Dat hoeft niet, je kunt de investering ook gespreid per maand betalen. Vraag vrijblijvend een offerte aan en ik laat je zien wat er mogelijk is voor jouw bedrijf." data-en="Prefer not to pay everything at once? You don't have to, you can also spread the investment and pay monthly. Request a free quote and I'll show you what's possible for your business.">Liever niet alles in één keer betalen? Dat hoeft niet, je kunt de investering ook gespreid per maand betalen. Vraag vrijblijvend een offerte aan en ik laat je zien wat er mogelijk is voor jouw bedrijf.</p>
-      <a href="aanvragen.html" class="btn btn-primary magnetic" style="font-size:1rem;padding:16px 36px" data-nl="Offerte aanvragen →" data-en="Request a quote →">Offerte aanvragen →</a>
     </div>
   </div>
 </section>

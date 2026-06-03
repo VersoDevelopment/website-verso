@@ -12,7 +12,7 @@
   --text:#dae2fd;--muted:rgba(218,226,253,.55);--muted2:rgba(218,226,253,.28);
   --border:rgba(255,255,255,.08);--card:rgba(23,31,51,.4);
   --blur:16px;--r:6px;
-  --font-h:'Space Grotesk',sans-serif;--font-b:'Inter',sans-serif;
+  --font-h:'Playfair Display',Georgia,serif;--font-b:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth;background:#060e20}
 body{background:#060e20;color:var(--text);font-family:var(--font-b);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
