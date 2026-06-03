@@ -726,29 +726,22 @@ mEl.innerHTML=[...techs,...techs].map(t=>`<span class="marque-item"><span class=
   const panels=[...acc.querySelectorAll('.va-panel')];
   // Echte muis-apparaten (ook touch-laptops met muis) krijgen hover; pure touch krijgt tik-logica.
   const hoverable=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  let openedAt=0;
-  function activate(p){panels.forEach(x=>x.classList.toggle('va-active',x===p));openedAt=Date.now();}
+  function activate(p){panels.forEach(x=>x.classList.toggle('va-active',x===p));}
   if(hoverable){
-    // Muis: hover opent het paneel, klik op de inhoud volgt de link
+    // Muis: hover opent het paneel
     panels.forEach(p=>p.addEventListener('mouseenter',()=>activate(p)));
   }else{
     // Touch: alle panelen dicht starten
     panels.forEach(p=>p.classList.remove('va-active'));
   }
+  // Een tik/klik opent altijd dit paneel en sluit de rest. Bewust GEEN dichtklappen
+  // bij nogmaals tikken: zo kan geen enkele dubbele of spook-tap het paneel sluiten.
+  // Je wisselt door een ander paneel te tikken, net als de hover-versie op desktop.
   panels.forEach(p=>{
     p.addEventListener('click',e=>{
-      if(!p.classList.contains('va-active')){
-        // dicht paneel: open het (geen navigatie)
-        e.preventDefault();
-        activate(p);
-        return;
-      }
-      // open paneel
-      if(e.target.closest('.va-cta'))return;   // CTA-link volgt gewoon de href
-      if(hoverable)return;                      // op muis-apparaten niet dichtklappen bij klik
-      if(Date.now()-openedAt<450)return;        // negeer spook-clicks vlak na het openen
+      if(p.classList.contains('va-active')&&e.target.closest('.va-cta'))return; // CTA-link volgt de href
       e.preventDefault();
-      p.classList.remove('va-active');
+      activate(p);
     });
   });
 })();
