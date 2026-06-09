@@ -76,9 +76,9 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 @media(max-width:860px){.nav-portal{display:none}}
 @media(max-width:720px){
   .nav-hamburger{display:flex}
-  .nav-links .nav-link:not(.nav-cta){display:none}
+  .nav-links .nav-link{display:none}
   .nav-divider,.nav-toggle,#langToggle{display:none !important}
-  .nav-portal{display:inline-flex !important;padding:6px 12px;font-size:.78rem}
+  .nav-portal{display:none !important}
   nav.scrolled{width:fit-content;left:50%;transform:translateX(-50%)}
   nav.scrolled .nav-links{display:none !important}
 }
