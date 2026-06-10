@@ -6,7 +6,9 @@ const rateLimit = require('express-rate-limit');
 
 const app = express();
 app.disable('x-powered-by');
-app.set('trust proxy', 1);
+// Twee proxy-hops voor deze app: NPM (host) -> web-nginx -> api.
+// Met 1 zag express het NPM-IP als client en deelden alle bezoekers 1 rate-limit-bucket.
+app.set('trust proxy', 2);
 app.use(express.json({ limit: '50kb' }));
 
 const allowedOrigins = ['https://versodevelopment.nl', 'https://www.versodevelopment.nl'];
@@ -19,6 +21,9 @@ const discountLimit = rateLimit({ windowMs: 60_000, max: 20, standardHeaders: tr
 
 // Kortingscodes blijven server-side, zodat ze niet uit de paginabron te lezen zijn.
 const DISCOUNT_CODES = { PORTFOLIO25: 0.25 };
+
+// Alleen deze velden uit de request overnemen; al het andere wordt genegeerd en alles wordt afgekapt.
+const AANVRAAG_VELDEN = ['naam','email','bedrijf','telefoon','type','scope','doel','doelgroep','thema','bestaand','functionaliteiten','musthaves','nicetohaves','pakket','prijs_indicatie'];
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -128,13 +133,18 @@ function buildApplicantEmail(d) {
 
 app.post('/send-aanvraag', aanvraagLimit, async (req, res) => {
   try {
-    const d = req.body;
-    if (d.website) return res.json({ ok: true }); // honeypot
+    const d = {};
+    for (const veld of AANVRAAG_VELDEN) {
+      if (req.body?.[veld] != null) d[veld] = String(req.body[veld]).slice(0, 3000);
+    }
+    if (req.body?.website) return res.json({ ok: true }); // honeypot
     if (!d.naam || !d.email) return res.status(400).json({ error: 'Naam en e-mail zijn verplicht' });
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return res.status(400).json({ error: 'Ongeldig e-mailadres' });
-    if (String(d.naam).length > 100 || String(d.email).length > 200) return res.status(400).json({ error: 'Invoer te lang' });
+    if (d.naam.length > 100 || d.email.length > 200) return res.status(400).json({ error: 'Invoer te lang' });
 
-    const subject = `Nieuwe aanvraag — ${d.naam}${d.pakket && d.pakket !== 'Nog niet zeker' ? ' ('+d.pakket+')' : ''}`;
+    // Headerwaarden: control characters eruit zodat er nooit iets in de subjectregel kan breken
+    const kop = (s) => String(s ?? '').replace(/[\r\n\t\x00-\x1f]/g, ' ').trim();
+    const subject = `Nieuwe aanvraag van ${kop(d.naam)}${d.pakket && d.pakket !== 'Nog niet zeker' ? ' ('+kop(d.pakket)+')' : ''}`;
 
     await transporter.sendMail({
       from: '"Verso Development" <info@versodevelopment.nl>',

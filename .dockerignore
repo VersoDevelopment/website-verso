@@ -1,4 +1,9 @@
 .git
+.gitignore
+.dockerignore
 docker-compose.yml
 Dockerfile
 nginx-host.conf
+# api/ hoort niet in de web-image: bevat .env met secrets en zou anders
+# in een tussenliggende imagelayer blijven staan, ook na rm in een latere layer
+api
