@@ -78,12 +78,14 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
+<canvas id="bg-canvas"></canvas>
 <div class="grain"></div>
+<div id="custom-cursor"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -94,7 +96,9 @@
     <a href="/ai-integraties/" class="nav-link" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
     <a href="/#portfolio" class="nav-link" data-nl="Portfolio" data-en="Portfolio">Portfolio</a>
     <div class="nav-divider"></div>
+    <button id="themeToggle" class="nav-toggle" onclick="toggleTheme()" aria-label="Thema"></button>
     <button id="langToggle" class="nav-toggle" onclick="toggleLang()">EN</button>
+    <div class="nav-divider"></div>
     <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" data-nl="Portaal" data-en="Portal">Portaal</a>
     <a href="/aanvragen.html" class="nav-link nav-cta magnetic" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
   </div>
@@ -109,7 +113,8 @@
   <a href="/ai-integraties/" class="nav-link" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
   <a href="/#portfolio" class="nav-link" data-nl="Portfolio" data-en="Portfolio">Portfolio</a>
   <a href="/aanvragen.html" class="nav-link nav-cta" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
-  <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
+  <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" style="border-radius:12px;text-align:center;width:100%;max-width:300px;padding:12px 28px;justify-content:center" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
+  <button class="mobile-theme-btn" id="mobileThemeToggle" onclick="toggleTheme()" aria-label="Thema"></button>
 </div>
 
 <!-- HERO -->
@@ -150,7 +155,7 @@
 <section class="section" style="background:rgba(11,19,38,.3);padding-top:72px">
   <div class="container">
     <div class="reveal" style="margin-bottom:40px">
-      <span class="sec-label" data-nl="wat je krijgt" data-en="what you get">wat je krijgt</span>
+      <span class="sec-label" data-nl="[ WAT JE KRIJGT ]" data-en="[ WHAT YOU GET ]">[ WAT JE KRIJGT ]</span>
       <h2 class="sec-title" data-nl="Alles wat een goede website <span class='grad-text'>nodig heeft</span>" data-en="Everything a good website <span class='grad-text'>needs</span>">Alles wat een goede website <span class="grad-text">nodig heeft</span></h2>
     </div>
     <div class="feat-grid">
@@ -192,7 +197,7 @@
 <section id="werkwijze" class="section">
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:44px">
-      <span class="sec-label" data-nl="werkwijze" data-en="process">werkwijze</span>
+      <span class="sec-label" data-nl="[ WERKWIJZE ]" data-en="[ APPROACH ]">[ WERKWIJZE ]</span>
       <h2 class="sec-title" data-nl="Van idee naar <span class='grad-text'>live website</span>" data-en="From idea to <span class='grad-text'>live website</span>">Van idee naar <span class="grad-text">live website</span></h2>
       <p class="sec-sub" style="margin:0 auto" data-nl="Een duidelijk proces in vier stappen. Jij weet steeds waar we staan." data-en="A clear process in four steps. You always know where we stand.">Een duidelijk proces in vier stappen. Jij weet steeds waar we staan.</p>
     </div>
@@ -209,7 +214,7 @@
 <section class="section" style="background:rgba(11,19,38,.3)">
   <div class="container-narrow">
     <div class="reveal" style="margin-bottom:36px">
-      <span class="sec-label" data-nl="veelgestelde vragen" data-en="faq">veelgestelde vragen</span>
+      <span class="sec-label" data-nl="[ VEELGESTELDE VRAGEN ]" data-en="[ FAQ ]">[ VEELGESTELDE VRAGEN ]</span>
       <h2 class="sec-title" data-nl="Website laten maken: <span class='grad-text'>veelgestelde vragen</span>" data-en="Building a website: <span class='grad-text'>frequently asked questions</span>">Website laten maken: <span class="grad-text">veelgestelde vragen</span></h2>
     </div>
     <div class="faq-wrap reveal">

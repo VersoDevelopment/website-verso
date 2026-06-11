@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
@@ -18,7 +18,7 @@
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,47 +26,48 @@
     :root {
       --bg:        #060e20;
       --bg1:       #0b1326;
-      --bg2:       #111b33;
-      --card:      #0a1226;
-      --border:    rgba(196,202,255,0.14);
-      --border-strong: rgba(196,202,255,0.34);
-      --text:      #e7ebff;
-      --muted:     rgba(231,235,255,0.62);
-      --muted2:    rgba(231,235,255,0.34);
+      --bg2:       #131b2e;
+      --card:      rgba(255,255,255,0.04);
+      --border:    rgba(255,255,255,0.10);
+      --text:      #FFFFFF;
+      --muted:     rgba(255,255,255,0.50);
+      --muted2:    rgba(255,255,255,0.25);
       --primary:   #c0c1ff;
-      --secondary: #c0c1ff;
-      --accent:    #7be3b4;
-      --ink:       #060e20;
-      --lift:      6px 6px 0 rgba(192,193,255,0.16);
-      --font-h:    'Space Grotesk', sans-serif;
+      --secondary: #8B5CF6;
+      --blue:      #60A5FA;
+      --aqua:      #60A5FA;
+      --grad:      linear-gradient(135deg, #c0c1ff 0%, #60A5FA 100%);
+      --glow:      rgba(192,193,255,0.25);
+      --font-h:    'Roboto Flex', sans-serif;
       --font-b:    'DM Sans', sans-serif;
-      --font-m:    'JetBrains Mono', monospace;
-      --r:         2px;
+      --r:         14px;
     }
 
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: var(--font-b); line-height: 1.6; overflow-x: hidden; }
 
-    .grad-text { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(192,193,255,.4); text-decoration-thickness: 3px; text-underline-offset: 6px; }
+    .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .section { padding: 110px 0; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
 
     .label-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-m); font-size: .74rem; font-weight: 500;
-      text-transform: lowercase; letter-spacing: .08em; color: var(--primary);
-      margin-bottom: 18px;
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font-b); font-size: .7rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .12em; color: var(--secondary);
+      background: rgba(232,121,249,.1); border: 1px solid rgba(232,121,249,.28);
+      padding: 5px 13px; border-radius: 30px; margin-bottom: 18px;
     }
-    .label-tag::before { content: '//'; color: var(--muted2); }
+    .label-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); animation: pdot 2s infinite; }
+    @keyframes pdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.65)} }
 
     .section-title { font-family: var(--font-h); font-size: clamp(1.9rem,3.8vw,2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 12px; }
     .section-sub { color: var(--muted); font-size: .95rem; max-width: 500px; line-height: 1.75; margin-bottom: 52px; }
 
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: var(--r); font-family: var(--font-h); font-size: .9rem; font-weight: 600; cursor: pointer; border: 1px solid transparent; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease, border-color .18s, color .18s; }
-    .btn-primary { background: var(--primary); color: var(--ink); }
-    .btn-primary:hover { transform: translate(-3px,-3px); box-shadow: var(--lift); }
-    .btn-outline { background: transparent; color: var(--text); border-color: var(--border-strong); }
-    .btn-outline:hover { border-color: var(--primary); color: var(--primary); transform: translate(-3px,-3px); box-shadow: var(--lift); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; font-family: var(--font-b); font-size: .9rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all .22s; }
+    .btn-primary { background: var(--grad); color: #060e20; box-shadow: 0 0 28px var(--glow); }
+    .btn-primary:hover { box-shadow: 0 0 52px rgba(139,92,246,.45); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+    .btn-outline:hover { border-color: rgba(139,92,246,.55); color: var(--primary); transform: translateY(-2px); }
 
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1); }
     .reveal.visible { opacity: 1; transform: none; }
@@ -83,19 +84,18 @@
 
     .brief-steps { display: flex; align-items: center; gap: 0; margin-bottom: 32px; }
     .bs { display: flex; align-items: center; gap: 8px; font-size: .78rem; font-weight: 500; color: var(--muted); cursor: pointer; }
-    .bs-num { width: 26px; height: 26px; border-radius: var(--r); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: var(--font-m); font-size: .72rem; font-weight: 600; transition: all .25s; flex-shrink: 0; }
-    .bs.active .bs-num { background: var(--primary); border-color: transparent; color: var(--ink); }
-    .bs.done .bs-num { background: rgba(192,193,255,.12); border-color: var(--primary); color: var(--primary); }
+    .bs-num { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; transition: all .25s; flex-shrink: 0; }
+    .bs.active .bs-num { background: var(--grad); border-color: transparent; color: #060e20; }
+    .bs.done .bs-num { background: rgba(139,92,246,.15); border-color: var(--primary); color: var(--primary); }
     .bs.active, .bs.done { color: var(--text); }
     .bs-line { flex: 1; height: 1px; background: var(--border); margin: 0 10px; min-width: 20px; transition: background .25s; }
-    .bs-line.done { background: rgba(192,193,255,.45); }
+    .bs-line.done { background: rgba(139,92,246,.42); }
 
     .brief-page { display: none; }
     .brief-page.active { display: block; }
 
     .brief-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 24px; margin-bottom: 16px; }
-    .brief-card-title { font-family: var(--font-m); font-size: .7rem; font-weight: 500; text-transform: lowercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 18px; }
-    .brief-card-title::before { content: '// '; color: var(--muted2); }
+    .brief-card-title { font-family: var(--font-h); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 18px; }
 
     .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media(max-width:500px){ .f-row { grid-template-columns: 1fr; } }
@@ -103,11 +103,11 @@
     .f-label { font-size: .78rem; font-weight: 600; color: var(--muted); }
     .f-req { color: var(--secondary); }
     .f-ctrl {
-      padding: 10px 13px; background: rgba(255,255,255,.03); border: 1px solid var(--border-strong);
-      border-radius: var(--r); color: var(--text); font-family: var(--font-b); font-size: .88rem;
-      outline: none; transition: border-color .2s, box-shadow .2s; width: 100%;
+      padding: 10px 13px; background: rgba(255,255,255,.03); border: 1.5px solid var(--border);
+      border-radius: 9px; color: var(--text); font-family: var(--font-b); font-size: .88rem;
+      outline: none; transition: border-color .2s; width: 100%;
     }
-    .f-ctrl:focus { border-color: var(--primary); box-shadow: 3px 3px 0 rgba(192,193,255,.12); }
+    .f-ctrl:focus { border-color: rgba(139,92,246,.55); }
     .f-ctrl::placeholder { color: var(--muted2); }
     textarea.f-ctrl { min-height: 100px; resize: vertical; }
     select.f-ctrl {
@@ -118,13 +118,13 @@
       background-position: right 13px center;
       padding-right: 38px;
     }
-    select.f-ctrl option { background-color: #0b1326; color: #e7ebff; }
+    select.f-ctrl option { background-color: #0b1326; color: #FFFFFF; }
     select.f-ctrl option:disabled, select.f-ctrl option[value=""] { color: rgba(255,255,255,.35); }
 
     .chips { display: flex; flex-wrap: wrap; gap: 7px; }
     .chip input[type="checkbox"], .chip input[type="radio"] { display: none; }
-    .chip-lbl { display: inline-block; padding: 7px 15px; border: 1px solid var(--border-strong); border-radius: var(--r); font-size: .82rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all .18s; }
-    .chip input:checked + .chip-lbl { background: rgba(192,193,255,.12); border-color: var(--primary); color: var(--primary); }
+    .chip-lbl { display: inline-block; padding: 7px 15px; border: 1.5px solid var(--border); border-radius: 30px; font-size: .82rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all .18s; }
+    .chip input:checked + .chip-lbl { background: rgba(139,92,246,.14); border-color: rgba(139,92,246,.55); color: var(--primary); }
 
     /* GROTE FUNCTIE-KNOPPEN */
     .func-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
@@ -132,20 +132,21 @@
     .func-opt input { display: none; }
     .func-lbl {
       display: flex; align-items: center; gap: 12px; min-height: 60px;
-      padding: 16px 18px; border: 1px solid var(--border-strong); border-radius: var(--r);
+      padding: 16px 18px; border: 1.5px solid var(--border); border-radius: 12px;
       font-size: .95rem; font-weight: 600; color: var(--text); cursor: pointer;
       transition: all .18s; line-height: 1.25;
     }
     .func-lbl::before {
-      content: ''; flex-shrink: 0; width: 22px; height: 22px; border-radius: var(--r);
-      border: 1px solid var(--muted2); transition: all .18s;
+      content: ''; flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
+      border: 1.5px solid var(--muted2); transition: all .18s;
     }
-    .func-opt:hover .func-lbl { border-color: var(--primary); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 rgba(192,193,255,.12); }
+    .func-opt:hover .func-lbl { border-color: rgba(139,92,246,.45); transform: translateY(-2px); }
     .func-opt input:checked + .func-lbl {
-      background: rgba(192,193,255,.12); border-color: var(--primary); color: var(--primary);
+      background: rgba(139,92,246,.16); border-color: rgba(139,92,246,.6); color: var(--primary);
+      box-shadow: 0 0 22px rgba(139,92,246,.16);
     }
     .func-opt input:checked + .func-lbl::before {
-      background: var(--primary); border-color: transparent;
+      background: var(--grad); border-color: transparent;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='11' viewBox='0 0 14 11'%3E%3Cpath d='M1 5.5l4 4 8-8' stroke='%23060e20' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: center;
     }
@@ -154,7 +155,7 @@
     .brief-nav-note { font-size: .78rem; color: var(--muted2); flex: 1; }
 
     .brief-success { display: none; text-align: center; padding: 48px 24px; }
-    .brief-success-icon { width: 52px; height: 52px; margin: 0 auto 16px; display: block; color: var(--accent); }
+    .brief-success-icon { width: 52px; height: 52px; margin: 0 auto 16px; display: block; color: var(--aqua); }
     .brief-success h3 { font-family: var(--font-h); font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
     .brief-success p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
 
@@ -165,14 +166,16 @@
     .foot-copy { font-size: .78rem; color: var(--muted); }
     .foot-links { display: flex; gap: 18px; }
     .foot-links a { font-size: .8rem; color: var(--muted); text-decoration: none; transition: color .2s; }
-    .foot-links a:hover { color: var(--primary); }
+    .foot-links a:hover { color: var(--secondary); }
 
-    #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(18px); background: #0b1326; color: var(--text); padding: 12px 24px; border-radius: var(--r); font-size: .86rem; font-weight: 500; border: 1px solid var(--border-strong); opacity: 0; z-index: 999; transition: all .3s ease; white-space: nowrap; pointer-events: none; }
+    #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(18px); background: #0b1326; color: var(--text); padding: 12px 24px; border-radius: 50px; font-size: .86rem; font-weight: 500; border: 1px solid var(--border); opacity: 0; z-index: 999; transition: all .3s cubic-bezier(.34,1.56,.64,1); white-space: nowrap; pointer-events: none; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
+<canvas id="bg-canvas"></canvas>
 <div class="grain"></div>
+<div id="custom-cursor"></div>
 <div id="toast"></div>
 
 <!-- NAV -->
@@ -183,7 +186,9 @@
     <a href="/website-laten-maken/" class="nav-link" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
     <a href="/ai-integraties/" class="nav-link" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
     <div class="nav-divider"></div>
+    <button id="themeToggle" class="nav-toggle" onclick="toggleTheme()" aria-label="Thema"></button>
     <button id="langToggle" class="nav-toggle" onclick="toggleLang()">EN</button>
+    <div class="nav-divider"></div>
     <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" data-nl="Portaal" data-en="Portal">Portaal</a>
     <a href="aanvragen.html" class="nav-link nav-cta active magnetic" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
   </div>
@@ -197,7 +202,8 @@
   <a href="/website-laten-maken/" class="nav-link" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
   <a href="/ai-integraties/" class="nav-link" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
   <a href="aanvragen.html" class="nav-link nav-cta" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
-  <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
+  <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" style="border-radius:12px;text-align:center;width:100%;max-width:300px;padding:12px 28px;justify-content:center" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
+  <button class="mobile-theme-btn" id="mobileThemeToggle" onclick="toggleTheme()" aria-label="Thema"></button>
 </div>
 
 <!-- AANVRAGEN -->
@@ -261,7 +267,7 @@
             </div>
             <div class="brief-nav">
               <span class="brief-nav-note">Stap 1 van 2</span>
-              <button type="button" class="btn btn-primary" onclick="briefNext()">Volgende â†’</button>
+              <button type="button" class="btn btn-primary" onclick="briefNext()">Volgende →</button>
             </div>
           </div>
 
@@ -270,7 +276,7 @@
             <div class="brief-card">
               <div class="brief-card-title">Wat wil je bouwen?</div>
               <div class="f-group" style="margin-bottom:14px">
-                <label class="f-label">Doel in Ã©Ã©n zin <span class="f-req">*</span></label>
+                <label class="f-label">Doel in één zin <span class="f-req">*</span></label>
                 <input type="text" name="doel" class="f-ctrl" placeholder="bijv. Een tool waarmee klanten zelf afspraken inplannen" required>
               </div>
               <div class="f-group">
@@ -326,9 +332,9 @@
               </div>
             </div>
             <div class="brief-nav">
-              <button type="button" class="btn btn-outline" onclick="briefPrev()">â† Terug</button>
+              <button type="button" class="btn btn-outline" onclick="briefPrev()">← Terug</button>
               <span class="brief-nav-note" style="text-align:center">Stap 2 van 2</span>
-              <button type="submit" class="btn btn-primary">Aanvraag versturen â†’</button>
+              <button type="submit" class="btn btn-primary">Aanvraag versturen →</button>
             </div>
           </div>
         </form>
@@ -349,7 +355,7 @@
     <div class="foot-logo">
       <img src="assets/logo-horizontal.png" alt="Verso">
     </div>
-    <div class="foot-copy">Â© 2026 Verso Â· Kenny van Teeffelen Â· KVK 42079252</div>
+    <div class="foot-copy">© 2026 Verso · Kenny van Teeffelen · KVK 42079252</div>
     <div class="foot-links">
       <a href="/website-laten-maken/" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
       <a href="/ai-integraties/" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
@@ -385,9 +391,9 @@ function briefNext() {
   const page = document.getElementById('bpage-' + briefStep);
   const required = page.querySelectorAll('[required]');
   for (const f of required) {
-    if (!f.value.trim()) { f.focus(); f.style.borderColor = 'rgba(255,138,138,.75)'; setTimeout(() => f.style.borderColor = '', 2000); return; }
+    if (!f.value.trim()) { f.focus(); f.style.borderColor = 'rgba(232,121,249,.6)'; setTimeout(() => f.style.borderColor = '', 2000); return; }
     if (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim())) {
-      f.focus(); f.style.borderColor = 'rgba(255,138,138,.75)'; setTimeout(() => f.style.borderColor = '', 2000);
+      f.focus(); f.style.borderColor = 'rgba(232,121,249,.6)'; setTimeout(() => f.style.borderColor = '', 2000);
       showToast('Vul een geldig e-mailadres in.'); return;
     }
   }
@@ -420,11 +426,11 @@ document.getElementById('briefForm').addEventListener('submit', async e => {
   // valideer de zichtbare stap voor verzenden
   const curPage = document.getElementById('bpage-' + briefStep);
   for (const f of curPage.querySelectorAll('[required]')) {
-    if (!f.value.trim()) { f.focus(); f.style.borderColor = 'rgba(255,138,138,.75)'; setTimeout(() => f.style.borderColor = '', 2000); return; }
+    if (!f.value.trim()) { f.focus(); f.style.borderColor = 'rgba(232,121,249,.6)'; setTimeout(() => f.style.borderColor = '', 2000); return; }
   }
   const btn = e.target.querySelector('[type="submit"]');
   btn.disabled = true;
-  btn.textContent = 'Versturenâ€¦';
+  btn.textContent = 'Versturen…';
   const result = await submitForm(e.target);
   if (result.ok) {
     document.getElementById('briefForm').style.display = 'none';
@@ -432,7 +438,7 @@ document.getElementById('briefForm').addEventListener('submit', async e => {
     document.getElementById('briefSuccess').style.display = 'block';
   } else {
     btn.disabled = false;
-    btn.textContent = 'Aanvraag versturen â†’';
+    btn.textContent = 'Aanvraag versturen →';
     showToast('Fout: ' + result.msg);
   }
 });

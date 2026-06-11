@@ -76,12 +76,14 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
+<canvas id="bg-canvas"></canvas>
 <div class="grain"></div>
+<div id="custom-cursor"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -91,7 +93,9 @@
     <a href="/website-laten-maken/" class="nav-link" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
     <a href="/ai-integraties/" class="nav-link active" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
     <div class="nav-divider"></div>
+    <button id="themeToggle" class="nav-toggle" onclick="toggleTheme()" aria-label="Thema"></button>
     <button id="langToggle" class="nav-toggle" onclick="toggleLang()">EN</button>
+    <div class="nav-divider"></div>
     <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" data-nl="Portaal" data-en="Portal">Portaal</a>
     <a href="/aanvragen.html" class="nav-link nav-cta magnetic" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
   </div>
@@ -105,7 +109,8 @@
   <a href="/website-laten-maken/" class="nav-link" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
   <a href="/ai-integraties/" class="nav-link" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
   <a href="/aanvragen.html" class="nav-link nav-cta" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
-  <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
+  <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" style="border-radius:12px;text-align:center;width:100%;max-width:300px;padding:12px 28px;justify-content:center" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
+  <button class="mobile-theme-btn" id="mobileThemeToggle" onclick="toggleTheme()" aria-label="Thema"></button>
 </div>
 
 <!-- HERO -->
@@ -146,7 +151,7 @@
 <section id="toepassingen" class="section" style="background:rgba(11,19,38,.3);padding-top:72px">
   <div class="container">
     <div class="reveal" style="margin-bottom:40px">
-      <span class="sec-label" data-nl="toepassingen" data-en="use cases">toepassingen</span>
+      <span class="sec-label" data-nl="[ TOEPASSINGEN ]" data-en="[ USE CASES ]">[ TOEPASSINGEN ]</span>
       <h2 class="sec-title" data-nl="Wat AI voor jou <span class='grad-text'>kan doen</span>" data-en="What AI can <span class='grad-text'>do for you</span>">Wat AI voor jou <span class="grad-text">kan doen</span></h2>
     </div>
     <div class="feat-grid">
@@ -188,7 +193,7 @@
 <section class="section">
   <div class="container-narrow">
     <div class="reveal" style="margin-bottom:36px">
-      <span class="sec-label" data-nl="veelgestelde vragen" data-en="faq">veelgestelde vragen</span>
+      <span class="sec-label" data-nl="[ VEELGESTELDE VRAGEN ]" data-en="[ FAQ ]">[ VEELGESTELDE VRAGEN ]</span>
       <h2 class="sec-title" data-nl="AI-integraties: <span class='grad-text'>veelgestelde vragen</span>" data-en="AI integrations: <span class='grad-text'>frequently asked questions</span>">AI-integraties: <span class="grad-text">veelgestelde vragen</span></h2>
     </div>
     <div class="faq-wrap reveal">
