@@ -217,6 +217,20 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 .port-link{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:var(--primary);text-decoration:none;transition:gap .2s}
 .port-link:hover{gap:11px}
 
+/* PORTFOLIO SHOWCASE (foto boven, info eronder) */
+.work-main{display:flex;flex-direction:column;text-decoration:none;color:inherit;cursor:pointer}
+.work-img{position:relative;overflow:hidden;border-bottom:1px solid var(--border);aspect-ratio:2/1}
+@media(max-width:600px){.work-img{aspect-ratio:16/10}}
+.work-img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;filter:grayscale(1);opacity:.8;transition:filter .6s ease,opacity .6s ease,transform .6s ease}
+.work-main:hover .work-img img{filter:grayscale(0);opacity:1;transform:scale(1.02)}
+.work-body{padding:26px 28px 30px}
+.work-body .port-tags{gap:7px}
+.work-body .port-tag{font-size:.68rem;padding:4px 11px}
+.work-title{font-family:var(--font-h);font-size:1.6rem;font-weight:700;letter-spacing:-.02em;margin:12px 0 8px}
+.work-desc{font-size:.92rem;color:var(--text);line-height:1.75;margin-bottom:16px;max-width:640px}
+.work-link{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:600;color:var(--primary);transition:gap .2s}
+.work-main:hover .work-link{gap:13px}
+
 /* STATS */
 .stat-box{padding:24px 20px}
 .stat-nr{font-family:var(--font-h);font-size:2.3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:5px}
@@ -478,18 +492,21 @@ body.light .va-item{background:linear-gradient(160deg,#eef2ff,#e3e9ff)}
       <h2 class="sec-title" data-nl="Recent <span class='grad-text'>werk</span>" data-en="Recent <span class='grad-text'>work</span>">Recent <span class="grad-text">werk</span></h2>
       <p class="sec-sub" data-nl="Een greep uit de projecten die ik heb gebouwd. Elk project is uniek, net als jouw idee." data-en="A selection of projects I've built. Every project is unique, just like your idea.">Een greep uit de projecten die ik heb gebouwd. Elk project is uniek, net als jouw idee.</p>
     </div>
-    <div class="glass port-hero reveal rd1">
-      <div class="port-hero-img">
-        <img src="https://image.thum.io/get/width/1280/crop/640/https://veramiek.nl" alt="Veramiek" loading="lazy">
+    <a class="glass work-main reveal rd1" href="https://veramiek.nl" target="_blank" rel="noopener">
+      <div class="work-img">
+        <img src="https://image.thum.io/get/width/1280/crop/640/https://veramiek.nl" alt="Website van keramiek atelier Veramiek" loading="lazy">
       </div>
-      <div class="port-hero-overlay"></div>
-      <div class="port-hero-content">
-        <span class="port-tag-label" data-nl="Website · E-commerce" data-en="Website · E-commerce">Website · E-commerce</span>
-        <h3 class="port-hero-title">Veramiek</h3>
-        <p class="port-hero-desc" data-nl="Stijlvolle website voor een keramiek atelier uit Etten-Leur, inclusief collectie, workshops en contactmogelijkheden." data-en="Stylish website for a ceramics studio from Etten-Leur, including collection, workshops and contact options.">Stijlvolle website voor een keramiek atelier uit Etten-Leur, inclusief collectie, workshops en contactmogelijkheden.</p>
-        <a href="https://veramiek.nl" target="_blank" class="btn btn-outline" data-nl="Bekijk project →" data-en="View project →">Bekijk project →</a>
+      <div class="work-body">
+        <div class="port-tags">
+          <span class="port-tag">Website</span>
+          <span class="port-tag">CMS</span>
+          <span class="port-tag">Workshops</span>
+        </div>
+        <h3 class="work-title">Veramiek</h3>
+        <p class="work-desc" data-nl="Stijlvolle website voor een keramiek atelier uit Etten-Leur, met collectie, workshops en eigen contentbeheer via een CMS." data-en="Stylish website for a ceramics studio from Etten-Leur, with collection, workshops and its own content management via a CMS.">Stijlvolle website voor een keramiek atelier uit Etten-Leur, met collectie, workshops en eigen contentbeheer via een CMS.</p>
+        <span class="work-link" data-nl="Bekijk live →" data-en="View live →">Bekijk live →</span>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
