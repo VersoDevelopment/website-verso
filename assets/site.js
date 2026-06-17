@@ -53,13 +53,6 @@
   requestAnimationFrame(render);
 })();
 
-// ── CUSTOM CURSOR ─────────────────────────────────────────
-(function(){
-  const cur=document.getElementById('custom-cursor');
-  if(!cur)return;
-  window.addEventListener('mousemove',e=>{cur.style.transform=`translate(${e.clientX-8}px,${e.clientY-8}px)`;});
-})();
-
 // ── MAGNETIC BUTTONS ──────────────────────────────────────
 document.querySelectorAll('.magnetic').forEach(btn=>{
   btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();const x=e.clientX-r.left-r.width/2;const y=e.clientY-r.top-r.height/2;btn.style.transform=`translate(${x*.25}px,${y*.25}px) scale(1.03)`;});

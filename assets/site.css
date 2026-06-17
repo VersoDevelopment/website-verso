@@ -15,14 +15,12 @@
   --font-h:'Roboto Flex',sans-serif;--font-b:'DM Sans',sans-serif;
 }
 html{scroll-behavior:smooth;background:#060e20}
-body{background:#060e20;color:var(--text);font-family:var(--font-b);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+body{background:#060e20;color:var(--text);font-family:var(--font-b);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{font-family:var(--font-h)}
 a{color:inherit}
 img{max-width:100%}
 #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
-#custom-cursor{position:fixed;width:16px;height:16px;background:var(--primary);border-radius:50%;pointer-events:none;z-index:10000;mix-blend-mode:screen;filter:blur(2px);transition:transform .08s ease-out}
-@media(max-width:768px){#custom-cursor{display:none}body{cursor:auto}}
 
 /* GLASS */
 .glass{background:var(--card);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--border);border-radius:var(--r);transition:all .4s cubic-bezier(.23,1,.32,1);position:relative;overflow:hidden}

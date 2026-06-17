@@ -6,8 +6,9 @@
 <meta name="description" content="Verso Development bouwt snelle, moderne websites, web apps en AI-integraties op maat. Eén aanspreekpunt, scherpe prijzen. Vraag een vrijblijvende offerte aan.">
 <title>Website laten maken | Webdesign &amp; AI-integraties | Verso Development</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="assets/logo-icon.png">
-<link rel="apple-touch-icon" href="assets/logo-icon.png">
+<link rel="icon" type="image/svg+xml" href="/assets/verso-icon.svg">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/verso-icon-512.png">
+<link rel="apple-touch-icon" href="/assets/verso-icon-512.png">
 <link rel="canonical" href="https://versodevelopment.nl/">
 <meta name="robots" content="index,follow">
 <meta name="author" content="Kenny van Teeffelen">
@@ -39,7 +40,7 @@
   "email": "info@versodevelopment.nl",
   "telephone": "+31620375814",
   "image": "https://versodevelopment.nl/assets/logo-square.png",
-  "logo": "https://versodevelopment.nl/assets/logo-square.png",
+  "logo": "https://versodevelopment.nl/assets/verso-icon-512.png",
   "priceRange": "€€",
   "address": { "@type": "PostalAddress", "addressLocality": "Breda", "addressRegion": "Noord-Brabant", "addressCountry": "NL" },
   "geo": { "@type": "GeoCoordinates", "latitude": 51.5719, "longitude": 4.7683 },
@@ -243,6 +244,9 @@ nav.scrolled .nav-toggle,nav.scrolled #langToggle,nav.scrolled .nav-divider{disp
 footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-index:1}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
 .foot-logo img{height:46px;width:auto;object-fit:contain}
+.foot-logo .logo-light{display:none}
+body.light .foot-logo .logo-dark{display:none}
+body.light .foot-logo .logo-light{display:inline-block}
 .foot-copy{font-size:.78rem;color:var(--muted)}
 .foot-links{display:flex;gap:18px;flex-wrap:wrap}
 .foot-links a{font-size:.8rem;color:var(--muted);text-decoration:none;transition:color .2s}
@@ -385,7 +389,7 @@ body.light .va-item{background:linear-gradient(160deg,#eef2ff,#e3e9ff)}
   </video>
   <div class="hero-video-overlay"></div>
   <div class="hero-content">
-    <div class="hero-logo"><img src="assets/logo-icon.png" alt="Verso"></div>
+    <div class="hero-logo"><img src="assets/verso-icon.svg" alt="Verso"></div>
     <h1 class="hero-title" data-nl="Van passie,<br>tot <span class='grad-text'>product.</span>" data-en="From passion,<br>to <span class='grad-text'>product.</span>">Van passie,<br>tot <span class="grad-text">product.</span></h1>
     <p class="hero-sub"><span id="typing"></span><span id="typing-cursor"></span></p>
   </div>
@@ -690,7 +694,7 @@ body.light .va-item{background:linear-gradient(160deg,#eef2ff,#e3e9ff)}
 <!-- FOOTER -->
 <footer>
   <div class="container foot-inner">
-    <div class="foot-logo"><img src="assets/logo-horizontal.png" alt="Verso Development"></div>
+    <div class="foot-logo"><img class="logo-dark" src="assets/verso-logo-horizontal-white.png" alt="Verso Development"><img class="logo-light" src="assets/verso-logo-horizontal.png" alt="Verso Development"></div>
     <div class="foot-copy">© 2026 Verso Development · KVK 42079252</div>
     <div class="foot-links">
       <a href="/website-laten-maken/" data-nl="Website laten maken" data-en="Build a website">Website laten maken</a>

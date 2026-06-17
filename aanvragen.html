@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Vraag een project aan bij Verso Development. Vertel me over jouw idee." />
   <title>Aanvragen | Verso Development</title>
-  <link rel="icon" type="image/png" href="assets/logo-icon.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/verso-icon.svg">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/verso-icon-512.png">
+  <link rel="apple-touch-icon" href="/assets/verso-icon-512.png">
   <link rel="canonical" href="https://versodevelopment.nl/aanvragen.html">
   <meta name="theme-color" content="#060e20">
   <meta property="og:type" content="website">
@@ -23,58 +26,28 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg:        #060e20;
-      --bg1:       #0b1326;
-      --bg2:       #131b2e;
-      --card:      rgba(255,255,255,0.04);
-      --border:    rgba(255,255,255,0.10);
-      --text:      #FFFFFF;
-      --muted:     rgba(255,255,255,0.50);
-      --muted2:    rgba(255,255,255,0.25);
-      --primary:   #c0c1ff;
-      --secondary: #8B5CF6;
-      --blue:      #60A5FA;
-      --aqua:      #60A5FA;
-      --grad:      linear-gradient(135deg, #c0c1ff 0%, #60A5FA 100%);
-      --glow:      rgba(192,193,255,0.25);
-      --font-h:    'Roboto Flex', sans-serif;
-      --font-b:    'DM Sans', sans-serif;
-      --r:         14px;
-    }
-
+    /* Designtokens (kleuren, radius, light mode) komen uit assets/site.css, gelijk aan de homepage */
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: var(--font-b); line-height: 1.6; overflow-x: hidden; }
 
     .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .section { padding: 110px 0; }
+    .section { padding: 104px 0 48px; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
-
-    .label-tag {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-family: var(--font-b); font-size: .7rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: .12em; color: var(--secondary);
-      background: rgba(232,121,249,.1); border: 1px solid rgba(232,121,249,.28);
-      padding: 5px 13px; border-radius: 30px; margin-bottom: 18px;
-    }
-    .label-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); animation: pdot 2s infinite; }
-    @keyframes pdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.65)} }
 
     .section-title { font-family: var(--font-h); font-size: clamp(1.9rem,3.8vw,2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 12px; }
     .section-sub { color: var(--muted); font-size: .95rem; max-width: 500px; line-height: 1.75; margin-bottom: 52px; }
 
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; font-family: var(--font-b); font-size: .9rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all .22s; }
     .btn-primary { background: var(--grad); color: #060e20; box-shadow: 0 0 28px var(--glow); }
-    .btn-primary:hover { box-shadow: 0 0 52px rgba(139,92,246,.45); transform: translateY(-2px); }
+    .btn-primary:hover { box-shadow: 0 0 52px rgba(192,193,255,.45); transform: translateY(-2px); }
     .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
-    .btn-outline:hover { border-color: rgba(139,92,246,.55); color: var(--primary); transform: translateY(-2px); }
+    .btn-outline:hover { border-color: rgba(192,193,255,.55); color: var(--primary); transform: translateY(-2px); }
 
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1); }
     .reveal.visible { opacity: 1; transform: none; }
     .rd1 { transition-delay: .1s; } .rd2 { transition-delay: .2s; }
 
     /* FORM SECTION */
-    #aanvragen { background: var(--bg1); }
     .brief-layout { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: start; }
     @media(max-width:860px){ .brief-layout { grid-template-columns: 1fr; } .brief-info { display: none; } }
     .brief-info p { font-size: .88rem; color: var(--muted); line-height: 1.8; margin-bottom: 28px; }
@@ -86,15 +59,15 @@
     .bs { display: flex; align-items: center; gap: 8px; font-size: .78rem; font-weight: 500; color: var(--muted); cursor: pointer; }
     .bs-num { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; transition: all .25s; flex-shrink: 0; }
     .bs.active .bs-num { background: var(--grad); border-color: transparent; color: #060e20; }
-    .bs.done .bs-num { background: rgba(139,92,246,.15); border-color: var(--primary); color: var(--primary); }
+    .bs.done .bs-num { background: rgba(192,193,255,.15); border-color: var(--primary); color: var(--primary); }
     .bs.active, .bs.done { color: var(--text); }
     .bs-line { flex: 1; height: 1px; background: var(--border); margin: 0 10px; min-width: 20px; transition: background .25s; }
-    .bs-line.done { background: rgba(139,92,246,.42); }
+    .bs-line.done { background: rgba(192,193,255,.42); }
 
     .brief-page { display: none; }
     .brief-page.active { display: block; }
 
-    .brief-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 24px; margin-bottom: 16px; }
+    .brief-card { background: var(--card); backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur)); border: 1px solid var(--border); border-radius: var(--r); padding: 24px; margin-bottom: 16px; }
     .brief-card-title { font-family: var(--font-h); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 18px; }
 
     .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -107,7 +80,7 @@
       border-radius: 9px; color: var(--text); font-family: var(--font-b); font-size: .88rem;
       outline: none; transition: border-color .2s; width: 100%;
     }
-    .f-ctrl:focus { border-color: rgba(139,92,246,.55); }
+    .f-ctrl:focus { border-color: rgba(192,193,255,.55); }
     .f-ctrl::placeholder { color: var(--muted2); }
     textarea.f-ctrl { min-height: 100px; resize: vertical; }
     select.f-ctrl {
@@ -124,7 +97,7 @@
     .chips { display: flex; flex-wrap: wrap; gap: 7px; }
     .chip input[type="checkbox"], .chip input[type="radio"] { display: none; }
     .chip-lbl { display: inline-block; padding: 7px 15px; border: 1.5px solid var(--border); border-radius: 30px; font-size: .82rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all .18s; }
-    .chip input:checked + .chip-lbl { background: rgba(139,92,246,.14); border-color: rgba(139,92,246,.55); color: var(--primary); }
+    .chip input:checked + .chip-lbl { background: rgba(192,193,255,.14); border-color: rgba(192,193,255,.55); color: var(--primary); }
 
     /* GROTE FUNCTIE-KNOPPEN */
     .func-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
@@ -140,10 +113,10 @@
       content: ''; flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
       border: 1.5px solid var(--muted2); transition: all .18s;
     }
-    .func-opt:hover .func-lbl { border-color: rgba(139,92,246,.45); transform: translateY(-2px); }
+    .func-opt:hover .func-lbl { border-color: rgba(192,193,255,.45); transform: translateY(-2px); }
     .func-opt input:checked + .func-lbl {
-      background: rgba(139,92,246,.16); border-color: rgba(139,92,246,.6); color: var(--primary);
-      box-shadow: 0 0 22px rgba(139,92,246,.16);
+      background: rgba(192,193,255,.16); border-color: rgba(192,193,255,.6); color: var(--primary);
+      box-shadow: 0 0 22px rgba(192,193,255,.16);
     }
     .func-opt input:checked + .func-lbl::before {
       background: var(--grad); border-color: transparent;
@@ -155,14 +128,17 @@
     .brief-nav-note { font-size: .78rem; color: var(--muted2); flex: 1; }
 
     .brief-success { display: none; text-align: center; padding: 48px 24px; }
-    .brief-success-icon { width: 52px; height: 52px; margin: 0 auto 16px; display: block; color: var(--aqua); }
+    .brief-success-icon { width: 52px; height: 52px; margin: 0 auto 16px; display: block; color: var(--secondary); }
     .brief-success h3 { font-family: var(--font-h); font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
     .brief-success p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
 
     /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 36px 0; }
-    .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
-    .foot-logo img { height: 52px; width: auto; }
+    footer { border-top: 1px solid var(--border); padding: 12px 0; }
+    .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 22px; }
+    .foot-logo img { height: 24px; width: auto; display: block; }
+    .foot-logo .logo-light { display: none; }
+    body.light .foot-logo .logo-dark { display: none; }
+    body.light .foot-logo .logo-light { display: inline-block; }
     .foot-copy { font-size: .78rem; color: var(--muted); }
     .foot-links { display: flex; gap: 18px; }
     .foot-links a { font-size: .8rem; color: var(--muted); text-decoration: none; transition: color .2s; }
@@ -175,16 +151,16 @@
 <body>
 <canvas id="bg-canvas"></canvas>
 <div class="grain"></div>
-<div id="custom-cursor"></div>
 <div id="toast"></div>
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="/" class="nav-logo" aria-label="Verso Development home"><img src="assets/logo-horizontal.png" alt="Verso Development"></a>
+  <a href="/" class="nav-logo" aria-label="Verso Development home"><img src="assets/verso-icon.svg" alt="Verso"></a>
   <div class="nav-links">
-    <a href="/" class="nav-link" data-nl="Home" data-en="Home">Home</a>
-    <a href="/website-laten-maken/" class="nav-link" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
-    <a href="/ai-integraties/" class="nav-link" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
+    <a href="/#diensten" class="nav-link" data-nl="Diensten" data-en="Services">Diensten</a>
+    <a href="/#portfolio" class="nav-link" data-nl="Portfolio" data-en="Portfolio">Portfolio</a>
+    <a href="/#over" class="nav-link" data-nl="Over mij" data-en="About me">Over mij</a>
+    <a href="/#contact" class="nav-link" data-nl="Contact" data-en="Contact">Contact</a>
     <div class="nav-divider"></div>
     <button id="themeToggle" class="nav-toggle" onclick="toggleTheme()" aria-label="Thema"></button>
     <button id="langToggle" class="nav-toggle" onclick="toggleLang()">EN</button>
@@ -198,9 +174,10 @@
 </nav>
 
 <div id="mobile-menu" class="mobile-menu">
-  <a href="/" class="nav-link" data-nl="Home" data-en="Home">Home</a>
-  <a href="/website-laten-maken/" class="nav-link" data-nl="Website laten maken" data-en="Web design">Website laten maken</a>
-  <a href="/ai-integraties/" class="nav-link" data-nl="AI-integraties" data-en="AI integrations">AI-integraties</a>
+  <a href="/#diensten" class="nav-link" data-nl="Diensten" data-en="Services">Diensten</a>
+  <a href="/#portfolio" class="nav-link" data-nl="Portfolio" data-en="Portfolio">Portfolio</a>
+  <a href="/#over" class="nav-link" data-nl="Over mij" data-en="About me">Over mij</a>
+  <a href="/#contact" class="nav-link" data-nl="Contact" data-en="Contact">Contact</a>
   <a href="aanvragen.html" class="nav-link nav-cta" data-nl="Vraag aan" data-en="Get started">Vraag aan</a>
   <a href="https://portal.versodevelopment.nl" class="nav-portal" target="_blank" style="border-radius:12px;text-align:center;width:100%;max-width:300px;padding:12px 28px;justify-content:center" data-nl="Klanten portaal" data-en="Client portal">Klanten portaal</a>
   <button class="mobile-theme-btn" id="mobileThemeToggle" onclick="toggleTheme()" aria-label="Thema"></button>
@@ -210,7 +187,6 @@
 <section id="aanvragen" class="section">
   <div class="container">
     <div class="reveal" style="text-align:center; margin-bottom:56px">
-      <div class="label-tag">Aanvragen</div>
       <h2 class="section-title">Vertel me over <span class="grad-text">jouw project</span></h2>
       <p class="section-sub" style="margin:0 auto">Hoe meer detail je geeft, hoe scherper mijn voorstel.</p>
     </div>
@@ -353,7 +329,8 @@
 <footer>
   <div class="container foot-inner">
     <div class="foot-logo">
-      <img src="assets/logo-horizontal.png" alt="Verso">
+      <img class="logo-dark" src="assets/verso-logo-horizontal-white.png" alt="Verso Development">
+      <img class="logo-light" src="assets/verso-logo-horizontal.png" alt="Verso Development">
     </div>
     <div class="foot-copy">© 2026 Verso · Kenny van Teeffelen · KVK 42079252</div>
     <div class="foot-links">
