@@ -68,13 +68,10 @@
   --font-h:'Roboto Flex',sans-serif;--font-b:'DM Sans',sans-serif;
 }
 html{scroll-behavior:smooth;background:#060e20}
-body{background:#060e20;color:var(--text);font-family:var(--font-b);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+body{background:#060e20;color:var(--text);font-family:var(--font-b);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{font-family:var(--font-h)}
 #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
-#custom-cursor{position:fixed;width:16px;height:16px;background:var(--primary);border-radius:50%;pointer-events:none;z-index:10000;mix-blend-mode:screen;filter:blur(2px);transition:transform .08s ease-out}
-#cursor-trail{position:fixed;width:6px;height:6px;background:var(--secondary);border-radius:50%;pointer-events:none;z-index:9999;opacity:.5;filter:blur(1px)}
-@media(max-width:768px){#custom-cursor,#cursor-trail{display:none}body{cursor:auto}}
 
 /* GLASS */
 .glass{background:var(--card);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--border);border-radius:var(--r);transition:all .4s cubic-bezier(.23,1,.32,1);position:relative;overflow:hidden}
@@ -349,7 +346,6 @@ body.light .va-item{background:linear-gradient(160deg,#eef2ff,#e3e9ff)}
 
 <canvas id="bg-canvas"></canvas>
 <div class="grain"></div>
-<div id="custom-cursor"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -493,25 +489,26 @@ body.light .va-item{background:linear-gradient(160deg,#eef2ff,#e3e9ff)}
       <p class="sec-sub" data-nl="Een greep uit de projecten die ik heb gebouwd. Elk project is uniek, net als jouw idee." data-en="A selection of projects I've built. Every project is unique, just like your idea.">Een greep uit de projecten die ik heb gebouwd. Elk project is uniek, net als jouw idee.</p>
     </div>
     <style>
-      .pfc{margin-top:34px}
-      .pfc-scene{position:relative;width:100%;height:580px;border-radius:24px;background:radial-gradient(120% 100% at 50% 0,rgba(192,193,255,.07),transparent 60%),rgba(8,14,30,.5);border:1px solid var(--border);overflow:hidden;outline:none}
-      .pfc-ring{position:absolute;left:50%;top:50%;width:300px;height:340px;margin-left:-150px;margin-top:-170px}
-      .pfc-tile{position:absolute;inset:0;border-radius:18px;overflow:hidden;background:#fff;display:flex;flex-direction:column;cursor:pointer;backface-visibility:hidden;box-shadow:0 20px 44px rgba(0,0,0,.4);transition:opacity .5s ease,filter .5s ease,box-shadow .5s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+      .pfc{margin-top:34px;width:100vw;margin-left:calc(50% - 50vw)}
+      .pfc-scene{position:relative;width:100%;height:640px;overflow:visible;outline:none}
+      .pfc-ring{position:absolute;left:50%;top:50%;width:360px;height:400px;margin-left:-180px;margin-top:-200px}
+      .pfc-tile{position:absolute;inset:0;border-radius:18px;overflow:hidden;background:var(--card);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;backface-visibility:hidden;box-shadow:0 20px 44px rgba(0,0,0,.4);transition:opacity .5s ease,filter .5s ease,box-shadow .5s ease,transform .7s cubic-bezier(.22,1,.36,1)}
       .pfc-tile.is-active{box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 1px rgba(192,193,255,.35),0 0 52px rgba(192,193,255,.18)}
-      .pfc-shot{height:62%;flex-shrink:0;overflow:hidden;background:#e6e6e6;position:relative}
+      .pfc-tile:hover{border-color:rgba(192,193,255,.55);box-shadow:0 44px 90px rgba(0,0,0,.55),0 0 0 1px rgba(192,193,255,.55),0 0 80px rgba(192,193,255,.4)}
+      .pfc-shot{height:62%;flex-shrink:0;overflow:hidden;background:rgba(255,255,255,.04);position:relative}
       .pfc-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
       .pfc-cap{flex:1;padding:15px 17px 17px;display:flex;flex-direction:column;gap:6px}
-      .pfc-title{font-family:var(--font-h);font-size:1.05rem;font-weight:600;color:#161616;margin:0}
-      .pfc-desc{font-size:.8rem;line-height:1.45;color:#555;margin:0;flex:1}
+      .pfc-title{font-family:var(--font-h);font-size:1.05rem;font-weight:600;color:var(--text);margin:0}
+      .pfc-desc{font-size:.8rem;line-height:1.45;color:var(--muted);margin:0;flex:1}
       .pfc-link{font-size:.8rem;font-weight:600;color:var(--primary);text-decoration:none;margin-top:2px}
-      .pfc-muted{font-size:.78rem;font-weight:600;color:#9a9a9a;margin-top:2px}
-      .pfc-badge{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#b06a00;margin-top:2px}
+      .pfc-muted{font-size:.78rem;font-weight:600;color:var(--muted);margin-top:2px}
+      .pfc-badge{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#f5c451;margin-top:2px}
       .pfc-constr{height:62%;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:repeating-linear-gradient(45deg,#1c1c1c,#1c1c1c 14px,#242424 14px,#242424 28px);color:#f5c451}
       .pfc-constr .pfc-cone{font-size:2.4rem;line-height:1}
       .pfc-constr b{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:#f0d089}
-      .pfc-arrow{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(12,18,34,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;z-index:60;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+      .pfc-arrow{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(12,18,34,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;z-index:500;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
       .pfc-arrow:hover{background:rgba(12,18,34,.85);border-color:rgba(192,193,255,.5)}
-      .pfc-prev{left:16px}.pfc-next{right:16px}
+      .pfc-prev{left:max(20px,calc(50% - 680px))}.pfc-next{right:max(20px,calc(50% - 680px))}
       .pfc-hint{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:.72rem;color:var(--muted);z-index:40;pointer-events:none}
       @media(max-width:680px){
         .pfc-scene{height:420px}
@@ -583,7 +580,7 @@ body.light .va-item{background:linear-gradient(160deg,#eef2ff,#e3e9ff)}
         var index=0, R=260, thetaStep=Math.PI*2/n, activeScale=1.6;
         function calc(){
           var w=tiles[0].offsetWidth||400;
-          R=Math.round(w*(window.innerWidth<=680?0.7:1.05));
+          R=Math.round(w*(window.innerWidth<=680?0.75:1.35));
           activeScale=window.innerWidth<=680?1.4:1.6;
         }
         function update(){
@@ -788,13 +785,6 @@ if (gl) {
   }
   requestAnimationFrame(render);
 }
-
-// ── CUSTOM CURSOR ─────────────────────────────────────────
-const cur = document.getElementById('custom-cursor');
-const trail = document.getElementById('cursor-trail');
-let mx=0,my=0,tx=0,ty=0;
-window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-8}px,${my-8}px)`;});
-(function animTrail(){tx+=(mx-tx)*.15;ty+=(my-ty)*.15;if(trail)trail.style.transform=`translate(${tx-3}px,${ty-3}px)`;requestAnimationFrame(animTrail);})();
 
 // ── MAGNETIC BUTTONS ──────────────────────────────────────
 document.querySelectorAll('.magnetic').forEach(btn=>{
