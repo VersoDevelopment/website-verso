@@ -28,7 +28,10 @@
 
     /* Designtokens (kleuren, radius, light mode) komen uit assets/site.css, gelijk aan de homepage */
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-b); line-height: 1.6; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-b); line-height: 1.6; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+    /* sticky footer: sectie vult de hoogte, footer plakt onderaan het scherm */
+    #aanvragen { flex: 1 0 auto; }
+    footer { flex-shrink: 0; }
 
     .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .section { padding: 104px 0 48px; }
