@@ -492,68 +492,148 @@ body.light .va-item{background:linear-gradient(160deg,#eef2ff,#e3e9ff)}
       <h2 class="sec-title" data-nl="Recent <span class='grad-text'>werk</span>" data-en="Recent <span class='grad-text'>work</span>">Recent <span class="grad-text">werk</span></h2>
       <p class="sec-sub" data-nl="Een greep uit de projecten die ik heb gebouwd. Elk project is uniek, net als jouw idee." data-en="A selection of projects I've built. Every project is unique, just like your idea.">Een greep uit de projecten die ik heb gebouwd. Elk project is uniek, net als jouw idee.</p>
     </div>
-    <a class="glass work-main reveal rd1" href="https://veramiek.nl" target="_blank" rel="noopener">
-      <div class="work-img">
-        <img src="https://image.thum.io/get/width/1280/crop/640/https://veramiek.nl" alt="Website van keramiek atelier Veramiek" loading="lazy">
-      </div>
-      <div class="work-body">
-        <div class="port-tags">
-          <span class="port-tag">Website</span>
-          <span class="port-tag">CMS</span>
-          <span class="port-tag">Workshops</span>
+    <style>
+      .pfc{margin-top:34px}
+      .pfc-scene{position:relative;width:100%;height:580px;border-radius:24px;background:radial-gradient(120% 100% at 50% 0,rgba(192,193,255,.07),transparent 60%),rgba(8,14,30,.5);border:1px solid var(--border);overflow:hidden;outline:none}
+      .pfc-ring{position:absolute;left:50%;top:50%;width:300px;height:340px;margin-left:-150px;margin-top:-170px}
+      .pfc-tile{position:absolute;inset:0;border-radius:18px;overflow:hidden;background:#fff;display:flex;flex-direction:column;cursor:pointer;backface-visibility:hidden;box-shadow:0 20px 44px rgba(0,0,0,.4);transition:opacity .5s ease,filter .5s ease,box-shadow .5s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+      .pfc-tile.is-active{box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 1px rgba(192,193,255,.35),0 0 52px rgba(192,193,255,.18)}
+      .pfc-shot{height:62%;flex-shrink:0;overflow:hidden;background:#e6e6e6;position:relative}
+      .pfc-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+      .pfc-cap{flex:1;padding:15px 17px 17px;display:flex;flex-direction:column;gap:6px}
+      .pfc-title{font-family:var(--font-h);font-size:1.05rem;font-weight:600;color:#161616;margin:0}
+      .pfc-desc{font-size:.8rem;line-height:1.45;color:#555;margin:0;flex:1}
+      .pfc-link{font-size:.8rem;font-weight:600;color:var(--primary);text-decoration:none;margin-top:2px}
+      .pfc-muted{font-size:.78rem;font-weight:600;color:#9a9a9a;margin-top:2px}
+      .pfc-badge{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#b06a00;margin-top:2px}
+      .pfc-constr{height:62%;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:repeating-linear-gradient(45deg,#1c1c1c,#1c1c1c 14px,#242424 14px,#242424 28px);color:#f5c451}
+      .pfc-constr .pfc-cone{font-size:2.4rem;line-height:1}
+      .pfc-constr b{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:#f0d089}
+      .pfc-arrow{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(12,18,34,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;z-index:60;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+      .pfc-arrow:hover{background:rgba(12,18,34,.85);border-color:rgba(192,193,255,.5)}
+      .pfc-prev{left:16px}.pfc-next{right:16px}
+      .pfc-hint{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:.72rem;color:var(--muted);z-index:40;pointer-events:none}
+      @media(max-width:680px){
+        .pfc-scene{height:420px}
+        .pfc-ring{width:220px;height:250px;margin-left:-110px;margin-top:-125px}
+        .pfc-arrow{width:42px;height:42px}
+        .pfc-prev{left:10px}.pfc-next{right:10px}
+      }
+    </style>
+    <div class="pfc reveal">
+      <div class="pfc-scene" id="pfScene" tabindex="0" role="region" aria-label="Portfolio">
+        <div class="pfc-ring">
+          <article class="pfc-tile" data-link="https://veramiek.nl">
+            <div class="pfc-shot"><img src="https://image.thum.io/get/width/900/crop/1100/https://veramiek.nl" alt="Website van keramiek atelier Veramiek" loading="lazy"></div>
+            <div class="pfc-cap">
+              <h3 class="pfc-title">Veramiek</h3>
+              <p class="pfc-desc" data-nl="Stijlvolle website voor een keramiek atelier uit Etten-Leur, met collectie, workshops en eigen CMS." data-en="Stylish website for a ceramics studio from Etten-Leur, with collection, workshops and its own CMS.">Stijlvolle website voor een keramiek atelier uit Etten-Leur, met collectie, workshops en eigen CMS.</p>
+              <a class="pfc-link" href="https://veramiek.nl" target="_blank" rel="noopener" data-nl="Bekijk live →" data-en="View live →">Bekijk live →</a>
+            </div>
+          </article>
+          <article class="pfc-tile" data-link="https://caya-pm.com">
+            <div class="pfc-shot"><img src="https://image.thum.io/get/width/900/crop/1100/https://caya-pm.com" alt="Website van CAYA Property Management op Curacao" loading="lazy"></div>
+            <div class="pfc-cap">
+              <h3 class="pfc-title">CAYA Property Management</h3>
+              <p class="pfc-desc" data-nl="Tropische website voor een property manager op Curaçao, met villaverhuur, autoverhuur en online reserveren met betaling." data-en="Tropical website for a property manager on Curaçao, with villa rentals, car rentals and online booking with payment.">Tropische website voor een property manager op Curaçao, met villaverhuur, autoverhuur en online reserveren met betaling.</p>
+              <a class="pfc-link" href="https://caya-pm.com" target="_blank" rel="noopener" data-nl="Bekijk live →" data-en="View live →">Bekijk live →</a>
+            </div>
+          </article>
+          <article class="pfc-tile" data-link="https://watermarkremover.versodevelopment.nl">
+            <div class="pfc-shot"><img src="https://image.thum.io/get/width/900/crop/1100/https://watermarkremover.versodevelopment.nl" alt="Watermark Remover tool" loading="lazy"></div>
+            <div class="pfc-cap">
+              <h3 class="pfc-title">Watermark Remover</h3>
+              <p class="pfc-desc" data-nl="AI-demo die watermerken uit foto's verwijdert via inpainting. Gebouwd met FastAPI en LaMa." data-en="AI demo that removes watermarks from photos using inpainting. Built with FastAPI and LaMa.">AI-demo die watermerken uit foto's verwijdert via inpainting. Gebouwd met FastAPI en LaMa.</p>
+              <a class="pfc-link" href="https://watermarkremover.versodevelopment.nl" target="_blank" rel="noopener" data-nl="Probeer de tool →" data-en="Try the tool →">Probeer de tool →</a>
+            </div>
+          </article>
+          <article class="pfc-tile">
+            <div class="pfc-shot"><img src="assets/versotile.png" alt="Versotile, intern dashboard en boekhoudsysteem" loading="lazy" style="object-position:left top"></div>
+            <div class="pfc-cap">
+              <h3 class="pfc-title">Versotile</h3>
+              <p class="pfc-desc" data-nl="Eigen dashboard en lichte boekhouding op maat. CRM, offertes, facturen met PDF, incasso via Mollie, financiën en agenda." data-en="A custom dashboard and lightweight accounting system. CRM, quotes, invoices with PDF, direct debit via Mollie, finances and calendar.">Eigen dashboard en lichte boekhouding op maat. CRM, offertes, facturen met PDF, incasso via Mollie, financiën en agenda.</p>
+              <span class="pfc-muted" data-nl="Intern project, geen publieke demo" data-en="Internal project, no public demo">Intern project, geen publieke demo</span>
+            </div>
+          </article>
+          <article class="pfc-tile">
+            <div class="pfc-constr"><span class="pfc-cone">&#128679;</span><b data-nl="Binnenkort" data-en="Coming soon">Binnenkort</b></div>
+            <div class="pfc-cap">
+              <h3 class="pfc-title">Houtjes &amp; Touwtjes</h3>
+              <p class="pfc-desc" data-nl="Macramé-webshop met handgemaakte items. Wordt op dit moment gebouwd." data-en="Macramé web shop with handmade items. Currently under construction.">Macramé-webshop met handgemaakte items. Wordt op dit moment gebouwd.</p>
+              <span class="pfc-badge" data-nl="Under construction" data-en="Under construction">Under construction</span>
+            </div>
+          </article>
         </div>
-        <h3 class="work-title">Veramiek</h3>
-        <p class="work-desc" data-nl="Stijlvolle website voor een keramiek atelier uit Etten-Leur, met collectie, workshops en eigen contentbeheer via een CMS." data-en="Stylish website for a ceramics studio from Etten-Leur, with collection, workshops and its own content management via a CMS.">Stijlvolle website voor een keramiek atelier uit Etten-Leur, met collectie, workshops en eigen contentbeheer via een CMS.</p>
-        <span class="work-link" data-nl="Bekijk live →" data-en="View live →">Bekijk live →</span>
-      </div>
-    </a>
-    <a class="glass work-main reveal rd2" href="https://caya-pm.com" target="_blank" rel="noopener" style="margin-top:14px">
-      <div class="work-img">
-        <img src="https://image.thum.io/get/width/1280/crop/640/https://caya-pm.com" alt="Website van CAYA Property Management op Curaçao" loading="lazy">
-      </div>
-      <div class="work-body">
-        <div class="port-tags">
-          <span class="port-tag">Website</span>
-          <span class="port-tag">Reserveringen</span>
-          <span class="port-tag">Property Management</span>
-        </div>
-        <h3 class="work-title">CAYA Property Management</h3>
-        <p class="work-desc" data-nl="Tropische website voor een property manager op Curaçao, met luxe villaverhuur, autoverhuur en een online reserveringsflow met betaling." data-en="Tropical website for a property manager on Curaçao, with luxury villa rentals, car rentals and an online booking flow with payment.">Tropische website voor een property manager op Curaçao, met luxe villaverhuur, autoverhuur en een online reserveringsflow met betaling.</p>
-        <span class="work-link" data-nl="Bekijk live →" data-en="View live →">Bekijk live →</span>
-      </div>
-    </a>
-    <div class="port-grid" style="margin-top:14px">
-      <div class="glass port-card stagger-item reveal">
-        <div class="port-thumb">
-          <img src="https://image.thum.io/get/width/800/crop/400/https://watermarkremover.versodevelopment.nl" alt="Watermark Remover tool" loading="lazy">
-        </div>
-        <div class="port-body">
-          <div class="port-tags">
-            <span class="port-tag">AI Tool</span>
-            <span class="port-tag">Python</span>
-            <span class="port-tag">Demo</span>
-          </div>
-          <h3 class="port-card-title" data-nl="Watermark Remover" data-en="Watermark Remover">Watermark Remover</h3>
-          <p class="port-card-desc" data-nl="AI-demo die watermarks uit foto's verwijdert via inpainting. Penseel over het logo, de rest vult zichzelf in. Gebouwd met FastAPI en LaMa." data-en="AI demo that removes watermarks from photos using inpainting. Paint over the logo, the rest fills itself in. Built with FastAPI and LaMa.">AI-demo die watermarks uit foto's verwijdert via inpainting. Penseel over het logo, de rest vult zichzelf in. Gebouwd met FastAPI en LaMa.</p>
-          <a class="port-link" href="https://watermarkremover.versodevelopment.nl" target="_blank" rel="noopener" data-nl="Probeer de tool →" data-en="Try the tool →">Probeer de tool →</a>
-        </div>
-      </div>
-      <div class="glass port-card stagger-item reveal" style="cursor:default">
-        <div class="port-thumb">
-          <img src="assets/versotile.png" alt="Versotile, intern dashboard en boekhoudsysteem" loading="lazy" style="object-position:left top">
-        </div>
-        <div class="port-body">
-          <div class="port-tags">
-            <span class="port-tag">Next.js</span>
-            <span class="port-tag">Prisma</span>
-            <span class="port-tag">SaaS</span>
-          </div>
-          <h3 class="port-card-title" data-nl="Versotile" data-en="Versotile">Versotile</h3>
-          <p class="port-card-desc" data-nl="Eigen dashboard en lichte boekhouding die ik op maat bouwde. CRM, offertes, facturen met PDF, incasso via Mollie, financiën met btw per kwartaal en een agenda, allemaal in één multi-tenant systeem." data-en="A custom dashboard and lightweight accounting system I built from scratch. CRM, quotes, invoices with PDF, direct debit via Mollie, finances with quarterly VAT and a calendar, all in one multi-tenant system.">Eigen dashboard en lichte boekhouding die ik op maat bouwde. CRM, offertes, facturen met PDF, incasso via Mollie, financiën met btw per kwartaal en een agenda, allemaal in één multi-tenant systeem.</p>
-          <span class="port-link" style="color:var(--muted)" data-nl="Intern project, geen publieke demo" data-en="Internal project, no public demo">Intern project, geen publieke demo</span>
-        </div>
+        <button class="pfc-arrow pfc-prev" aria-label="Vorige" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="pfc-arrow pfc-next" aria-label="Volgende" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <div class="pfc-hint" data-nl="Draai met de pijltjes · klik een tegel om die naar voren te halen" data-en="Rotate with the arrows · click a tile to bring it forward">Draai met de pijltjes · klik een tegel om die naar voren te halen</div>
       </div>
     </div>
+    <script>
+      (function(){
+        var scene=document.getElementById('pfScene');
+        if(!scene) return;
+        var ring=scene.querySelector('.pfc-ring');
+        var tiles=[].slice.call(ring.querySelectorAll('.pfc-tile'));
+        var n=tiles.length; if(!n) return;
+        var index=0, R=260, thetaStep=Math.PI*2/n, activeScale=1.6;
+        function calc(){
+          var w=tiles[0].offsetWidth||400;
+          R=Math.round(w*(window.innerWidth<=680?0.7:1.05));
+          activeScale=window.innerWidth<=680?1.4:1.6;
+        }
+        function update(){
+          var active=((index%n)+n)%n;
+          var w=tiles[0].offsetWidth||400;
+          tiles.forEach(function(t,i){
+            var d=i-active;
+            if(d>n/2) d-=n; else if(d<-n/2) d+=n;
+            var ad=Math.abs(d);
+            var th=d*thetaStep;
+            var x=Math.round(Math.sin(th)*R);
+            var ty=Math.round(-(1-Math.cos(th))*(w*0.12));
+            var sc=d===0?activeScale:Math.max(0.45,0.6-(ad-1)*0.15);
+            var wrap=(t._d!==undefined && Math.abs(d-t._d)>2);
+            if(wrap){ t.style.transition='none'; }
+            t.style.transform='translateX('+x+'px) translateY('+ty+'px) scale('+sc+')';
+            t.style.zIndex=String(Math.round(Math.cos(th)*100)+200);
+            t.style.opacity=d===0?'1':(ad===1?'0.95':(ad===2?'0.5':'0.3'));
+            t.style.filter=d===0?'none':('grayscale(1) brightness('+(1-ad*0.05)+') blur('+Math.min(2,ad*0.8)+'px)');
+            t.classList.toggle('is-active',d===0);
+            if(wrap){ void t.offsetWidth; t.style.transition=''; }
+            t._d=d;
+          });
+        }
+        function go(d){ index+=d; update(); }
+        function bringToFront(i){
+          var cur=((index%n)+n)%n, delta=((i-cur)%n+n)%n;
+          if(delta>n/2) delta-=n; index+=delta; update();
+        }
+        tiles.forEach(function(t,i){
+          t.addEventListener('click',function(){
+            var active=((index%n)+n)%n;
+            if(i===active){ var l=t.getAttribute('data-link'); if(l) window.open(l,'_blank','noopener'); }
+            else bringToFront(i);
+          });
+          var a=t.querySelector('.pfc-link');
+          if(a) a.addEventListener('click',function(e){ e.stopPropagation(); });
+        });
+        scene.querySelector('.pfc-prev').addEventListener('click',function(e){e.stopPropagation();go(-1);});
+        scene.querySelector('.pfc-next').addEventListener('click',function(e){e.stopPropagation();go(1);});
+        scene.addEventListener('keydown',function(e){
+          if(e.key==='ArrowLeft'){e.preventDefault();go(-1);}
+          else if(e.key==='ArrowRight'){e.preventDefault();go(1);}
+        });
+        var rt;
+        window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){calc();update();},150);});
+        calc(); update();
+        window.addEventListener('load',function(){calc();update();});
+      })();
+    </script>
   </div>
 </section>
 
